@@ -104,6 +104,57 @@ is what it would want, and it has to reach it somehow.
 
 **Leaning: the node mounts `.you-engine`; the library never does.** Not settled.
 
+### Sharpened: it is not required, *unless* it is how a grant is understood
+
+Walking it through settles most of it. A person does not need the `you` engine to **get into** a
+Tell. They might need it to **look at things on the Tell that are managed outside it** — and library
+content is exactly that, because **library content never gets written into the Tell.** It is not
+clear what that would even mean.
+
+The one thing it plausibly means is **notification**: the Tell tells you when something entered the
+library. That is a natural fit — delivery is already a Tell's job — and it may turn out to be part of
+what registering a library to a Tell *grants* (see §2). It requires no identity engine.
+
+So: **the `you` engine is not required — unless it is the way a grant to take something out of the
+library is understood.** That is the whole hinge, and it is now the only version of this question
+worth asking.
+
+## 5. The library keeps its bottles in data-piles, and that is a custody proof
+
+Not an identity question, but it is what §3's hinge turns on.
+
+**Assume everything the library holds travels as a bottle**, because that is how everything travels
+now. It does not strictly have to: a library may keep files that need no bottle and **package one in
+a clean bottle to send it** — D17's canonical empty bottle, doing exactly the job it was named for.
+The bottle stays the target either way.
+
+Now put those bottles in **data-piles**, and three things fall out:
+
+1. **When a thing entered the ecosystem** is legible from the git log, without anyone maintaining a
+   separate accession record.
+2. **You cannot write to the bottle without getting it out of the pile** — which is the outer of the
+   two hook layers (`civic-node` `OPEN-QUESTIONS.md` §AA), arriving here as a practical consequence
+   rather than as a rule someone imposed.
+3. **The pile is a stewardship proof.** This is the new part and the sharp one.
+
+### Custody, not existence
+
+A signed bottle proves **the thing exists and this is its version**. A library holding that bottle in
+a pile proves something strictly more: **that this library has it, and has had it since then.** Those
+are different claims and only the second one is what a library is *for*.
+
+The mechanism is ordinary — run the thing through the machine that puts it in a pile, and it is
+logged there permanently and can be revealed repeatedly. What it buys is not novel cryptography; it
+is that custody becomes a fact somebody can check.
+
+### And explicitly not a redaction service
+
+**A library should not be doing redaction footwork.** Its job is not to reveal-with-redaction; you
+may already have the full documents, and it is not the library's business to be the one deciding what
+of them you see. Piles support redaction because piles support it for their own owners — that
+capability is theirs, not a service the library offers on others' behalf. If library work starts
+requiring redaction judgement, that is a signal something has been put in the wrong place.
+
 ## Related, elsewhere
 
 - **The control QR.** The `discoverywritten` work wants it for onboarding onto the bottle surface.
