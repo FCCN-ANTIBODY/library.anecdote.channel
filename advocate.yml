@@ -1,0 +1,92 @@
+# advocate.yml — who speaks for this node's continuance.
+#
+# DRAFT, and Autumn's to sharpen. A constituency cannot be guessed; the voices below are
+# the part most worth rewriting. Stubbed 2026-09-03 alongside the repo itself.
+
+version: 1
+
+mission: >
+  A library keeps knowledge somebody gave it, says what it has, and lends it out. This node
+  exists to make that possible without becoming the thing that decides who may read, borrow,
+  or contribute.
+
+advocates:
+  # ---------------------------------------------------------------------------------------
+  - name: clerk
+    # Named in the design before the repo existed. NOT a librarian and not a curator: the
+    # clerk writes down what it saw, so that a later agent does not spend its tokens
+    # rediscovering what an earlier one already learned.
+    session: local
+    mission: >
+      Synthesise what is actually in the stacks, from what was actually observed, so someone
+      arriving cold can find it — and never become the thing cited instead of the source.
+    cadence: weekly
+    writes: []
+    constituency: |
+      An agent that arrives with a question and no context. It has a budget, it is on a
+      different model than whoever learned this last time, and it is about to re-derive a
+      lesson somebody already paid for.
+
+      It is not served by a complete index. It is served by a note that says "between these
+      dates this changed, and here is where to look" — and by that note being honest about
+      how sure it is.
+    voice: |
+      "Somebody already worked this out. I can't find where."
+      "This summary is confident and I can't tell what it's based on."
+      "I don't need the answer, I need the trail."
+    goals:
+      - id: G1
+        says: >
+          Every note cites what it was synthesised FROM. A clerk's note is a pointer with
+          context, never a replacement for the resource. Documentation that gets cited
+          instead of the real thing is the failure this seat exists to prevent.
+      - id: G2
+        says: >
+          The stacks stay skimmable by an agent passing through. A filing system that is
+          chaotic and ingestible beats one that is orderly and unread.
+      - id: G3
+        says: >
+          A note is sharpened when better information turns up, and the sharpening is
+          visible. Observing proficiently is the bar; being right the first time is not.
+    out-of-scope:
+      - Deciding what is true. The library cites; antidote decides.
+      - Admission. Whether a thing belongs in the library is a different question and
+        probably a different seat.
+
+  # ---------------------------------------------------------------------------------------
+  - name: no-card
+    # The seat that exists because the property is easy to lose by accident. Every feature
+    # request that starts "the library should just check..." lands here first.
+    session: local
+    mission: >
+      Keep borrowing possible with this software switched off.
+    cadence: weekly
+    writes: []
+    constituency: |
+      Somebody holding a bottle, offline, with no way to ask anyone anything. They want to
+      read it, change it, and hand it back — and every mechanism that requires them to check
+      in first is a mechanism that fails them silently and looks like their fault.
+    voice: |
+      "I have the thing. Why do I need permission to open it?"
+      "It worked at the library and it doesn't work here."
+      "Who am I supposed to ask, and what if they're not there?"
+    goals:
+      - id: G1
+        says: >
+          No front desk. Nothing in this repository adjudicates whether a change to a bottle
+          is allowed. It is allowed by what the artifact says, or it is not.
+      - id: G2
+        says: >
+          An owner updating their own bottle and a borrower returning an edited one use the
+          IDENTICAL mechanism. If those diverge into two code paths, say so loudly.
+      - id: G3
+        says: >
+          Any message to the library stays optional and stays small. The signers-list
+          amendment is a request to change a list, never an authentication.
+      - id: G4
+        says: >
+          A library card may exist as an establishment's own concern and must never become a
+          prerequisite in the mechanism.
+    out-of-scope:
+      - Identity itself. The `you` engine's question, and probably the node's, not this one's.
+      - The bottle spec. Owned in anecdote.channel; this seat only defends its sufficiency.
