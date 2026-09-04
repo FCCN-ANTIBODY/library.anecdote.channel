@@ -2,6 +2,10 @@
 
 `status: draft` — written 2026-09-03 while stubbing this repo. None of these is decided.
 
+> **Narrowed 2026-09-03.** §1 and §2 below turned out to be one question wearing two hats:
+> **how does a Tell server with a library talk about the content on it?** Everything is isolated
+> today; the open part is what it means for it *not* to be. The sharpening is in §2.
+
 ## 1. Does `library` subsume `bottles` as a subdomain concept?
 
 **The observation that raises it:** every mechanic of checking a bottle out, writing to it, and
@@ -26,10 +30,68 @@ A Tell server can run a library. But **a Tell registering with an Atlas means th
 discovered — not that every tool on it is public.** Registration discovers the node, not its
 contents.
 
-So a library mounted on a node needs its own answer to *how does anyone learn this is here*, and that
-answer must not accidentally publish the node's other tools. Unwritten.
+### The candidate answer: the Atlas is the UI
+
+If a Tell registers, you know the repository where its library is kept. If that library's contents
+are public, **the Atlas can enumerate them**, the same way it already categorises polls and
+everything else. Which produces a genuinely simplifying possibility:
+
+> **The library may not need a bespoke UI at all.** The Atlas is the directory. A library on a Tell
+> probably still *has* one — it is a side system with its own surface — but it should not have to.
+
+That is the strongest argument yet that a library is a kind and not an application: its whole job is
+enumeration, and something upstream already enumerates.
+
+### The constraint that stops it being automatic
+
+**A Tell may hold a private pile of library knowledge.** Not encrypted — just *theirs*. They have it
+here, and registering the Tell with an Atlas must not hand it over. So discovery cannot be a
+side-effect of registration; **it has to be an act.**
+
+Which is the same shape as the public-project-restricted-contribution case: a public item that not
+everyone may write to, because writing is governed by the hooks and not by the library. Read and
+write are already separate here; **public and discoverable have to be separated the same way.**
+
+### The new relationship: a library registers to a Tell
+
+A council registering its findings into a library is not the same act as sending an anecdote, so a
+registration flow is in the cards — and the words that go with it are **a library registers to a
+Tell**. That phrase has not existed before, and it has been a long time since anything new registered
+to anything, so it deserves to be designed rather than assumed by analogy.
+
+Open inside it: what a library's registration *grants* (enumeration? ingest? both, separately?), and
+whether de-registration leaves the Atlas holding a stale index.
+
+## 4. The Tell is the authentication control point — probably
+
+Separate from discovery, and possibly the more load-bearing of the two.
+
+**Discoverability and reachability are not the same thing.** A Tell server is not public or
+discoverable, and that says nothing about whether the people inside it can talk to it. They can. What
+is missing is where they *authenticate*.
+
+The instinct, and it is a good one: **if a Tell is exposed at all, the Tell is the control point, for
+the whole Tell.** One passkey, usable across the services running on it. The alternative — the
+library authenticating separately from every other tool on the same node — means a member who signed
+up for a Tell does not feel signed up for the things on it, which is close to the opposite of the
+point.
+
+To be explicit about what this is *not*: **no device accounts are auto-created for anybody.** Nobody
+is enrolled by being nearby. The claim is only that when a person does make a passkey, one is enough.
+
+**The collision to resolve before building it.** A passkey is scoped to an RP ID, and D12 already
+ruled *one RP ID, at the `you` keeper*. "The Tell is the control point" and "one RP ID at `you`" are
+either the same statement seen from two ends — the Tell is where you *use* it, `you` is where it
+lives — or they are in conflict. **Nobody has checked which.** That check is the next real piece of
+work here, and it belongs in `anecdote.channel/docs/decisions.md`, not in this repo.
+
+Related and unsolved: exposing a public data pile at all (journal exhibits, for instance) needs both
+passkey authentication and a name on the DNS system. The Tell is the only thing in the picture that
+plausibly has both.
 
 ## 3. Where does the `you` engine belong — the library, or the node running it?
+
+*(§4 below is the same question from the other direction, and leans the same way.)*
 
 Stated both ways in the same breath, and **the node is the better instinct.** A library does not
 authenticate anybody (see the no-library-card section in the README); the thing a person authorizes
