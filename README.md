@@ -55,6 +55,29 @@ of the bottle spec working by itself.
   theirs. It must never become a prerequisite, because *walk up and read the thing without
   infrastructure* is the kind of library this is for.
 
+## Holding, and the bytes it does not have
+
+**A library that only points at things is a catalogue.** The distinguishing claim — the one custody
+is for — is *this library has it, and has had it since then*, and that requires holding the bytes.
+
+The bytes live in **bottles**, in **data-piles**. That is not an implementation preference; it is
+what makes the custody claim checkable, and it is worked out in [`OPEN.md` §5](OPEN.md).
+
+Two things follow that are easy to get backwards:
+
+- **The library does not own the bottle.** It holds one. The format, the renderings and the player
+  belong elsewhere — see [`BOTTLES.md`](BOTTLES.md), which is deliberately a list of requirements
+  and not a design.
+- **Holding is not adjudicating.** A bottle arriving as a *construction* rather than a clean seal
+  should be visible as one, and that is the end of the library's involvement. *We want a way to
+  trust bytes; we do not want to be the ones deciding how to trust them.*
+
+Once it can hold bytes, a thing it can do that a mirror cannot: serve **web-cache bottles as a front
+end when the web is down**, topped up by intermittent connectivity and fast-forwarded to whoever
+already has an older copy. That role is adopted in [`BOTTLES.md`](BOTTLES.md) §3 and its open edge —
+whether serving your own captures and serving strangers' are one role or two — is
+[`OPEN.md` §6](OPEN.md).
+
 ## Real libraries, and redundancy
 
 There are literal libraries and they will register under this category. Two buildings across a city
@@ -83,8 +106,14 @@ bar is to *observe proficiently*, and to be sharpened when better information tu
 | --- | --- | --- | --- |
 | `advocate.anecdote.channel` | `.advocate-engine` | it has seats; the clerk is one | **yes** |
 | `journal.anecdote.channel` | `.journal-engine` | it has to publish directories | likely |
+| `bottles.anecdote.channel` | `.bottles-engine` | it is how the library holds bytes at all | **wanted; the repository does not exist yet** |
 | `you.anecdote.channel` | `.you-engine` | a person authorizing against it | **open — see [`OPEN.md`](OPEN.md)** |
+
+`.bottles-engine` is **not mounted** and nothing here depends on it yet.
+[`BOTTLES.md`](BOTTLES.md) is what this library would need from it, written as a consumer so that
+provisioning the repository has something to build against.
 
 ## Open
 
-Three live questions, one of them large. See [`OPEN.md`](OPEN.md).
+Live questions, one of them large. See [`OPEN.md`](OPEN.md). §1 (does `library` subsume `bottles`)
+has been answered from outside — it does not — but the constellation decision record is still owed.

@@ -8,6 +8,19 @@
 
 ## 1. Does `library` subsume `bottles` as a subdomain concept?
 
+> **Answered from outside, 2026-09-08 — and not by this repository.** The operator asked for
+> `bottles.anecdote.channel` back **as a repository, by name**, and for the material to be divided
+> that way. So the answer is *no, they do not collapse*, and the reasoning below that argued against
+> collapsing is the reasoning that held.
+>
+> **This repo did not take the decision and is not recording one.** It touches D4 and D11, so the
+> decision record is still owed in `anecdote.channel/docs/decisions.md`, and until it is written
+> this note is a report of what the operator wants rather than a constellation fact. What changed
+> here is only that this repository stopped waiting on it: see [`BOTTLES.md`](BOTTLES.md), which is
+> written as a consumer's requirements precisely because the format is somebody else's to own.
+>
+> Carried in: `unplaced/bring-back-the-bottles-repository.md` on the node's petition ground.
+
 **The observation that raises it:** every mechanic of checking a bottle out, writing to it, and
 putting it back is **identical** whether the bottle sits under a `bottles` subdomain or a `library`
 one. Who owns it and who may modify it are not special-cased anywhere. If the mechanics are the same,
@@ -22,7 +35,19 @@ different jobs even when the lending machinery is shared.
 say a Tell server — looks like two tools doing one job. A single tool would be a clearer path.
 
 **Not resolvable from here.** It touches D4 (bottles topology) and D11 (storefront and intake), so it
-is a constellation decision, not this repo's to take.
+is a constellation decision, not this repo's to take. That remains true; the note above is a decision
+arriving, not this repository making one.
+
+### What is still open inside it
+
+**Who owns the player.** Both petitions flagged this as their own weakest boundary and neither
+resolved it. The wire format clearly wants to be `bottles`; the **clean-room viewer** — a `data:`
+origin with no network, no cookies, no ambient credentials, capable of carrying a bottle's own UI —
+looks equally like `anecdote.channel`'s, as the static-system owner.
+
+The library has no stake in which, and one real stake in the question being *answered*: it is the
+piece the library depends on and cannot build. Recorded in [`BOTTLES.md`](BOTTLES.md) §1.2 as a
+requirement with no owner.
 
 ## 2. A library installed on someone else's node — what makes it discoverable?
 
@@ -154,6 +179,41 @@ may already have the full documents, and it is not the library's business to be 
 of them you see. Piles support redaction because piles support it for their own owners — that
 capability is theirs, not a service the library offers on others' behalf. If library work starts
 requiring redaction judgement, that is a signal something has been put in the wrong place.
+
+## 6. The caching role — one role, or two?
+
+`status: draft` — adopted 2026-09-08, and the open part is the split.
+
+[`BOTTLES.md`](BOTTLES.md) §3 records the library serving web-cache bottles as a front end when the
+web is down. The petition it came from flagged its own likeliest error and it is worth keeping
+sharp:
+
+**Serving your own captures back to you, and serving the community's captures to strangers, have
+very different trust properties.** The item treats them as one flow because that is how the operator
+described it. They may be two roles that share machinery.
+
+The distinction that would settle it: whether the library is ever asserting anything about a capture
+it did not take. If it is, that is a claim about somebody else's bytes and it wants its own posture —
+which is close to admission, which is [§7](#7-does-the-library-need-a-third-seat).
+
+## 7. Does the library need a third seat?
+
+`status: draft` — raised by the ingest, not by a seat. **Seating is the operator's act.**
+
+Two seats exist. `clerk` synthesises what is in the stacks; `no-card` defends borrowing working with
+this software switched off. Neither holds what the two adopted petitions actually ask about:
+
+- *Are our holdings ready to be bottled?*
+- *Are our archives being topped up?*
+- *Should this have been admitted at all?*
+
+`clerk`'s own `out-of-scope` already says it: *"Admission. Whether a thing belongs in the library is
+a different question and probably a different seat."* The ingest is the first time that gap has had
+concrete work sitting in it rather than being a prediction.
+
+**Not proposing one, and deliberately not drafting a constituency.** A seat whose constituency was
+guessed is worse than an empty chair. Recorded so the next person to open `advocate.yml` sees that
+the question has stopped being hypothetical.
 
 ## Related, elsewhere
 
