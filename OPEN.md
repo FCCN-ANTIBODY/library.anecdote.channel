@@ -215,6 +215,29 @@ concrete work sitting in it rather than being a prediction.
 guessed is worse than an empty chair. Recorded so the next person to open `advocate.yml` sees that
 the question has stopped being hypothetical.
 
+## 8. Would a constituency-bounded library still be a library?
+
+`status: draft` — raised 2026-09-08 by the onboarding split, and larger than the split.
+
+The prospect that a library is **bounded by geoJSON** is what makes bottle-borne onboarding
+necessary rather than merely convenient. It is recorded here because it is a claim about **who this
+library is for**, and nothing in this repository has said one before.
+
+It sits awkwardly against two things already written down:
+
+- **No library card.** The README's load-bearing property is that walking up and reading the thing
+  requires nothing from this software. A constituency is not a card — it does not gate *reading* —
+  but they are close enough that the distinction has to be made deliberately rather than assumed.
+- **Real libraries, and redundancy.** Two buildings across a city both listing a book is redundancy,
+  not conflict. A geographic bound is a different axis from that and may interact with it.
+
+The question is not whether a library *may* be bounded. It is **what the bound governs**: whom it
+enumerates for, whom it admits, whom it serves bytes to — plausibly three different answers. Reading
+is the one that must not be bounded, if *no library card* means anything.
+
+**Not resolving it.** Onboarding is being worked out with `bottles.anecdote.channel` directly; this
+entry exists so the larger question is not settled silently as a side effect of that.
+
 ## Related, elsewhere
 
 - **The control QR.** The `discoverywritten` work wants it for onboarding onto the bottle surface.

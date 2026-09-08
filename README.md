@@ -78,6 +78,40 @@ already has an older copy. That role is adopted in [`BOTTLES.md`](BOTTLES.md) §
 whether serving your own captures and serving strangers' are one role or two — is
 [`OPEN.md` §6](OPEN.md).
 
+## Onboarding is ours, generally — and it is not ours exclusively
+
+**The library onboards people.** That is the general case and it belongs here.
+
+**The exception is the one that matters**, and it is not a gap in this repository: somebody who
+encounters a bottle in the wild, carrying a control code, **onboards with the bottle.** They do not
+have to already be on anything, and they should not have to find us first.
+
+The reason is a property of this library rather than a shortcoming of it:
+
+> **A library may be constituency-bounded** — by geoJSON, later. A constituency-bounded onboarder
+> cannot be the only door, because the person who most needs a door is a stranger holding an
+> artifact, and a stranger is in no constituency by definition.
+
+So the split is not a division of labour that could have gone the other way. **The bottle is the free
+transit object** — it moves, and nothing else in the picture does — which makes it the thing a
+stranger actually encounters. It gets the job by being portable, not by being suited to it.
+
+What this library has to keep straight, and the thing most likely to be got wrong here:
+
+- **A control code is not ours to issue or revoke.** A bottle exercises authority at minting time and
+  never at runtime. If this repository ever wants to revoke one, it has wanted something that does
+  not exist.
+- **We may be the party that honours one.** A code is an assertion that the holder may be admitted,
+  to whoever is later in a position to admit them. A library stacked on a node is a plausible
+  *whoever*. Whether it is *the* one is open.
+- **Admitting a stranger is not the same as serving a constituency.** If those ever need to be the
+  same mechanism, something has gone wrong — which is the same shape as the no-library-card rule and
+  should be defended by the same instinct.
+
+The seam is still open and it is being worked out in `bottles.anecdote.channel`'s
+[`ONBOARDING.md`](https://github.com/FCCN-ANTIBODY/bottles.anecdote.channel/blob/main/ONBOARDING.md),
+alongside [`OPEN.md` §8](OPEN.md) here.
+
 ## Real libraries, and redundancy
 
 There are literal libraries and they will register under this category. Two buildings across a city
@@ -106,10 +140,17 @@ bar is to *observe proficiently*, and to be sharpened when better information tu
 | --- | --- | --- | --- |
 | `advocate.anecdote.channel` | `.advocate-engine` | it has seats; the clerk is one | **yes** |
 | `journal.anecdote.channel` | `.journal-engine` | it has to publish directories | likely |
-| `bottles.anecdote.channel` | `.bottles-engine` | it is how the library holds bytes at all | **wanted; the repository does not exist yet** |
+| `bottles.anecdote.channel` | `.bottles-engine` | it is how the library holds bytes at all | **exists since 2026-09-08; not mounted yet** |
 | `you.anecdote.channel` | `.you-engine` | a person authorizing against it | **open — see [`OPEN.md`](OPEN.md)** |
 
 `.bottles-engine` is **not mounted** and nothing here depends on it yet.
+[`BOTTLES.md`](BOTTLES.md) is what this library needs from it, and the repository now exists to
+answer that: [`FCCN-ANTIBODY/bottles.anecdote.channel`](https://github.com/FCCN-ANTIBODY/bottles.anecdote.channel).
+
+**And "consumer" does not mean downstream.** The library consumes bottles by being **stacked with
+them on a node repository** — a civic node, a station node, or a pure communications node. They meet
+on a node; neither repository is upstream of the other. That distinction is what puts the onboarding
+boundary in the right place, below.
 [`BOTTLES.md`](BOTTLES.md) is what this library would need from it, written as a consumer so that
 provisioning the repository has something to build against.
 

@@ -10,6 +10,15 @@ half of that relationship: what a library needs in order to hold bytes at all, w
 > design. If it reads like a spec, that is the failure mode to watch for — see
 > [What this repository will not own](#what-this-repository-will-not-own).
 
+> **Answered 2026-09-08.** [`bottles.anecdote.channel`](https://github.com/FCCN-ANTIBODY/bottles.anecdote.channel)
+> exists. This document did its job — it was the specification the stub was written against — and it
+> stays as the record of what was asked for, not as a second copy of what was built.
+>
+> **Consumer means co-mounted, not downstream.** The two meet on a node — civic, station, or a pure
+> communications node — and neither is upstream of the other.
+>
+> The vocabulary table has **moved** there and is deliberately not copied back.
+
 ## Why this document exists at all
 
 This library currently points at **84 references and zero bytes**, on a workstation node, because
@@ -136,25 +145,18 @@ offline browser all mint bottles with no library involved. That is the argument 
 built on, and it is the reason the requirements above are written as a consumer's account rather
 than as a design.
 
-## Vocabulary, held here on loan
+## Vocabulary — moved, and deliberately not copied
 
-Settled by the operator 2026-09-08. **It belongs in `bottles.anecdote.channel` and should move
-there when that repository exists** — it is carried here only so it stops being re-derived.
+**`bag` / `bottled` / `canonical` now live in
+[`bottles.anecdote.channel`](https://github.com/FCCN-ANTIBODY/bottles.anecdote.channel).** Cite that.
 
-| state | what it is | who can read it |
-|---|---|---|
-| **bag** | a live subtree, still accumulating; not baked, nothing sealed | whoever holds the directory |
-| **bottled** | that subtree packed for **transit** — loadable into browser storage, openable and editable on a phone | anyone who receives it |
-| **canonical** | a bottle *given* to someone as a reference point | as before, plus a base to fast-forward from |
+The table is **not reproduced here**, and resisting the urge to leave a convenience copy is the
+point: two homes for one fact is the failure this constellation keeps naming, and a copy kept "so a
+reader is not left guessing" is exactly how the second home gets built. One link is not a hardship.
 
-Three consequences, because the library would otherwise get each of them wrong:
-
-- **A bottle is not intrinsically encrypted.** Anyone may receive one, unpack it, and do anything
-  with it. Sealing is a *pile* property a bottle is given by being placed in one.
-- **A QR video is a destination, not a storage format**, reached only when something is made
-  canonical.
-- **Canonical is relational, not public.** *"I have given this set to my client before"* makes it
-  canonical for that pair — which means a library cannot compute canonicity from a file alone.
+The one consequence this library must not forget, because it is the one a library is positioned to
+break: **`canonical` is relational, not public.** It cannot be computed from a file, so this
+repository may never assert it on somebody else's behalf.
 
 ## Where this came from
 
