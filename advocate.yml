@@ -50,8 +50,7 @@ advocates:
           visible. Observing proficiently is the bar; being right the first time is not.
     out-of-scope:
       - Deciding what is true. The library cites; antidote decides.
-      - Admission. Whether a thing belongs in the library is a different question and
-        probably a different seat.
+      - "Admission: whether a thing belongs in the library. A different question, and probably a different seat — see OPEN.md #7."
 
   # ---------------------------------------------------------------------------------------
   - name: no-card
@@ -89,4 +88,4 @@ advocates:
           prerequisite in the mechanism.
     out-of-scope:
       - Identity itself. The `you` engine's question, and probably the node's, not this one's.
-      - The bottle spec. Owned in anecdote.channel; this seat only defends its sufficiency.
+      - "The bottle spec. Owned in bottles.anecdote.channel once it exists (see BOTTLES.md, OPEN.md #1). This seat defends its sufficiency, which is now a live job: BOTTLES.md lists things the library needs and cannot build."
