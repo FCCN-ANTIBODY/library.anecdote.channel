@@ -134,6 +134,24 @@ passing through.
 synthesises from what it observes and re-reads its own notes before speaking about a resource. The
 bar is to *observe proficiently*, and to be sharpened when better information turns up.
 
+## The reserved words, and the seats that tend them
+
+`voices`, `media`, `trade`, `city`, `bottles` and `library` are **spoken for**, at the top level
+of any library. `land` is proposed and is not canon. [`CATEGORIES.md`](CATEGORIES.md) says what
+reservation is — and, more usefully, what each word's *health* actually means, because preserving
+images and preserving repositories are not the same job.
+
+**Reserving is not deriving.** An Atlas works out *what a thing is* from labels, and nobody sends
+a "trade anecdote." A library declares *what a folder means*, in advance. Both are true at once
+because they answer different questions; whether a word becomes a category at all is
+`anecdote.channel`'s to decide, not this repository's.
+
+Health being different per category is the argument for **category seats** —
+[`SEATS.md`](SEATS.md). A seat attends one category of one library, gets its mission from the
+category and its constituency from whoever stocked it. **This engine declares none of its own; it
+holds no category.** It ships the words and the health rows so an operator seating one is not
+starting from a blank page.
+
 ## What it mounts
 
 | mounted | as | for | settled? |

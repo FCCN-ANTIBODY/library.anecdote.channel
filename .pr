@@ -1,0 +1,101 @@
+Reserve the category words, and say what it means to own one
+
+Two documents. `CATEGORIES.md` writes down which words a library may not repurpose and what each
+one's *health* actually consists of. `SEATS.md` is what falls out of that: if health is different
+per category, then a single "keep the library healthy" seat is the wrong shape, and the fix is
+not a bigger budget.
+
+Both are `draft`. Neither adds a seat, and nothing in `advocate.yml` changes.
+
+## Reserving is not deriving, and that is why both can be true
+
+`super-categories-are-derived.md` says nobody sends a "trade anecdote" — the Atlas works out
+*what a thing is* from labels, and an author does not declare it. That is untouched. Reservation
+answers a different question: **what does this folder mean?** A library declares that in advance,
+about a word at its own top level.
+
+The asymmetry is the whole argument for doing it now: **reserving costs a line in a file and
+un-reserving costs a migration of somebody's tree.** And the failure is not paid where it is
+caused — an Atlas plugged into two libraries that disagree about `trade/` has two meanings for
+one word and nothing to say which is right.
+
+So *forcefully* is three refusals aimed at a caretaker: a category folder may not be renamed away
+while tidying, may not hold non-category material, and **a seventh word may not be taken
+locally.** Proposing one is welcome and cheap.
+
+**The line held throughout: this repository reserves, it does not canonize.** What promotes a tag
+to a super-category is open and is `anecdote.channel`'s.
+
+## `land`, recorded as proposed
+
+Your reasoning carried rather than summarised — geoJSON as the artifact with the library as the
+viewer, competing boundary definitions held side by side and reconciled into nothing, and the
+property the other six words do not have: **some of it is under your feet and some of it you go
+and fight for.** A node stockpiling shapes it does not administer is the ordinary case, not the
+exception — a river, a road, where a trade partner sits, the shape of a place that catches fire a
+lot.
+
+**One thing it should have to survive before adoption.** `OPEN.md` §8 asks whether a library may
+be *constituency-bounded by geoJSON*. If `land` is a category, the thing that bounds a library is
+also a thing a library holds. That is either elegant or circular and nobody has looked.
+
+## `city` holds document structure, not only documents
+
+Written up because it is the sharpest concrete use and it is easy to under-read. Fort Collins
+publishes everything and it is still needle-in-a-stack — and the harder half is that *"the coming
+council agenda"* is a **rolling** descriptor whose target moves, so a live link to it goes stale
+by design rather than by neglect.
+
+So the artifact is often not the document but **what is known about its shape**: where a thing
+lives in it, how to walk it, how the descriptor resolves this week. Explicitly **not OCR** — the
+claim is *we have studied this document because we understand its format, and here is how you
+crawl it*, which is a crawl recipe, which is testable against the next issue. It also gives
+`city` a decay clock nothing else has: **a city changes its publishing system without telling
+anyone.**
+
+## The parallelism question, answered concretely
+
+You asked whether a category seat fanning out to two or five workers actually works, and whether
+two of them at once is orchestrated well. Four rules, all of which fall out of the branch
+layout that already exists:
+
+1. **The branch is the lock.** Parallelism inside a seat never means two writers on
+   `advocate/trade`.
+2. **Fan out on reading; serialize the writing.** Workers take a slice and return findings; the
+   seat writes once, at the end. No merge, no reconciliation, no new state machine.
+3. **Slices come from the tree, not the pool size** — directory order plus the cursor. Same
+   category, same cursor, same partition whether the budget bought two workers or five. A
+   partition that depends on what you could afford is unreproducible, and an unreproducible
+   partition makes a crashed round unrecoverable.
+4. **The cursor is the only checkpoint**, and it advances only on a completed write.
+
+And the direct answer to *"what if there are two of them, each with budget four"*: **two
+different category seats in parallel is free** — disjoint trees, separate branches, separate
+budgets — and that is what splitting by category actually buys. **Two runs of the same seat is a
+lost update, not an orchestration problem**, and the second should decline. Worth the contrast
+with the workload board on this machine, which is deliberately *an announcement, not a lock*: two
+may claim and both proceed. A round writes, so it has to be stricter — a writer that can see
+another writer and proceeds anyway has not been helped by seeing it.
+
+## The tension I did not paper over
+
+**Reconnaissance reads, and held content is inert.** Those cannot both be unconditional, and the
+resolution is that **reading across holdings is a grant that arrives with the item, not a default
+of holding** — a term of admission, per item, which is what makes the public-library version
+legitimate (people registering a project opt in visibly and can decline). Absent the term, the
+seat works from what is visible from outside.
+
+**Left undesigned on purpose: where that term is written.** The bottle manifest is the obvious
+candidate, because then the grant travels with the item instead of living in a table the library
+has to keep. Improvising it here would be inventing an admission mechanism in a document about
+seats.
+
+## Decisions that are yours
+
+- **Is `land` in?** It is written as proposed, and that is reversible either way.
+- **Is there a seventh, eighth?** You said you are still interviewing. The table is where they go.
+- **Does `bottles` stay on this list** now that `bottles.anecdote.channel` exists as its own
+  repository? It is reserved here as a word, not claimed as machinery, but it is the row most
+  likely to want to live somewhere else.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
