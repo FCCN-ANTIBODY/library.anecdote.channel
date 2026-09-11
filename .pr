@@ -1,1 +1,69 @@
-no draft yet - replace this file: line 1 becomes the PR title, the rest the body
+Seat `stacks` — the library's bytes have only ever sat in one kind of place
+
+Adopts `how-a-library-stores-what-it-holds.md`, filed against this repository 2026-09-10. It asked
+for a seat by name — *"I want the library to know about that as a concept because I think we
+should study that as an advocate seed"* — and a seat is the door it should get, because what was
+asked for was **ongoing study**, which is what a seat is and what an `OPEN.md` section is not.
+
+## What the seat is for
+
+**The library's bytes have only ever sat in one kind of place, and nothing has ever said so.**
+Everything assumes files unpacked into a work tree. That assumption is invisible precisely because
+nothing has contradicted it — which is the kind worth naming before something does.
+
+`store:` landed in `residency.yml` with #5 as a word for that. This is the thing that keeps
+looking at it.
+
+## The constituency is relayed, not simulated
+
+Your words, carried, and still yours to sharpen — same posture as `clerk` and `no-card`.
+
+The reframe the petition turned on is what makes the constituency real rather than theoretical:
+IPFS was disappointing **as a global store** because *"it's really hard to find someone who's
+willing to replicate the whole table out there."* But fragmentation is only a defect if the goal
+was replicating the world, and **our ethos already precludes replicating the world.** A library
+already has an admission posture and already decides who it exposes itself to, so an IPFS node
+scoped to exactly that audience is not a degraded global store — it is a correctly sized one.
+
+So the constituency is the operator who wants their library reachable by the people it is already
+for, and is offered only tools built for replicating the world. And behind them the agent who
+finds out in two years that *"the library is a work tree"* was assumed in forty places, none of
+which said so.
+
+## The four goals, and what each is guarding against
+
+- **G1 — `store:` stays a word.** Not an abstraction, not a driver interface, not a plugin point.
+  **The day this seat proposes one, it has answered a question nobody asked**, and the goal says
+  so out loud so it can be held to it.
+- **G2 — provenance is the invariant and outranks everything else it says.** A bottle that moved
+  over IPFS is the same bottle with the same lineage as one that moved over a filesystem. If a
+  transport would require that to change, *that is the finding*.
+- **G3 — name the assumptions before attempting a second store**, with locations. The first
+  useful output is a list of the places that say `path` and mean it.
+- **G4 — measure the correctly-sized claim, do not repeat it.** The sentence in the petition is a
+  claim with an experiment behind it. Run the experiment.
+
+Out of scope, explicitly: inventing a socialization protocol (you said you are not sure we want
+to invent anything for it, and **saying nothing is an acceptable answer**), picking a technology,
+the bottle format, and deciding the instancing question — this seat supplies the one reason
+instancing might survive and does not get to settle it.
+
+`cadence: monthly`, which is the honest rate for a study. `writes: []`.
+
+## Two small edits that come with it
+
+- **`RESIDENCY.md`** now points `store:` at the seat instead of at the petition.
+- **`OPEN.md` §7** gets a correction rather than a closure. §7 asks whether the library needs a
+  third seat — **and the third seat that arrived is not the one §7 was about.** *Should this have
+  been admitted at all* still has no seat. The note is there so "two seats exist" no longer being
+  true does not get read as the admission gap having been answered.
+
+## Follow-on
+
+`station-node`'s petition space still holds this item at
+`library/petitions/FCCN-ANTIBODY/library.anecdote.channel/how-a-library-stores-what-it-holds.md`.
+An adopted item is deleted at the moment of adoption — two homes for one fact is the failure the
+space exists to prevent. That is a `station-node` PR, and it is not this one; it goes up once this
+merges.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
