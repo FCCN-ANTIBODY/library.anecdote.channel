@@ -1,0 +1,72 @@
+Residency, adopted — and the other half of it, which is providing a library
+
+Answers the petition `residency-is-a-relationship-you-have-no-word-for.md`, filed against this
+repository on 2026-09-10. Its complaint was that a producer contract existed on one side only:
+`DiscoveryWritten/stagecraft` had a design note, a schema and a committed `residency.yml`, and
+nothing here contained the word *residency*. This accepts it, and then writes the half stagecraft
+could not — what the library is doing when it answers.
+
+## What lands
+
+- **`RESIDENCY.md`** — the reasoning. Three relationships (holding / contributing / residency);
+  mount-name-is-the-claim; terms-not-locations; `disposition` per label. Then provision: the
+  canonical `library` prefix, `store:` as a named variable, and who spawns a seat.
+- **`residency.yml`** — this engine's own declaration, read from two ends. `wants:` and `serves:`
+  are the resident half, in the same vocabulary `.stagecraft-engine` already uses. `provides:` is
+  the new block.
+- **`README.md`** — one section, beside the mount table, so neither file has to be opened to
+  learn the three load-bearing facts.
+
+## The three decisions in it
+
+**Residency is adopted as specified.** All three of stagecraft's pieces, unmodified. Point 3
+(`disposition` at the label, not the wing) is a direct contribution to `OPEN.md` §2, which had
+already argued *public* and *discoverable* must be separated the way *read* and *write* are.
+
+**The instancing question is retired, not answered — but only halfway, and the halves are
+different.** For ground rules and path discrimination, a wing is enough and no second instance is
+needed. For a second *storage backend* it is not: a wing is a place inside one store, and one
+library on a filesystem and one on IPFS are two stores. That is deliberately left to the
+companion petition `how-a-library-stores-what-it-holds.md`, which asks for a seat and should get
+one rather than a paragraph here.
+
+**`prefix: library` is canonical.** An outside tool should be able to guess and be right, with no
+lookup and nobody to ask. Overriding stays allowed and boring. The real reason the key exists is
+the case with **no path at all** — `store: ipfs` and no `prefix:`, where the absence is the
+statement. Without the key, "not on a path" is unsayable and a tool that assumes `library/` is
+quietly wrong about a whole class of node.
+
+## Verified, not asserted
+
+`station-node`'s `bin/services` reads `serves:` out of **every** `.<name>-engine` mounted at its
+root. I ran its own `read_serves()` against this new file: it parses, and once the submodule pin
+advances, `bin/services` will list `library/rounds` as a menu item with **no station-node change
+at all**. That is the whole point of framing seat-spawning as the library engine's job — it lands
+in a mechanism that already exists.
+
+## What is deliberately not done
+
+**The runner is declared but cannot be ordered from, and the file says so.** A relay is a
+*listener*; a round is *periodic* — it fires, works, writes, exits. A host that keeps services
+alive would respawn it forever. `kind: periodic` is declared anyway, with a comment telling an
+operator not to install a keep-alive job against it. A menu item a host has not implemented is
+legible and refusable; that should be petitioned for, not built around. **Left as a question for
+you:** whether that petition goes to `station-node` or to a shared services spec.
+
+**No seat is added to `advocate.yml`.** `OPEN.md` §7 says seating is the operator's act and a
+guessed constituency is worse than an empty chair. This changes nothing about who sits.
+
+**The council registry is not consolidated.** `station-node`'s `library/seat/README.md` already
+predicts that `docket` becomes a budget file with no list in it, once the library can answer
+*which of these has a seat*. This names the direction and the side the fact belongs on, and stops
+there — collapsing a running caretaker on a guess is how a scheduled thing quietly stops running.
+
+## Follow-on, once this merges
+
+`station-node`'s petition space holds
+`library/petitions/FCCN-ANTIBODY/library.anecdote.channel/residency-is-a-relationship-you-have-no-word-for.md`.
+The ground's rule is that an adopted item is **deleted** at the moment of adoption, because two
+homes for one fact is the failure the space exists to prevent. That deletion is a `station-node`
+PR and is not in this one; say the word and it goes up.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
