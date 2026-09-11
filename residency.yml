@@ -1,0 +1,119 @@
+# residency.yml — read from two ends.
+#
+# `wants:` and `serves:` are what THIS engine asks of a node that mounts it. They are
+# the resident half, and they are the same vocabulary `.stagecraft-engine` uses — a
+# library engine is not privileged for being a library.
+#
+# `provides:` is the other half, and it is new here: what a library OFFERS to the
+# residents who take up residency inside it. One file, because a node reading a mounted
+# engine should learn the whole arrangement in one read, and a provider declaring itself
+# somewhere else would be a second surface that can disagree with the first.
+#
+# The resident's NAME is not declared: it comes from the mount path, so `.library-engine`
+# is the claim and nothing can disagree with it.
+#
+# THE CLAIM IS A MENU, NOT A STARTUP SCRIPT. Nothing here starts because the engine was
+# mounted. A node that never wants advocate rounds never runs one and is never told off
+# about it.
+#
+# Reasoning: RESIDENCY.md.
+
+version: 1
+resident: library           # informational; the mount path is what counts
+
+# ---------------------------------------------------------------------- storage --
+# Labels and their properties. The host binds a label to a path and answers `label ->
+# path` at runtime. This file never names a directory, and the host never guesses an
+# intent.
+wants:
+  - label: stacks
+    holds: "the bottles this library actually holds — the bytes custody is a claim about"
+    lifecycle: durable
+    disposition: on-request
+
+  - label: catalogue
+    holds: "what the library says it has; generated from what is visible, never from what a held project says about itself"
+    lifecycle: durable
+    disposition: public
+
+  - label: intake
+    holds: "unfiled arrivals, still inert, not yet placed"
+    lifecycle: transient
+    disposition: private
+
+  - label: seats
+    holds: "seat workspaces, cursors and checkpoints — the council's scratch, not its output"
+    lifecycle: transient
+    disposition: private
+
+  - label: petitions
+    holds: "correspondence filed by library address, aimed at repositories this library knows the name of"
+    # `private` today means only that no reader has been promised. It does not mean
+    # secret, and a filer should write as though it flips.
+    lifecycle: durable
+    disposition: private
+
+# --------------------------------------------------------------------- provision --
+# What this engine offers a host: a library, and the terms other residents get.
+provides:
+  - facility: library
+
+    # CANONICAL, not merely a default. An outside tool should be able to guess where
+    # the library is and be right, with no lookup and nobody to ask. Overriding is
+    # allowed and boring — a node running two libraries obviously needs to.
+    prefix: library
+
+    # The word for a thing that used to be an assumption. Not an abstraction layer,
+    # and there is no driver interface behind it: `filesystem` is the only value
+    # anything implements. A library with `store: ipfs` and NO `prefix:` is the case
+    # this key exists to make sayable — see RESIDENCY.md, and the unanswered petition
+    # `how-a-library-stores-what-it-holds.md`.
+    store: filesystem
+
+    # The three relationships a library has. Listed so that a host — or an auditor —
+    # can see which ones this provider is actually offering, rather than inferring
+    # them from what happens to work.
+    admits:
+      - holding         # the library points at your repository; the content stays inert
+      - contributing    # you file something and it becomes the library's
+      - residency       # you live here and keep working; you get a wing
+
+    # A wing is named by the mount that claimed it, so it always begins with `.` and
+    # can never collide with a bare-word category. Stated rather than left to luck.
+    wings: ".<name>-engine"
+
+# ---------------------------------------------------------------------- services --
+serves:
+  - service: rounds
+    for: "the advocate seats this library dispatches — which seats exist, and what each attends, is the library's to say"
+    # PERIODIC, and no host implements this yet. A relay is a listener: up or down,
+    # health is a socket. A round fires, does a bounded amount of work, writes, and
+    # exits — and a host that keeps services alive would respawn it forever.
+    #
+    # Declared anyway, because a menu item a host cannot order from is legible and
+    # refusable, which is better than an unstated want. It should be petitioned for,
+    # not built around. Do NOT install a keep-alive job against this entry.
+    kind: periodic
+    #
+    # Resolved inside THIS engine: the advocate engine is mounted here, so the path is
+    # `.library-engine/.advocate-engine/...` from the node's root and the host does not
+    # have to know that. `--max 2` is the budget — seats served per firing, stalest
+    # first, the rest waiting. It is written here and nowhere else on purpose: a second
+    # key restating the number is a thing that can drift from the command that uses it.
+    start: ".advocate-engine/bin/round.sh --max 2"
+    every: weekly
+    required-for: []               # nothing this library does depends on a round having run
+    optional: true
+    survives-restart: true
+    health: none                   # a periodic job that has not fired is not unhealthy
+    sample: none
+
+# ------------------------------------------------------------------------- notes --
+# The node owns the CPU, the clock and the credential. This file says what the library
+# would like to run; whether anything runs at all is the node's answer and nobody
+# else's. That separation is the whole reason the block is here rather than in a
+# scheduler somewhere.
+#
+# And every one of these must stay runnable BY HAND. `.advocate-engine/bin/round.sh`
+# has to keep working from a terminal with no host process anywhere. The moment a round
+# only runs when a node starts it, the node has become a dependency.

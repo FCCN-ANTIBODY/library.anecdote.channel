@@ -154,6 +154,29 @@ boundary in the right place, below.
 [`BOTTLES.md`](BOTTLES.md) is what this library would need from it, written as a consumer so that
 provisioning the repository has something to build against.
 
+## What it is mounted *into*, and what it provides
+
+The mount table above is what this engine takes. The other direction is a relationship the
+library had no word for until 2026-09-11: **residency.** An engine mounted beside this one on a
+node does not contribute and is not merely held — **it lives here and keeps working**, and it
+gets a wing.
+
+`.library-engine` is a resident too, of whatever node mounts it, and it is not privileged for
+being a library. What it asks for and what it offers are in one file,
+[`residency.yml`](residency.yml), read from two ends. The reasoning is
+[`RESIDENCY.md`](RESIDENCY.md).
+
+Three things worth knowing without opening either:
+
+- **The mount name is the claim.** Anything mounted as `.<name>-engine` may hold a wing named
+  `<name>`, and this library's caretaking does not apply inside it.
+- **The prefix `library` is canonical** — so an outside tool can guess and be right. The key
+  exists mostly so a library can say it is **not on a path at all**, which is what an IPFS store
+  would need.
+- **The node owns the CPU.** Which seats exist and what they attend is the library's to say;
+  whether anything runs at all is the node's, and the residency claim is a menu rather than a
+  startup script.
+
 ## Open
 
 Live questions, one of them large. See [`OPEN.md`](OPEN.md). §1 (does `library` subsume `bottles`)
