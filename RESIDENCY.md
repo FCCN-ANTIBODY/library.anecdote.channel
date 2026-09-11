@@ -137,10 +137,10 @@ something does.
 it. **It is a word for a thing that used to be an assumption**, and `filesystem` is the only
 value anything implements.
 
-What a second store would mean, and whether IPFS is a good first study, is asked in
-`how-a-library-stores-what-it-holds.md` and is **not settled here.** That item asks for a seat,
-and a seat is the right door for it — this document only makes sure the concept has somewhere to
-attach when the seat exists.
+What a second store would mean, and whether IPFS is a good first study, is **not settled here.**
+It is the `stacks` seat's, seated 2026-09-11 from `how-a-library-stores-what-it-holds.md`, which
+asked for ongoing study rather than an answer. This document only gives the concept somewhere to
+attach; the seat is what keeps looking at it.
 
 ## Who spawns a seat — three parties, and today they are conflated
 

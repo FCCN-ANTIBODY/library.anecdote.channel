@@ -215,6 +215,12 @@ concrete work sitting in it rather than being a prediction.
 guessed is worse than an empty chair. Recorded so the next person to open `advocate.yml` sees that
 the question has stopped being hypothetical.
 
+> **A third seat arrived 2026-09-11, and it is not this one.** `stacks` studies where the bytes
+> may sit, seated from a petition that asked for it by name and supplied its own constituency in
+> the operator's words. **The admission gap above is untouched** — *should this have been admitted
+> at all* still has no seat, and the arithmetic of "two seats exist" no longer being true must not
+> be read as this question having been answered. It has only stopped being the only thing missing.
+
 ## 8. Would a constituency-bounded library still be a library?
 
 `status: draft` — raised 2026-09-08 by the onboarding split, and larger than the split.

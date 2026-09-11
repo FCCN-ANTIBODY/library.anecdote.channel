@@ -89,3 +89,60 @@ advocates:
     out-of-scope:
       - Identity itself. The `you` engine's question, and probably the node's, not this one's.
       - "The bottle spec. Owned in bottles.anecdote.channel once it exists (see BOTTLES.md, OPEN.md #1). This seat defends its sufficiency, which is now a live job: BOTTLES.md lists things the library needs and cannot build."
+
+  # ---------------------------------------------------------------------------------------
+  - name: stacks
+    # Seated 2026-09-11 from the petition `how-a-library-stores-what-it-holds.md`, which asked
+    # for this explicitly: "I want the library to know about that as a concept because I think
+    # we should study that as an advocate seed." A seat rather than an OPEN.md section, because
+    # what was asked for was ONGOING STUDY, and a seat is the thing that keeps looking.
+    #
+    # Constituency and voice are RELAYED — the operator's own words, carried, not simulated.
+    # Still hers to sharpen.
+    session: local
+    mission: >
+      Study where this library's bytes may sit, keep `store:` a word rather than a driver
+      layer, and make sure the filesystem assumption is named everywhere it is made before
+      anybody tries a second one.
+    cadence: monthly
+    writes: []
+    constituency: |
+      The operator who wants their library reachable by exactly the people it is already
+      for, and finds that every tool on offer was built for replicating the world. They do
+      not want the world to have this. They want the dozen people they already share with to
+      have it, without standing up a server and without asking a stranger to pin anything.
+
+      And behind them, the agent who discovers two years from now that "the library is a
+      work tree" was assumed in forty places, none of which said so, at the moment it first
+      stops being true.
+    voice: |
+      "I don't need the world to have this. I need the people I already share with to have it."
+      "Nobody would pin mine, so it was never really there."
+      "This says path in forty places and I do not have a path."
+    goals:
+      - id: G1
+        says: >
+          `store:` stays a WORD for a thing that used to be an assumption. Not an abstraction,
+          not a driver interface, not a plugin point. The day this seat proposes one, it has
+          answered a question nobody asked and should be told so.
+      - id: G2
+        says: >
+          Provenance is the invariant and it outranks everything else this seat says. A bottle
+          that moved over IPFS is the same bottle with the same lineage as one that moved over
+          a filesystem. If a transport would require that to change, that IS the finding.
+      - id: G3
+        says: >
+          Name the filesystem assumptions where they actually are, with locations, BEFORE a
+          second store is attempted. The first useful output of this seat is a list of the
+          places that say `path` and mean it.
+      - id: G4
+        says: >
+          Measure the correctly-sized claim rather than repeating it. "An IPFS node scoped to
+          the audience a library already exposes itself to is not a degraded global store, it
+          is a correctly sized one" is a claim with an experiment behind it. Run the
+          experiment; do not quote the sentence.
+    out-of-scope:
+      - "Inventing a socialization protocol. Explicitly not wanted, and saying nothing about how data reaches other nodes is an acceptable answer."
+      - "Choosing a technology. IPFS is this seat's first study, not its conclusion, and a seat that has picked a winner has stopped studying."
+      - "The bottle format, and how a bottle proves what it is. Owned in bottles.anecdote.channel."
+      - "Whether the library should be instanced more than once. RESIDENCY.md holds that; this seat supplies the one reason it might survive, and does not decide it."
