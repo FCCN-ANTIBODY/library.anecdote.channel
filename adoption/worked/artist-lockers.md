@@ -7,6 +7,12 @@ first pass read. Nothing in the project changed. What changed is that this pass 
 **what has to be running when somebody opens the page**, and three claims from the first pass did
 not survive that.
 
+> **This file is disposable, on purpose.** Everything transferable from it lives in
+> [`../README.md`](../README.md), "how to run a fitting" — nine rules, each paid for by something
+> this fitting got wrong first. What stays here is the reading of *one project at one commit*, and
+> that has an expiry: once they have onboarded, keeping a public reading of somebody's repository is
+> a courtesy nobody asked for. **Deleting it should cost nothing, and it does.**
+
 **Nothing here was asked of them.** The project was read; this is what an adoption *would* look
 like, with the reasoning attached so they can disagree with it in specifics rather than in general.
 Every recommendation names what it costs and what it closes.
