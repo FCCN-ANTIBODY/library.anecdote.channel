@@ -150,6 +150,7 @@ rather than kept:
 | What does my word owe, and what does it get? | [`adoption/`](adoption/) — one door per word |
 | How do I declare a peer dependency? | [`PEERS.md`](PEERS.md) |
 | What does living inside a library mean? | [`RESIDENCY.md`](RESIDENCY.md) |
+| Why is the README the front page, and how do I write one? | [`EXHIBIT.md`](EXHIBIT.md) |
 | What does a library need from a bottle? | [`BOTTLES.md`](BOTTLES.md) |
 | Who speaks for a standing concern, and how? | [`SEATS.md`](SEATS.md) |
 | What is still unsolved here? | [`OPEN.md`](OPEN.md) |
