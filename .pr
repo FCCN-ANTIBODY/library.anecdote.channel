@@ -1,1 +1,92 @@
-no draft yet - replace this file: line 1 becomes the PR title, the rest the body
+Refit artist-lockers with static as the spine — and correct three claims the first pass got wrong
+The artist-lockers fitting is revised to a second pass. Same commit (`3f68225`), same project,
+nothing changed upstream. What changed is the organising question: **what has to be running when
+somebody opens the page.**
+
+## Why re-frame it
+
+The first pass treated *static* as one property among several and ranked recommendations by pain.
+Ranking by pain was right and is kept. But reading the repository as a static artifact turns out to
+be load-bearing rather than descriptive — and sorting it that way immediately surfaced three
+first-pass claims that do not survive contact with the code.
+
+The new spine is the project's own `_config.yml` `exclude:` block, which names exhaustively what the
+published thing does not contain: `bot`, `bin`, `worker`, every manifest, every lockfile. They drew
+the artifact/apparatus line themselves, in configuration, more sharply than we drew it for them.
+Everything now sorts into **apparatus** (ran before publication), **the artifact** (the bytes), and
+**read-time dependencies** (three hostnames — the only place a third party can take something away).
+
+## The three corrections
+
+1. **The Cloudflare Worker is not in the runtime path.** The first pass said it "authenticates site
+   visitors." It doesn't. `js/discord-auth.js` is a public-client PKCE flow that POSTs
+   `discord.com/api/oauth2/token` straight from the browser. The worker is unreferenced, its
+   `REDIRECT_URI` is still the `yourdomain.com` placeholder, and its CORS origin is hardcoded to the
+   upstream author's Pages domain — wrong in every copy of a *template* repo. This is a correction in
+   their favour: they already removed the server. It also drops the toolchain floor from four to
+   three for free, which is now the cheapest item in the document.
+
+2. **`acquireBlob()` is already the seam we told them to build.** The first pass's headline now-move
+   was "one function answering where the bytes live, with Pinata behind it" — costed at an afternoon.
+   That function exists in `js/player.js` with three tiers: OPFS, then the gateway, then the expiring
+   CDN, cheapest and most durable first. The real remaining gap is one line: the gateway hostname is
+   Liquid-templated in at build time, so *which gateway* is a rebuild rather than a value.
+
+3. **The auth gate is cosmetic by construction and cannot be otherwise.** `index.html` emits every
+   ref unconditionally into `data-player` attributes; the gate is an overlay `unlocker.js` hides.
+   The bytes ship before the gate is drawn. So this stops being a preference we hoped they'd keep
+   ("is auth a convenience or a prerequisite?") and becomes structural: a static host cannot gate, it
+   can only decorate. The risk isn't them choosing wrong, it's them believing it gates.
+
+## Other things the static reading turned up
+
+- **Their README's first philosophy line is the one they're currently breaking.** *No third-party
+  vendor support loaded by the frontend runtime* — and `js/player.js:64` fetches a Pinata gateway in
+  the frontend runtime. Framed as the wedge it is, not a gotcha: every other vendor was designed out,
+  this one survived because nothing else was on offer. It's the strongest bottles argument on the
+  page and they wrote it themselves.
+- **The OPFS cache is unexportable**, which is a better bottles argument than the first pass made.
+  *Accumulate offline media caches* is realised in origin-private storage: genuinely durable, and
+  impossible to hand to anyone or back up. The most durable artifact the project produces exists only
+  where it can never leave. A bottle is the exportable form of exactly that.
+  It also bounds any withdrawal promise they could make to artists — noted in the `voices` section.
+- **Atlas should come off the table.** `index.html` carries `noindex, nofollow`. They've already
+  voted on discoverability and we missed it.
+- **The `_plugins` obstacle was overstated.** First pass said "they have `_plugins`" and stopped.
+  Measured: 30 lines, two files, pure Liquid string filters, no Jekyll internals. Still not a
+  recommendation to migrate to `jekyll-enough` — but the number is the finding, per this document's
+  own standard.
+
+## Findings added
+
+The original six are kept verbatim. Three new ones, and the first is about us:
+
+7. **A fitting written from the README describes a project that does not exist.** All three
+   corrections came from code the README summarises accurately but incompletely. The first pass
+   recommended two things they'd already done and credited them with one they hadn't. Every claim in
+   this pass now names a file and, where it matters, a line.
+8. **We assumed a server, because our vocabulary has one.** Engines, seats, relays, mailboxes all
+   presume something that can be running. This project's answer to nearly every question is *it's a
+   file that was already built*, and the first pass kept reaching past that.
+9. **Their `exclude:` list states our own principle better than we do.** A project can hold a
+   principle in a form we don't recognise as a statement of it. You only find that by reading the
+   configuration, not the prose.
+
+## What was verified, and how
+
+Read at `3f68225` in a clean checkout: `_config.yml`, `index.html`, `_includes/{auth,locker,slim_record}.html`,
+`js/{player,unlocker,discord-auth}.js`, `worker/{discord-auth.js,wrangler.toml}`, `bot/cdn.py`,
+`bin/deploy-discord-auth`, `_plugins/*.rb`, `Gemfile`, and a sample `refs.json`.
+The "worker is unreferenced" claim was checked by grepping `js/`, `_includes/`, `index.html` and both
+config files for any worker or `workers.dev` URL — only the `_config.yml` exclude entry matches.
+All cross-document links (`../trade.md`, `../../BOTTLES.md` §1.2/§2/§3, `../../OPEN.md` §10,
+`../../ADOPTING.md`) were checked to still resolve to existing anchors.
+
+## Deliberately not done
+
+- **Nothing was changed in artist-lockers itself**, and nothing here was asked of them. This is still
+  a fitting published whole, and it still holds `status: draft`.
+- **No petition filed** for the "one project, three categories' worth of obligation" problem — it's
+  already `OPEN.md` §10 and this pass only added the OPFS-withdrawal wrinkle to it.
+- The dead `worker/` is described as worth deleting, but that's their repository and their call; it
+  is written as a ledger item, not a patch.
