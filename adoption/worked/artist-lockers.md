@@ -1,7 +1,8 @@
 # Fitting: artist-lockers
 
 `status: draft` — **second pass**, revised 2026-09-13 against
-[`tiliv/artist-lockers`](https://github.com/tiliv/artist-lockers) at `3f68225`, the same commit the
+[`DiscoveryWritten/artist-lockers`](https://github.com/DiscoveryWritten/artist-lockers) at `3f68225`
+(then at `tiliv/artist-lockers`, which now redirects), the same commit the
 first pass read. Nothing in the project changed. What changed is that this pass sorted it by
 **what has to be running when somebody opens the page**, and three claims from the first pass did
 not survive that.
@@ -254,17 +255,39 @@ recommendation is *not* "adopt bottles":
 > a rebuild of every page. That is well under an afternoon and it is the whole of the now-decision
 > in [`../trade.md`](../trade.md).
 
-### 2. An advocate seat — because it is free and their first one writes itself
+### 2. A schedule — because the seat we proposed turned out to be the wrong shape
 
 No listener, no runtime, no service, runnable from a terminal. It wakes, does a bounded amount of
 work, writes to its own branch, and opens a pull request. **It is apparatus, in their sense** —
 excluded from the artifact, nothing for a reader to depend on.
 
-Their first seat is already implied by their own code: **`bot/cdn.py` exposes `is_expired()` and
-`expires_within()`, and nothing calls either in aggregate.** A seat that walks `refs.json`, counts
-how many references are past `ex` or close to it, and opens a pull request saying so, turns a
-known-in-principle decay into a number somebody sees on a schedule. The predicate is written. The
-caller is not. That is the cheapest real thing on this page.
+**Corrected 2026-09-13, and it is the third pass's one finding.** Both earlier passes said
+*"`bot/cdn.py` exposes `is_expired()` and `expires_within()`, and nothing calls either in
+aggregate."* **That is wrong.** `bot/refresh.py` calls `expires_within` at line 69, walking every
+tracked category's `refs.json` — and it does more than count. It re-fetches the originating message
+for a fresh signed URL and writes the file back. The repair is written, it is complete, and it is
+better than the report we proposed.
+
+What is actually true is narrower and worse:
+
+> **`bin/refresh` exists and nothing schedules it.** `bin/daily` is `init + sync + pin`. Refresh is
+> not in it and there is no other caller, so the project can already fix its own link rot and only
+> does when a person remembers.
+
+Two things follow, and they point in opposite directions from the original recommendation:
+
+- **A seat that counts is no longer the cheapest real thing.** Proposing a report to somebody who
+  has a repair is a downgrade. If a seat is still wanted here it is a different one — *is the
+  repair running, and did it keep up* — which is a question about a schedule and not about decay.
+- **The cadence is the finding.** Measured from their own committed data, `ex − is` is exactly
+  `86400`: every link dies 24 hours after issue. So `bin/daily`'s natural once-a-day rhythm sits
+  precisely *on* the link lifetime with no margin, and `refresh` is what buys the margin back.
+  Nothing schedules either.
+
+That is a binding problem rather than a code problem, and it is answered by
+`residency.yml` in their repository declaring both verbs as `kind: periodic`
+([DiscoveryWritten/artist-lockers#1](https://github.com/DiscoveryWritten/artist-lockers/pull/1)) —
+written after this fitting, because of it.
 
 ### 3. Library — because they already are one and did not know
 
@@ -379,6 +402,15 @@ the second pass added three, and the first of them is about the first pass.
    had already done and credited them with one thing they had not.** A fitting has to read the
    artifact, not the description of it, and this one now says which file and which line for every
    claim it makes.
+
+   **And that promise was not enough, which is the third pass's lesson.** The sentence above was
+   written in the same document that claimed *"nothing calls either in aggregate"* — a claim about
+   `bot/refresh.py`, which does. Citing a file and a line disciplines a **positive** claim and does
+   nothing for a **negative** one: *this exists, here* is checked by reading one place, while
+   *nothing does this* is only ever checked by searching every place, and neither pass ran the
+   search. Two passes asserted it and both were confident. **A negative claim is a grep you have not
+   run yet**, and in a fitting it is also the most dangerous kind, because every "they have not built
+   X" is a recommendation to build X.
 
 8. **We assumed a server, because our own vocabulary has one.** Engines, seats, relays and mailboxes
    all presume something that can be running. This project's answer to nearly every question is *it
