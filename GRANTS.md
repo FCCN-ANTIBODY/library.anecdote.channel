@@ -11,7 +11,8 @@ the git-side equivalent of the browser's origin-private filesystem:
 > sign of privilege here."*
 
 **Nothing has moved.** This document answers a question that was already open, corrects the
-analogy it arrived in, and names the one derivation the design turns on.
+analogy it arrived in, and — after a first draft that designed before it checked — points at the
+machinery that already implements the answer.
 
 ## What this settles
 
@@ -79,50 +80,76 @@ Three separable things, and conflating any two of them is how this gets built wr
 keeps other people's builds from touching it. The ciphertext makes fetching it useless. The grant is
 what turns a fetched blob into something you can open.
 
-## The derivation, and why the constitution forces exactly one answer
+## The derivation: compose what is built, and let the invariant explain why
 
 The operator flagged this as the open piece — *"how they derive that is still coming."* It is more
-constrained than it looks, and the constraint is a good one.
+constrained than it looks, and it is **already built**, which the first draft of this document
+missed by designing before checking the demo shelf.
 
-**A passkey cannot decrypt anything.** A WebAuthn credential is non-extractable by design — the
-`you`-engine brief already leans on this from the other side, noting *"passkey non-extractability
-pushing the signing act into a browser gesture."* You can sign with it. You cannot hand its private
-key to `age`.
+### The invariant got there first
 
-That leaves two ways to get from a passkey to a decryption key:
+**A passkey cannot decrypt anything.** A WebAuthn credential is non-extractable by design; you can
+sign with it, and you cannot hand its private key to `age`. That is a mechanical fact about
+WebAuthn — and the constellation had already ruled it as law, years before anybody walked into it
+from this direction:
 
-1. **Authenticate to something that releases a wrapped key.** Sign a challenge, a service checks it,
-   the service hands back your wrapped identity.
-2. **Derive the key from the credential, on the device, with no network.** The WebAuthn **PRF
-   extension** (`prf`, riding CTAP2's `hmac-secret`) returns a deterministic per-credential secret
-   for a given salt, without ever exposing the credential's private key. That secret wraps the age
-   identity.
+> **Invariant 4. Sign ≠ decrypt.** *Signing is public authorship/integrity; encryption controls
+> reading. Keep them separate.*
 
-**Option 1 is a front desk**, and [the README](README.md#no-library-card) refuses it in as many
-words: *"Nothing central decides whether a change is allowed. A library that adjudicates has to be
-online, trusted and correct, and this design refused all three."* A key-release endpoint is online,
-trusted and correct, and its outage is your library going dark.
+So the question *"how does the passkey decrypt the library"* is malformed, and the invariant says
+why. **The passkey does not decrypt. It gates.** Everything below follows from taking that
+seriously rather than from any cryptographic cleverness.
 
-So **the no-library-card rule selects the mechanism.** Not a preference, not a benchmark — the
-constitution admits one of the two options and it is PRF. That is a pleasing result and it should
-be recorded as one, because it means the crypto decision was made years before anybody reached it.
+### The pattern is on the demo shelf
 
-    passkey (non-extractable, on the phone)
-      └─ PRF(salt) ──▶ symmetric secret, derived on-device, offline
-           └─ unwraps the age identity
-                └─ decrypts the blocks on the library branch
+`anecdote.channel/AGENTS.md`, under *"You are the second factor"*:
 
-Every step after the first is machinery this constellation already has: `age` throughout
-`data-pile`, and `seal-enough` — *"the encryption factory, almost entirely WebCrypto-native"* —
-whose one named gap is the age seed-wrap.
+> Signing happens **here, on the device**: WebCrypto Ed25519 under a non-extractable key in
+> domain-scoped IndexedDB, **gesture-gated by a passkey ceremony** (`composer/sign.mjs`,
+> `composer/gesture.mjs`).
 
-**What must be verified rather than assumed.** PRF availability is uneven across platforms and
-authenticators, and this is precisely the kind of claim the store seat in
-[`advocate.yml`](advocate.yml) is told to *measure rather than repeat* (G4). Treat it as the first
-experiment, not as a settled capability. If PRF turns out to be unreachable on the phone that
-matters, the fallback is **not** option 1 — it is a device-held identity minted the way
-`age-mint.mjs` already mints one, with the passkey guarding the gesture rather than deriving the
-key.
+The key lives on the device. The passkey proves a person is present at the moment it is used. Two
+separate things, exactly as invariant 4 requires, and `composer/gesture-demo.html` is the shipped
+proof of it.
+
+The rest of the chain is likewise already sitting there:
+
+| need | what already exists |
+| --- | --- |
+| an identity that can decrypt | `composer/age-mint.mjs` — a browser-minted `age` identity, byte-interoperable |
+| a place to keep it that is not a server | domain-scoped IndexedDB, non-extractable, per `sign.mjs` |
+| proof a person authorized this use | the passkey ceremony, `composer/gesture.mjs` |
+| **the grant itself** | **`composer/grants-panel-demo.html`** — *"Running on your behalf": mint / touch / revoke standing consent grants, each row showing the artifact that proves it* |
+| an expiry that can be refreshed | `composer/lease.mjs`, the freshness lease |
+
+    passkey ceremony  ──gates──▶  age identity (minted on-device, held in IndexedDB)
+                                        └─ decrypts the blocks on the library branch
+    grant artifact (mint/touch/revoke) ──says which blocks, and until when
+
+**Nothing in that line is new.** It composes `age-mint`, `gesture`, `lease` and the grants panel,
+which is what *"if the need category is represented, the machinery exists — compose it, don't
+rebuild it"* asks for.
+
+### What this replaces, and why the replaced version was wrong
+
+An earlier draft of this document argued that the no-library-card rule forces the **WebAuthn PRF
+extension** (`prf`, over CTAP2 `hmac-secret`) — deriving a wrapping key from the credential rather
+than storing one. The reasoning was that the only alternative was a key-release service, which is a
+front desk.
+
+**The conclusion was right and the mechanism was wrong.** No key-release service, correct. But
+storing a device-held `age` identity is the *other* way to avoid one, it fetches nothing, and it is
+built. PRF was new dependency surface proposed in front of a shipped answer — and it runs at
+invariant 8, *"no new cryptography without cause: WebCrypto Ed25519, `age`, `sha256`. Every
+capability here was built by composing these."* PRF is not in that set.
+
+**Where PRF might still earn its cause, stated so nobody has to re-derive it:** an IndexedDB
+identity is per-origin, per-device and evictable — lose the profile and the grant is gone, and a
+second device needs a second minting. A PRF-derived key regenerates from a passkey that syncs
+through the platform keychain, so it would survive both. That is a real advantage and it is a
+**portability** argument, not a security one. It belongs in `anecdote.channel/docs/decisions.md` as
+a cause to weigh if device loss becomes the complaint, and nowhere near the first build.
+
 
 ## The RP ID constraint, and a concrete trap in the worked case
 
@@ -159,9 +186,10 @@ card:
    bottle. The library is not asked.
 2. **Ciphertext does not adjudicate.** A blob that fails to decrypt has not refused you; there is no
    decision, no decider, and nothing to be online.
-3. **The key travels with the person and is never fetched.** This is the rule the PRF choice
-   enforces. *Walk up and read the thing without infrastructure* survives, because the reader brings
-   their own key rather than asking for one.
+3. **The key travels with the person and is never fetched.** This is what minting on-device buys,
+   and it is the property that made a key-release service unacceptable. *Walk up and read the thing
+   without infrastructure* survives, because the reader brings their own key rather than asking for
+   one.
 
 The README's *"an artifact must remain openable by somebody who never authenticated"* is not
 violated by encryption — it is a rule about **not requiring infrastructure**, not a rule that
@@ -209,32 +237,36 @@ there*; a cluster holding sealed blocks does not need to be scoped at all.
 
 ## Where this leaves the engines
 
-Everything named already exists but one.
+**Not restated here.** The roster is [`ADOPTING.md`](ADOPTING.md) for people and
+[`adoption/engines.yml`](adoption/engines.yml) for agents, both with per-row provenance, and a third
+copy in this file would be a fact that can disagree with two others.
 
-| engine | state today | what this design asks of it |
-| --- | --- | --- |
-| **library** | `draft` | the branch; enumeration and custody. `library.yml`, `PLACE`, the shelves |
-| **data-pile** | **`running`** | the encrypted-at-rest branch store. **The load-bearing piece, and it was not on the operator's list** |
-| **bottles** | `draft` | the transit object a grant-holder actually opens |
-| **tell** | `running` | the door for people who hold nothing; [`OPEN.md` §4](OPEN.md) makes it the auth control point |
-| **advocate** | `running` | the seats, including the store seat already studying this |
-| **atlas** | `unstated` | routability. Still last |
-| **`you`** | **does not exist** | RP ID, the PRF derivation, the grant. `notes/you-engine-brief.md` is a brief, and nothing is built |
+Only what is new is recorded, which is one thing:
 
-**The gap is `you`, and it is now the keystone rather than an optional convenience.** That is a
-change in its priority and the reason to write this down.
+- **`you` is not on the roster, because it cannot be adopted.** There is no repository — only
+  `notes/you-engine-brief.md`, which is a relayed brief with nothing built. What this document
+  changes is its *standing*: it moves from an optional convenience to the piece that holding turns
+  on. It should stay off the roster until it exists, because a roster row is an offer.
+- **The engine the design actually leans on was not on the operator's list**: `data-pile`, already
+  `running`, already declared a peer of this library for `custody`.
+
 
 ## Not decided here
 
 - **Whether the grant expires, and what re-granting looks like.** The README's checkout carries an
   expiration; a Discord authorization has its own lifetime; a derived key has none. Three clocks, and
   nobody has reconciled them.
-- **Whether PRF is reachable on the phone that matters.** The first experiment, per G4.
+- **Whether the composer's grant artifact and the library's grant are one concept or two.**
+  `grants-panel-demo.html` mints *standing consent to act on your behalf*; this document means *may
+  read what the library holds*. They may be the same artifact with two readings, or a word doing
+  double duty. Nobody has checked, and checking is cheap now and expensive after both are built.
 - **The RP-ID-versus-Tell collision.** [`OPEN.md` §4](OPEN.md) says the check belongs in
   `anecdote.channel/docs/decisions.md` and that nobody has run it. Still true, and now more urgent,
   because the grant makes it load-bearing rather than theoretical.
-- **Revocation.** A key that has been derived once cannot be un-derived, and a grant-holder who has
-  populated a local store keeps those bytes forever. This is the same boundary the worked fitting
+- **Revocation, which is narrower than it looked.** The grants panel already mints, touches and
+  **revokes**, so revoking the grant is a solved gesture rather than an open problem. What remains
+  open is only the floor beneath it: a grant-holder who has already decrypted keeps those bytes
+  forever. This is the same boundary the worked fitting
   found at OPFS: *any withdrawal promise has a limit at the reader's disk.* It is a property of
   handing somebody bytes, not a defect to engineer away, and it should be stated to artists plainly
   rather than papered over.
