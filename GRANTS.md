@@ -251,15 +251,86 @@ Only what is new is recorded, which is one thing:
   `running`, already declared a peer of this library for `custody`.
 
 
+## The vernacular, and the one home it has to end up in
+
+**Ruled 2026-09-13: the composer's grant and the library's grant are one concept.** The operator's
+answer to the question this document opened — *"yes, I believe they are the same concept. Library
+has sharpened thinking for how to make use and find best vernacular."*
+
+So the mechanism is `anecdote.channel`'s, because that is where the artifact is built
+(`composer/grants-panel-demo.html`, `composer/lease.mjs`, `composer/authorize.mjs`) and because
+capability moves there. **The vocabulary is mostly there too** — more of it than this document first
+assumed, which is recorded below rather than quietly corrected.
+
+[`BOTTLES.md`](BOTTLES.md) already settled how that resolves, and its reasoning transfers without
+amendment:
+
+> **The table is not reproduced here**, and resisting the urge to leave a convenience copy is the
+> point: two homes for one fact is the failure this constellation keeps naming.
+
+**So this section is temporary by construction.** The one thing the library does add is *offered*,
+not asserted — carried here only until `anecdote.channel` takes it or refines it, and **deleted the
+day it lands there**, exactly as `bag` / `bottled` / `canonical` were deleted from `BOTTLES.md`. It
+is the prose form of what [`adoption/engines.yml`](adoption/engines.yml) calls
+`declared: transcribed` — *a debt with a name, and a small owed pull request.*
+
+### Most of the vocabulary already exists, and it is not the library's
+
+Checked before claiming anything, because the first draft of this document was wrong in exactly this
+way. `anecdote.channel` has thought about grants considerably harder than the table this section
+originally carried gave it credit for. Already named there, and **not restated here**:
+
+- **scope** — a grant is `{piles:[<name>]}`, bound at the hello to the browser-attested asking origin
+- **session-lived versus standing** — two lifetimes, with *"standing grants come via the grants panel"*
+- **the ladder**, **`grantId`**, and the **chronicle** — every vend appended to a hash-chained local
+  log, so an act that skipped the ceremony is absent from it
+- **consent as a platform gesture at an authority boundary, never web-painted** — `docs/consent-surface.md`
+- revocation as `port.close()`, and gesture-gating throughout
+
+Cite those. The library did not invent them and has no better words for them.
+
+### What the library actually adds, which is narrow
+
+One thing, and it is a **mode** rather than a word:
+
+> **A grant that must be exercised with no keeper in reach.**
+
+Every grant in `anecdote.channel`'s model is vended: something is asked, at a boundary, and the act
+is chronicled. The library refuses that shape by constitution — *no front desk*, nothing central
+deciding, nothing that has to be up. So the library's instance of the concept runs in a mode the
+existing vocabulary does not yet cover: **the reader already holds the ciphertext and the key, and
+opens it with nothing to ask and nothing watching.**
+
+Two consequences fall straight out, and both are the library's to report rather than to decide:
+
+| | in the vended mode | in the keeperless mode |
+| --- | --- | --- |
+| what the grant governs | an **action** at a boundary — vend, sign, access a pile | **reading** bytes already in hand. Fetching is never gated |
+| the chronicle | every vend is logged | **a read cannot be chronicled.** There is nothing present to append to a log, and adding something would be the front desk arriving by the back door |
+
+The second is the uncomfortable one and it should be said plainly rather than discovered: *every use
+of your identity is auditable* has a boundary, and the library is where it stops.
+
+### The one consequence this library must not forget
+
+`BOTTLES.md` keeps exactly one thing back from the vocabulary it gave away — the consequence the
+library is *positioned to break*. The equivalent here:
+
+> **A grant may never become a prerequisite for opening an artifact.** It governs who may **read**
+> what is held; it never governs who may **fetch**, and it is never consulted at the moment of
+> reading.
+
+The library is the party that would benefit from forgetting this, because a library that can gate
+looks more capable than one that cannot. That is exactly why it is written on the library's side of
+the line and not the composer's.
+
 ## Not decided here
 
-- **Whether the grant expires, and what re-granting looks like.** The README's checkout carries an
-  expiration; a Discord authorization has its own lifetime; a derived key has none. Three clocks, and
-  nobody has reconciled them.
-- **Whether the composer's grant artifact and the library's grant are one concept or two.**
-  `grants-panel-demo.html` mints *standing consent to act on your behalf*; this document means *may
-  read what the library holds*. They may be the same artifact with two readings, or a word doing
-  double duty. Nobody has checked, and checking is cheap now and expensive after both are built.
+- **Which clock governs, now that two of the three turned out to be one.** The composer's lease
+  *is* the README's expiration, so re-granting is `touch` and there was never a second mechanism to
+  design. What is genuinely unreconciled is the third: a Discord authorization has its own lifetime,
+  set by somebody else, and nothing says what happens to a grant when the authorization behind it
+  lapses.
 - **The RP-ID-versus-Tell collision.** [`OPEN.md` §4](OPEN.md) says the check belongs in
   `anecdote.channel/docs/decisions.md` and that nobody has run it. Still true, and now more urgent,
   because the grant makes it load-bearing rather than theoretical.
