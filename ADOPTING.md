@@ -34,6 +34,10 @@ axes that happen to be spoken in the same sentence.
 | **bottle** | a subtree packed for transit — openable on a phone, with no tool but a browser | not intrinsically encrypted; sealing is a *pile* property |
 | **wing** | a directory inside a library that a mounted engine owns, named by its mount | not a category; wings begin with `.` and categories never do |
 | **seat** | a standing concern with a name, that wakes on a schedule and writes to its own branch | not a bot, not a reviewer with a veto |
+| **grant** | a delegation of capability — somebody may now do a specific thing, usually narrow, usually expiring | **not a superuser and not an elevation.** The same word your OAuth flow already uses |
+
+The one that surprises people: **`grant` is the plain word, not a term of art.** It can be built
+up until it elevates, but that is not the mood it is delivered in — see [`GRANTS.md`](GRANTS.md).
 
 The one people get wrong first: **a category is not an engine, and an engine is not a category.**
 The axes are independent and usually do not even share a word. Do not go looking for the engine
