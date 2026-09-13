@@ -244,6 +244,67 @@ is the one that must not be bounded, if *no library card* means anything.
 **Not resolving it.** Onboarding is being worked out with `bottles.anecdote.channel` directly; this
 entry exists so the larger question is not settled silently as a side effect of that.
 
+## 9. Are peerage and residency two axes, or one file?
+
+`status: draft` — raised 2026-09-13 by [`PEERS.md`](PEERS.md), which cannot answer it from inside
+this repository.
+
+The `peers:` block was put in `residency.yml` for one good reason and one weak one. The good
+reason: **a node reading a mounted engine should learn the whole arrangement in one read**, which
+is the same argument that put `provides:` there rather than in a second file. The weak one: it is
+where the other blocks already were.
+
+But the two axes are not obviously the same axis. **Residency is a relationship with a host** —
+what an engine asks of the node it is mounted in, and what a library offers a resident. **Peerage
+is a relationship with a sibling** — what this engine leans on, which has nothing to do with who
+mounted it and is true of the engine standing alone in a terminal. A `.stagecraft-engine` cloned
+by itself has peers and has no residency.
+
+Three ways it could be wrong, in increasing order of expense:
+
+- **Harmless.** One file, two blocks, and nobody is confused. The current bet.
+- **A word collision.** `residency.yml` says *"read from two ends"* about `wants:`/`serves:`
+  versus `provides:`. `peers:` is a third end, and a file with three ends is a file that will
+  eventually be read wrong by somebody who learned two of them.
+- **A wrong home.** If peerage belongs to the engine and residency belongs to the mount, then an
+  engine that is never mounted anywhere still owes a peer declaration and currently has no file to
+  put it in. That is the case that would force a split.
+
+**Not resolving it here.** The convention has exactly one implementation — this repository — and a
+convention with one implementation has not yet been tested by anything. The evidence that decides
+it is the second engine to ship a `peers:` block, and the question that matters then is whether
+its author reached for `residency.yml` unprompted.
+
+## 10. A project holds more than one category's worth of obligation, and cannot say so
+
+`status: draft` — raised 2026-09-13 by the [artist-lockers fitting](adoption/worked/artist-lockers.md).
+
+[`CATEGORIES.md`](CATEGORIES.md) reserves words that name **what a level of a hostname means**, and
+[`SEATS.md`](SEATS.md) attaches a health rule to each. Both assume one word answers for one thing.
+The first real project fitted against them needed three at once:
+
+- the **repository** is `trade` — a template other parties copy, whose health rule is *the template
+  still builds, and nobody is wedged into a workaround*;
+- its **holdings** are `media` — whose health rule is *the artifact still plays*;
+- and the **authors** inside it are owed something shaped like `voices` — *attribution is intact and
+  the writer can still withdraw* — which no part of the project currently provides, because nobody
+  had posed the question.
+
+Those are three different clocks. A build breaks and is noticed the same afternoon; a codec dies in
+ten years; a consent question surfaces the day somebody asks to be removed. **A single category
+assignment cannot carry three health rules**, and today there is nowhere to write down that a
+project answers to more than one.
+
+What is *not* the answer, at least not obviously: multiple categories. The words are canonical
+because a thing is forced to be one category — that is the whole federation argument in
+`CATEGORIES.md`, and letting a project claim three would dissolve it. The likelier shape is that a
+holding is categorised separately from the repository that serves it, and that obligations toward
+*people in* a holding are a third thing again that is not a category at all.
+
+**Not resolving it.** It touches what promotes a tag to a category, which
+[`CATEGORIES.md`](CATEGORIES.md) already hands to `anecdote.channel`. Recorded here because the
+fitting found it and the reasoning should not have to be re-derived by the next one.
+
 ## Related, elsewhere
 
 - **The control QR.** The `discoverywritten` work wants it for onboarding onto the bottle surface.

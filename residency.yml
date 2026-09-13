@@ -82,6 +82,77 @@ provides:
     # can never collide with a bare-word category. Stated rather than left to luck.
     wings: ".<name>-engine"
 
+# ------------------------------------------------------------------------ peers --
+# What OTHER engines this one leans on, and what stops working without them.
+#
+# Never "this engine requires that engine". A dependency of a VERB is not a dependency
+# of a product -- stagecraft's residency file wrote that rule first and it is inherited
+# here verbatim. So each entry names the verbs of THIS engine that the peer serves, and
+# `without:` finishes the sentence: what an adopter still has if they never take it.
+#
+# `without:` is mandatory and may not be empty. If it reads as a description of
+# something broken, `strength` was wrong and the entry should have said `required`.
+#
+# Referee, and the full schema: PEERS.md.
+
+peers:
+  - peer: bottles
+    repo: FCCN-ANTIBODY/bottles.anecdote.channel
+    strength: optional
+    for: [holding, custody]
+    without: "a catalogue -- it can point at things, it cannot claim to hold them"
+    mount: none
+    # The load-bearing one. A library that only points at things is a catalogue; the
+    # distinguishing claim custody is FOR is `this library has it, and has had it since
+    # then`, and that requires the bytes. It is still `optional` because a catalogue is
+    # a real and useful thing, not a broken library.
+    source: "README.md -- Holding, and the bytes it does not have; BOTTLES.md"
+
+  - peer: data-pile
+    repo: FCCN-ANTIBODY/data-pile
+    strength: optional
+    for: [custody]
+    without: "bottles in a directory -- they open, and nothing about them is provable later"
+    # A template to fork, never our copy to mount. Custody is checkable because the pile
+    # is where the bytes sat; that is the argument, not a storage preference.
+    mount: none
+    source: "OPEN.md 5 -- the library keeps its bottles in data-piles"
+
+  - peer: atlas
+    repo: FCCN-ANTIBODY/atlas.anecdote.channel
+    strength: optional
+    for: [discoverability]
+    without: "an honest enumeration that nobody has been told about"
+    # The asymmetry that makes a library worth plugging in: an Atlas has to go and BUILD
+    # an index, and a library is already listing what is inside it. Discoverable and
+    # joinable stay separate decisions -- listing is not admitting.
+    mount: none
+    source: "README.md -- What a library is for; OPEN.md 2"
+
+  - peer: advocate
+    repo: FCCN-ANTIBODY/advocate.anecdote.channel
+    strength: vendored
+    for: [rounds, seats]
+    without: "nothing -- it is already mounted inside this engine, at .library-engine/.advocate-engine"
+    # VENDORED, and saying so is the point. A host that does not know will mount a second
+    # copy at a second pin and the two will drift. `serves: rounds` below resolves inside
+    # this engine for the same reason: the host should not have to know where it sits.
+    mount: vendored
+    source: "SEATS.md; the serves: rounds entry below"
+
+  - peer: tell
+    repo: FCCN-ANTIBODY/tell.anecdote.channel
+    strength: optional
+    for: [checkout-requests]
+    without: "self-service stocking and self-service lending, which is the design and not a fallback"
+    # Deliberately weak, and it should stay weak. The ONLY real reason to talk to a
+    # library is to ask for a specific checkout -- put my name on the signers, with an
+    # expiration -- and a request to amend a list is not an authentication. Whether the
+    # Tell is the control point for that is `probably` in OPEN.md 4 and unresolved; if
+    # this entry ever hardens to `required`, the no-library-card rule has been lost.
+    mount: none
+    source: "OPEN.md 4 -- the Tell is the authentication control point, probably"
+
 # ---------------------------------------------------------------------- services --
 serves:
   - service: rounds
