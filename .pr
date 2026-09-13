@@ -1,1 +1,74 @@
-no draft yet - replace this file: line 1 becomes the PR title, the rest the body
+Grants are one concept — record the ruling, and check before claiming the vernacular
+Follows the operator's ruling on the question `GRANTS.md` left open: *"yes, I believe they are the
+same concept. Library has sharpened thinking for how to make use and find best vernacular."*
+
+**Nothing has moved.** This records a decision and pays a small debt honestly.
+
+## What it records
+
+The composer's grant artifact and the library's grant are **one concept**. So the question comes off
+the open list, and the consequence is a `BOTTLES.md` problem: one concept, one home, and the words
+belong wherever the artifact is built.
+
+`BOTTLES.md` already settled how that resolves and its reasoning transfers unamended — *"the table is
+not reproduced here, and resisting the urge to leave a convenience copy is the point: two homes for
+one fact is the failure this constellation keeps naming."*
+
+## Checking first changed what the section could honestly say
+
+The brief said the library had the sharper vernacular. Reading `anecdote.channel` before writing it
+down, that is **mostly not true**, and the PR says so rather than quietly trimming:
+
+Already named there, cited and not restated — **scope** bound to the browser-attested asking origin
+(`{piles:[<name>]}`), **session-lived versus standing**, **the ladder**, **`grantId`**, the
+**chronicle** of every vend, revocation as `port.close()`, and *consent as a platform gesture at an
+authority boundary, never web-painted*. The library has no better words for any of it.
+
+An earlier draft of this branch carried a four-row table claiming the library's phrasing improved on
+`mint` / `touch` / `revoke`. It was written before I read `docs/consent-surface.md` and
+`docs/decisions.md`, and it is gone.
+
+## What the library does add, which is one mode and not a word
+
+> **A grant exercised with no keeper in reach.**
+
+Every grant in the vended model is asked for at a boundary and chronicled. A library refuses that
+shape by constitution — *no front desk* — so its instance runs where **the reader already holds the
+ciphertext and the key, and opens it with nothing to ask and nothing watching.**
+
+Two consequences, reported rather than decided:
+
+| | vended | keeperless |
+| --- | --- | --- |
+| what it governs | an **action** at a boundary | **reading** bytes already in hand; fetching is never gated |
+| the chronicle | every vend logged | **a read cannot be chronicled** |
+
+The second is the uncomfortable one: *"the operator can audit every use of their identity"* is
+unqualified today, and the library is where it stops. Better stated than discovered.
+
+## Also
+
+- **Two of the three clocks collapsed.** The composer's lease *is* the README's expiration, so
+  re-granting is `touch` and there was never a second mechanism to design. Only the Discord
+  authorization's own lifetime stays unreconciled — nothing says what happens to a grant when the
+  authorization behind it lapses.
+- **The one consequence kept back**, in the shape `BOTTLES.md` uses for `canonical`: *a grant may
+  never become a prerequisite for opening an artifact.* Written on the library's side because the
+  library is the party that would benefit from forgetting it.
+
+## Filed alongside
+
+A petition to `FCCN-ANTIBODY/anecdote.channel` —
+`library/petitions/FCCN-ANTIBODY/anecdote.channel/a-grant-with-no-keeper-to-ask.md`, already on
+`station-node` main. It asks for none of the existing vocabulary; it asks that the keeperless mode be
+named where the concept is defined, and that the audit claim get its qualifying sentence. Adoption
+would be a paragraph in `decisions.md` and a sentence in `consent-surface.md` — no code.
+
+**This section of `GRANTS.md` deletes itself the day that lands**, exactly as `bag` / `bottled` /
+`canonical` were deleted from `BOTTLES.md`.
+
+## Deliberately not done
+
+- **No vocabulary was moved or renamed** in `anecdote.channel`. Not mine to move; the petition is the
+  correct instrument and it is declinable.
+- **The `media` door is still owed.** Still its own PR.
