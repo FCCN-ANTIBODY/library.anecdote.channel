@@ -14,6 +14,59 @@ the git-side equivalent of the browser's origin-private filesystem:
 analogy it arrived in, and — after a first draft that designed before it checked — points at the
 machinery that already implements the answer.
 
+## The mood: a grant is a delegation of capability, and that is all
+
+`Added 2026-09-13`, from the first adopter reading this document. **This section is about tone, and
+tone is load-bearing here**, because everything below it is easier to misread than to read.
+
+The adopter had the word already — their own OAuth exchange sends
+`grant_type: "authorization_code"` — and asked whether ours was the same word. **It is the same
+word, and theirs is the plainer sense.** The operator's answer, and the reading this repository
+prefers:
+
+> A grant is **a delegation of capability**. Not a superuser, not an elevation, not a tier of
+> access somebody is promoted into. It *can* be built up until it elevates that much, but that is
+> not the mood it is delivered in.
+
+So the default picture is the ordinary one: **somebody may now do a specific thing, usually narrow,
+usually with an expiry, and usually because they asked politely once.** OAuth is where most people
+meet the word and OAuth is not a superuser system. Neither is this.
+
+### Why the mood is worth a section
+
+Two failures, and both are the kind that arrive quietly:
+
+- **An adopter who reads *privilege* as *admin* concludes that adopting grants means building an
+  authorization system**, and correctly declines, because they do not have one and do not want one.
+  The truth is nearer the opposite: a grant exists so that *nothing* has to adjudicate.
+- **A designer who reads *privilege* as *rare and heavy* builds a ceremony around it.** The design
+  wants grants to be common, cheap, and boring. A grant that feels momentous is one somebody will
+  avoid issuing, and a capability nobody delegates is a capability that stays centralised.
+
+### What the title of this document means, then
+
+**This document's *privilege* names a consequence in one use case, not the definition of the word.**
+The case is specific — a local copy that outlives Discord's clock — and *that* copy is a privilege in
+the ordinary English sense: a nice thing not everybody has. It is not a claim that grants are a
+permissions ladder.
+
+The refusals elsewhere in this repository already enforce the light reading, and they are the reason
+it can be trusted rather than merely asserted:
+
+- **No front desk**, so there is nothing for a grant to be *above*.
+- **No library card**, so a grant cannot become a prerequisite to reading.
+- **The key travels with the person**, so a grant-holder asks nobody at the moment of use.
+
+A grant that required a superuser would need somebody to *be* super. There is deliberately nobody.
+
+### Where the word came from here, and it was not us
+
+**The adopter's project predates all of this.** They were using `grant` in its ordinary sense before
+this constellation existed, and the convergence is a point in the word's favour rather than
+something they need to reconcile to. Recorded because the opposite framing — *our term of art, which
+you now also use* — would be both wrong and the sort of thing that makes onboarding feel like
+assimilation.
+
 ## What this settles
 
 [`OPEN.md` §3](OPEN.md) ended on a hinge and said so:
