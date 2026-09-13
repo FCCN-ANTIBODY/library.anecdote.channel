@@ -1,0 +1,268 @@
+# engines.yml -- the roster, for agents.
+#
+# WHAT THIS IS. One file an adopter's agent can read to learn what our things are
+# called, what each one gains you, and what it leans on -- without cloning eleven
+# repositories to find out. The prose door is ../ADOPTING.md; this is the same map in
+# the form a program can act on.
+#
+# WHAT THIS IS NOT. Authority. Every engine owns its own facts, in its own
+# residency.yml, and this file is a CATALOGUE of those facts -- held to exactly the
+# standard the library holds every other catalogue to. So every row carries
+# `declared:`:
+#
+#     declared: <path>    read from that engine's own file. The engine owns the row.
+#     declared: transcribed   a person read that engine's prose and wrote this down.
+#                             A debt with a name, and a small owed pull request.
+#
+# A transcribed row is DELETED the day the engine ships its own declaration -- not kept
+# as a fallback, because a stale fallback that agrees with nothing is worse than an
+# absent row. An absent row is visibly absent. Reasoning: ../PEERS.md, "the second
+# surface".
+#
+# SHAPE. Two flat top-level blocks -- nodes, then edges -- rather than peers nested
+# under engines. Flat on purpose: the readers that consume residency files in this
+# constellation are small hand-written parsers, not YAML libraries, and an edge list is
+# what they can already read. It is also the better form for the question actually
+# being asked, which is about relationships and not about containment.
+#
+# status: draft -- written 2026-09-13.
+
+version: 1
+
+# ========================================================================= engines ==
+# kind:      engine | template | action | origin | node-kind
+# maturity:  running | designed | draft | skeleton | unstated
+#            `unstated` means the repository has not said, NOT that it is immature.
+# mount:     the submodule path a node uses, or `-` for things that are not mounted.
+engines:
+  - engine: bottles
+    repo: FCCN-ANTIBODY/bottles.anecdote.channel
+    kind: engine
+    mount: .bottles-engine
+    maturity: draft
+    gain: "a capsule that opens on a phone with no build step, and stays openable after the link that carried it dies"
+    without: "links, which expire, and a workaround you wrote yourself"
+    note: "the free transit object -- the only thing here that MOVES, and so the only thing a stranger encounters"
+    declared: transcribed
+    source: "bottles.anecdote.channel/README.md"
+
+  - engine: library
+    repo: FCCN-ANTIBODY/library.anecdote.channel
+    kind: engine
+    mount: .library-engine
+    maturity: draft
+    gain: "enumeration, admission and a clerk -- the thing that says what is here, and can prove it has had it"
+    without: "an index page that nobody else can plug into"
+    note: "reserves the category words; provides wings to residents. This repository."
+    declared: residency.yml
+    source: "../README.md"
+
+  - engine: data-pile
+    repo: FCCN-ANTIBODY/data-pile
+    kind: template
+    mount: .data-pile
+    maturity: running
+    gain: "somewhere durable and encrypted-at-rest for bottles to live"
+    without: "bottles in a directory, which is fine until somebody asks you to prove when"
+    note: "FORK IT, one per pile. Adopting our copy is not the gesture."
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md -- the repos table"
+
+  - engine: tell
+    repo: FCCN-ANTIBODY/tell.anecdote.channel
+    kind: engine
+    mount: .tell-engine
+    maturity: running
+    gain: "a mailbox: submissions from people who hold nothing of yours, collected, governed, sealed and published"
+    without: "whatever intake you already have, and no path for a stranger"
+    note: "inert until spoken to. A Tell with no origin anywhere still works as a local channel."
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md; constellation.anecdote.channel/README.md"
+
+  - engine: atlas
+    repo: FCCN-ANTIBODY/atlas.anecdote.channel
+    kind: engine
+    mount: .atlas-engine
+    maturity: unstated
+    gain: "routability -- a directory that reports what it sees, so somebody can find you"
+    without: "privacy by obscurity, which is a real choice and not a failure"
+    note: "discoverable is not joinable. Listing is not admitting, and the two are separate decisions."
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md; ../OPEN.md 2"
+
+  - engine: advocate
+    repo: FCCN-ANTIBODY/advocate.anecdote.channel
+    kind: engine
+    mount: .advocate-engine
+    maturity: running
+    gain: "named standing concerns that wake on a schedule, think, and open pull requests on their own branches"
+    without: "a maintenance backlog that exists only while somebody remembers it"
+    note: "the cheapest adoption on this list. No listener, no runtime, runnable by hand from a terminal."
+    declared: transcribed
+    source: "../SEATS.md; advocate.anecdote.channel/STATUS.md"
+
+  - engine: judgement
+    repo: FCCN-ANTIBODY/judgement
+    kind: action
+    mount: "-"
+    maturity: running
+    gain: "a summonable admission step: accept / reject / needs-judgment"
+    without: "your own admission rule, written somewhere you can read it"
+    note: "used via `uses:`, not mounted. Ships OFF -- honest defaults fire nothing."
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md; judgement/OPEN-QUESTIONS.md"
+
+  - engine: journal
+    repo: FCCN-ANTIBODY/journal.anecdote.channel
+    kind: engine
+    mount: .journal-engine
+    maturity: designed
+    gain: "content-less Jekyll machinery for a public record, and the conventions that come with it"
+    without: "your own Jekyll, which is probably already working"
+    note: "designed blind to its consumers, on purpose. Bring a shape, never a requirement about you."
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md -- the journal engine is designed blind to its consumers"
+
+  - engine: antidote
+    repo: FCCN-ANTIBODY/antidote
+    kind: engine
+    mount: .antidote-engine
+    maturity: skeleton
+    gain: "the archivist: intake, plaque index, custody ledger, heartbeat, egress"
+    without: "nothing you are currently missing"
+    note: "the record of account beneath the rest. Not ready to be adopted; listed so the word is not a mystery."
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md -- the repos table"
+
+  - engine: anecdote.channel
+    repo: FCCN-ANTIBODY/anecdote.channel
+    kind: origin
+    mount: "-"
+    maturity: running
+    gain: "the offline origin, and the shared instruments the engines are built from -- reducer, composer, viewer, git-enough"
+    without: "the engines, which increasingly defer to it anyway"
+    note: "standalone, not a submodule. Capability MOVES here; check its demo shelf before designing anything."
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md; anecdote.channel/AGENTS.md"
+
+  - engine: stagecraft
+    repo: DiscoveryWritten/stagecraft
+    kind: engine
+    mount: .stagecraft-engine
+    maturity: running
+    gain: "a render relay -- a second machine draws frames for yours, reached by one address and no install"
+    without: "local rendering, which is the baseline and never the fallback"
+    note: "outside the org, adopted identically. Wrote the per-verb dependency rule the rest of us inherited."
+    declared: ".stagecraft-engine/residency.yml"
+    source: "DiscoveryWritten/stagecraft residency.yml"
+
+  - engine: proofing
+    repo: DiscoveryWritten/proofing
+    kind: engine
+    mount: .proofing-engine
+    maturity: unstated
+    gain: "capture and proof sheets"
+    without: "your own capture step"
+    note: "three services, none of them a listener."
+    declared: transcribed
+    source: "station-node/README.md -- what is mounted here"
+
+  - engine: estray
+    repo: DiscoveryWritten/estray
+    kind: engine
+    mount: .estray-engine
+    maturity: unstated
+    gain: "custody bottles handed in from a phone, collated into a catalogue"
+    without: "an intake path that assumes a desk"
+    note: "the phone end of the bottle story. Read the repo before planning around it."
+    declared: transcribed
+    source: "station-node/README.md -- what is mounted here"
+
+# =========================================================================== peers ==
+# One row per EDGE. `of:` is the engine that has the dependency; `peer:` is what it
+# leans on.
+#
+# `for:` names the verbs OF `of:` that stop working -- never the product. A dependency
+# of a verb is not a dependency of a product. `without:` finishes the sentence, and if
+# it reads as a description of something broken then `strength` was wrong.
+#
+# strength: required | optional | vendored
+#   vendored = `of:` ALREADY MOUNTS the peer. Do not mount a second copy; two pins
+#   drift, and the second one is invisible from a .gitmodules at the node root.
+peers:
+  - of: library
+    peer: bottles
+    strength: optional
+    for: [holding, custody]
+    without: "a catalogue -- it can point at things, it cannot claim to hold them"
+    declared: residency.yml
+
+  - of: library
+    peer: data-pile
+    strength: optional
+    for: [custody]
+    without: "bottles in a directory -- they open, and nothing about them is provable later"
+    declared: residency.yml
+
+  - of: library
+    peer: atlas
+    strength: optional
+    for: [discoverability]
+    without: "an honest enumeration that nobody has been told about"
+    declared: residency.yml
+
+  - of: library
+    peer: advocate
+    strength: vendored
+    for: [rounds, seats]
+    without: "nothing -- already mounted at .library-engine/.advocate-engine"
+    declared: residency.yml
+
+  - of: library
+    peer: tell
+    strength: optional
+    for: [checkout-requests]
+    without: "self-service stocking and self-service lending, which is the design and not a fallback"
+    declared: residency.yml
+
+  - of: tell
+    peer: judgement
+    strength: vendored
+    for: [admission]
+    without: "nothing -- already mounted at .tell-engine/.judge-engine, and it ships off"
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md -- tell nests a submodule of its own"
+
+  - of: tell
+    peer: data-pile
+    strength: optional
+    for: [sealing, publishing]
+    without: "a mailbox that collects and does not keep -- coherent, and what an unconfigured Tell is"
+    declared: transcribed
+    source: "constellation.anecdote.channel/README.md -- the engine is mounted, not configured"
+
+  - of: atlas
+    peer: tell
+    strength: optional
+    for: [directory]
+    without: "a reflecting gateway with nothing yet to reflect"
+    declared: transcribed
+    source: "FCCN-ANTIBODY/AGENTS.md -- a directory of Tells"
+
+  - of: bottles
+    peer: none
+    strength: optional
+    for: []
+    without: "everything -- bottles has no upstream, and that is what makes it the transit object"
+    declared: transcribed
+    source: "bottles.anecdote.channel/README.md -- not all bottle making is library behaviour"
+
+# ============================================================================ notes ==
+# THE MISSING ROWS ARE THE INTERESTING ONES. antidote and journal declare no edges here
+# because nothing sourced says what they lean on -- not because they lean on nothing.
+# An absent edge is an unanswered question, and the honest way to record it is to leave
+# the row out rather than to guess a strength.
+#
+# One engine in this file declares its own peers: library. Every other `declared:
+# transcribed` is a small owed pull request against that engine, and PEERS.md is what
+# such a pull request would implement.

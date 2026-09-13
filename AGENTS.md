@@ -3,6 +3,10 @@
 **It is a stub.** Read `README.md`, then `BOTTLES.md`, then `OPEN.md`, then the design it came from:
 `civic-node/docs/proto-issues/library-the-knowledge-kind.md`.
 
+**If you arrived from outside the constellation, read [`ADOPTING.md`](ADOPTING.md) first instead.**
+It is the entry point for somebody who does not yet know our words, and it exists here because
+enumeration is what a library is for.
+
 ## The rules most likely to be broken here
 
 1. **A category is not an engine.** Do not add machinery because a category name suggested it.
@@ -14,7 +18,10 @@
    anyway** — the operator wants `bottles.anecdote.channel` back as its own repository, so they do
    not collapse. That is recorded in §1 as a decision *arriving*, not one taken here, and the
    decision record is still owed. Do not upgrade the note into a ruling.
-5. **`BOTTLES.md` is a consumer's requirements, not a spec.** If it starts describing how a bottle
+5. **`adoption/engines.yml` is a catalogue, never an authority.** Every row carries `declared:`.
+   A `transcribed` row is a debt, and it is **deleted** the day the engine ships its own `peers:`
+   block — never kept as a fallback. See `PEERS.md`, "the second surface".
+6. **`BOTTLES.md` is a consumer's requirements, not a spec.** If it starts describing how a bottle
    is encoded rather than what this library needs, it has drifted into somebody else's repository.
    The wire format is meant to be implementable twice, which it cannot be while it lives here.
 

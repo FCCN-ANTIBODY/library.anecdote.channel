@@ -82,6 +82,11 @@ whether serving your own captures and serving strangers' are one role or two —
 
 **The library onboards people.** That is the general case and it belongs here.
 
+The general door is [`ADOPTING.md`](ADOPTING.md) — the one file for somebody who has been handed
+a repository of ours and does not yet know what any of it is called. It routes and does not
+restate. Below it, [`adoption/`](adoption/) holds one door per reserved category word, because
+health is a function of what a thing is and so is onboarding.
+
 **The exception is the one that matters**, and it is not a gap in this repository: somebody who
 encounters a bottle in the wild, carrying a control code, **onboards with the bottle.** They do not
 have to already be on anything, and they should not have to find us first.
