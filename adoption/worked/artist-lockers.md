@@ -80,10 +80,29 @@ most of the work is naming, not building:
 | *all monolith entry points are offered by `bin/` executables* | **everything must stay runnable by hand.** The moment a thing only runs when a host starts it, the host has become a dependency |
 | *messages and media are treated as stable once fetched* | **the carbonite property** — a frozen capsule is why custody is provable, [`../../BOTTLES.md`](../../BOTTLES.md) §2 |
 | *you should consider being detached from my updates a feature* | **replication is the test.** Could the next operator copy this and understand what they copied |
+| *no frameworks* | **the `-enough` family.** Enough of a tool to do the work here, with nothing installed — and an import is what ends a member, tested as a suite |
 
-Four independent arrivals at the same four positions. That is not a coincidence worth flattering
+Five independent arrivals at the same five positions. That is not a coincidence worth flattering
 anybody with — it is evidence the positions are forced by the problem, which is the strongest form
 of agreement available.
+
+### The fifth one has a bill attached, and they are paying it
+
+*No frameworks* is in their README. **Building this static site requires four toolchains**: Ruby
+with bundler (`Gemfile`, `.ruby-version`), Python with uv (`pyproject.toml`, `.python-version`),
+Node with a package manager (`package.json`, `yarn.lock`), and Cloudflare's wrangler for the auth
+worker. Each is defensible on its own and the total is not what anybody chose.
+
+That is exactly the gap the `-enough` family is for, and
+[`jekyll-enough`](https://github.com/FCCN-ANTIBODY/jekyll-enough) closes one of the four outright —
+a Jekyll build over an in-memory `path → content` map, no Ruby, nothing installed, four modules
+importing nothing but each other.
+
+**It is not a recommendation to migrate.** Their Jekyll works, they have `_plugins`, and *"your own
+Jekyll, which is probably already working"* is still the honest `without:`. It is on this page
+because a template repository asks strangers to install its toolchain before they can build it, and
+**a four-toolchain floor is the kind of cost that is invisible to whoever already paid it.** The
+number is the finding; what to do about it is theirs.
 
 ## What we would suggest, in the order it hurts them
 
@@ -209,7 +228,14 @@ uncomfortable:
    the right answer and it is not ready*, and to give a useful now-move anyway — which is why the
    bottles recommendation is a seam and not an adoption.
 
-5. **One project holds more than one category's worth of obligation, and cannot say so.** `trade`
+5. **The fitting missed a whole family on the first pass.** `-enough` was not in the roster at all,
+   so the alignment that mattered most to a *no frameworks* project was the one the primer could not
+   surface. The naming convention was deliberately a signal, and a primer that does not explain what
+   a suffix promises leaves the signal to be noticed rather than read. Fixed in
+   [`../../ADOPTING.md`](../../ADOPTING.md); the general lesson is that **a convention is a thing to
+   onboard people into, exactly like an engine.**
+
+6. **One project holds more than one category's worth of obligation, and cannot say so.** `trade`
    repo, `media` holdings, `voices`-shaped consent duties toward the artists in it. Our reserved
    words occupy a level of a hostname; this project needs three of them at once and has nowhere to
    write that down. [`../../OPEN.md` §10](../../OPEN.md).

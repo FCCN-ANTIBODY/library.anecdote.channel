@@ -93,6 +93,59 @@ This is why our peer dependencies are declared **per verb**, and why every decla
 mandatory `without:` key saying what you still have if you never adopt the peer. The schema, and
 the reasoning it was built with, is [`PEERS.md`](PEERS.md).
 
+## The `-enough` family — the smallest thing to adopt, and the easiest to miss
+
+Not engines. **Instruments** — libraries you import, not machinery you mount. They are listed
+separately because they are adopted differently and because nothing about the engine roster would
+lead you to them.
+
+**The suffix is a promise, and it is the naming convention doing deliberate work.** A member is
+*enough of that tool to do the work here, with nothing installed*:
+
+> The real tool needs a machine. These need a tab.
+
+That makes the membership test mechanical rather than a matter of taste, and `jekyll-enough` ships
+it as a suite:
+
+> **Healthy:** the modules import each other and nothing else. Not a package, not a `node:`
+> builtin, not a file outside the repository.
+>
+> **Failed:** it acquired a dependency that only exists on a workstation, and nothing said so.
+
+**The thing that ends a member is not a bad feature — it is an import.** A module that quietly
+starts needing a package or a real filesystem has stopped being an `-enough` tool while keeping the
+name, and that failure is invisible from inside its own repository. Which is why it lives in a test
+and not in a README.
+
+### Why this matters to an adopter more than the engines do
+
+If your project has ever written *no frameworks* or *no third-party vendors in the runtime* in its
+own README, **this family is the part of the constellation you already agree with**, and it is
+adoptable without adopting anything else. There is no mount, no residency, no category to claim —
+`import` it, or do not.
+
+### The members, and what state each is actually in
+
+| instrument | gives you | state |
+| --- | --- | --- |
+| **[`jekyll-enough`](https://github.com/FCCN-ANTIBODY/jekyll-enough)** | a Jekyll build — front matter, Liquid, `_data`, permalinks — over an in-memory `path → content` map | **its own repo.** The first member to get an address |
+| **`git-enough`** | the push. A git client that speaks send-pack from a tab | built, inside `anecdote.channel` |
+| **`qr-enough`** | a vendorless byte-mode QR encoder, verified scannable against real decoders | built, inside `anecdote.channel` |
+| **`seal-enough`** | the encryption factory — pile crypto that is **almost entirely WebCrypto-native** | designed, decided, not built |
+| **`actions-enough`** | the workflows: running a CI definition without a runner | designed, measured |
+| **`sh-enough`** | a shell interpreter | **new work, not an extraction.** Measured and warned about, not planned |
+| `yaml-enough`, `cron-enough`, `node-enough`, `liquid-enough` | — | intended |
+
+**`seal-enough` is the one worth knowing about**, because it is where the constellation's cryptography
+meets the tab. Every step of the pile's crypto core has a WebCrypto answer — the ratchet, the key
+commitment, the IV, AES-256-CTR, the entries digest, the Ed25519 signed head — **except one**: the
+`age` seed-wrap, because `subtle` has X25519 but not ChaCha20-Poly1305.
+
+The resolution is worth copying rather than re-deriving, and it is the kind of thing this primer
+exists to hand over: **native-local at rest, `age` synthesized only on export.** A pile that stays
+yours needs no `age` at all; `age` is needed only at the handoff boundary, where an existing verifier
+expects an age-wrapped seed. The gap was real and it turned out not to be monolithic.
+
 ## Choosing, in the order the questions actually bite
 
 1. **What word are you?** Pick from [`CATEGORIES.md`](CATEGORIES.md). It costs nothing, it is a line
@@ -149,6 +202,7 @@ rather than kept:
 | Which reserved word am I? | [`CATEGORIES.md`](CATEGORIES.md) |
 | What does my word owe, and what does it get? | [`adoption/`](adoption/) — one door per word |
 | How do I declare a peer dependency? | [`PEERS.md`](PEERS.md) |
+| What does the `-enough` suffix promise? | [`jekyll-enough`](https://github.com/FCCN-ANTIBODY/jekyll-enough)'s `dependencies.test.mjs` |
 | What does living inside a library mean? | [`RESIDENCY.md`](RESIDENCY.md) |
 | Why is the README the front page, and how do I write one? | [`EXHIBIT.md`](EXHIBIT.md) |
 | What does a library need from a bottle? | [`BOTTLES.md`](BOTTLES.md) |
