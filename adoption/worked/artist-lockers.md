@@ -1,11 +1,14 @@
 # Fitting: artist-lockers
 
-`status: draft` — fitted 2026-09-13 against [`tiliv/artist-lockers`](https://github.com/tiliv/artist-lockers)
-at `3f68225`. **The first white-glove fitting**, published whole rather than as its conclusion.
+`status: draft` — **second pass**, revised 2026-09-13 against
+[`tiliv/artist-lockers`](https://github.com/tiliv/artist-lockers) at `3f68225`, the same commit the
+first pass read. Nothing in the project changed. What changed is that this pass sorted it by
+**what has to be running when somebody opens the page**, and three claims from the first pass did
+not survive that.
 
 **Nothing here was asked of them.** The project was read; this is what an adoption *would* look
-like, with the reasoning attached so they can disagree with it in specifics rather than in
-general. Every recommendation names what it costs and what it closes.
+like, with the reasoning attached so they can disagree with it in specifics rather than in general.
+Every recommendation names what it costs and what it closes.
 
 ## What the project is
 
@@ -16,14 +19,108 @@ signal — attachment, embed, or a link to a supported music domain — and comm
 Cloudflare caches it. Its own vocabulary: a **Locker** is a Discord category, a **Channel** is a
 text channel or forum post, an **Author** is whoever posted inside one.
 
-It is a **template repository** — the first line of its README tells you to copy it and be
-detached from upstream, "which you should consider a feature."
+It is a **template repository** — the first line of its README tells you to copy it and be detached
+from upstream, "which you should consider a feature."
 
-Its stated philosophy, verbatim in places, because three lines of it are load-bearing below:
+## The line they already drew
 
-> *No third-party vendor support loaded by the frontend runtime.*
-> *Accumulate offline media caches.*
-> *All monolith entry points are offered by `bin/` executables.*
+The first pass treated *static* as one property among several. It is not. It is the spine, and the
+project states it in configuration rather than in prose. `_config.yml`:
+
+```yaml
+exclude:
+  - CNAME
+  - README.md
+  - Gemfile
+  - vendor
+  - bot
+  - bin
+  - worker
+  - node_modules
+  - __pycache__
+  - package.json
+  - ".*"
+  - "*.toml"
+  - "*.yaml"
+  - "*.lock"
+```
+
+**Every executable thing in the repository is excluded from the thing the repository publishes.**
+The bot, the entry points, the worker, all three package manifests, every lockfile. What survives
+into `_site` is HTML, CSS, three JavaScript modules, and `_data`.
+
+That is not a build detail. It is the project drawing the artifact/apparatus line itself, in a file,
+and it is a sharper line than we drew for them. So this pass adopts it as the sort:
+
+| | what is in it | must it be alive when a reader opens the page |
+| --- | --- | --- |
+| **apparatus** | `bot/`, `bin/`, `worker/`, Jekyll, the four toolchains | **no.** It ran before publication or it did not run |
+| **the artifact** | `index.html` with every ref inlined, `_data/**/refs.json`, `css/`, `js/`, the OPFS cache | **it is the bytes.** Nothing to be alive |
+| **read-time dependencies** | `cdn.discordapp.com`, the Pinata gateway, `discord.com` | **yes — and this is the whole of the exposure** |
+
+Everything below ranks by that third row, because it is the only row where a third party can take
+something away from them.
+
+## What the first pass got wrong
+
+Stated first, because two of the three were recommendations to build things they have.
+
+### 1. The Cloudflare Worker is not in the runtime path. It is vestigial.
+
+The first pass said *"Their Cloudflare Worker (`worker/discord-auth.js`) authenticates site
+visitors against Discord."* It does not, at this commit.
+
+`js/discord-auth.js` is a **public-client PKCE flow**. It generates a verifier, redirects to
+Discord, and exchanges the code by POSTing `https://discord.com/api/oauth2/token` **directly from
+the browser** — no client secret, no intermediary. The worker is a confidential-client exchange
+that nothing calls. Three independent signs it is dead:
+
+- nothing under `js/`, `_includes/`, or `index.html` references a worker URL;
+- `worker/wrangler.toml` still carries the template placeholder
+  `REDIRECT_URI = "https://yourdomain.com/auth/callback"`;
+- its CORS header is hardcoded to `https://tiliv.github.io`, the upstream author's Pages origin,
+  which is wrong for every copy of a template repository.
+
+**This is a correction in their favour and it is the most static thing about the project.** They
+already removed the server from the auth path; PKCE is precisely the flow that lets a static site
+authenticate with no backend. The residue is one of the four toolchains, and deleting
+`worker/`, `bin/deploy-discord-auth`, and the wrangler dependency **takes the floor from four
+toolchains to three at no cost.** That is the cheapest item in this document and it did not appear
+in the first pass at all.
+
+### 2. `acquireBlob()` is already the seam we told them to spend an afternoon building
+
+The first pass's headline now-move was *"one function that answers where do the bytes for this ref
+live, with Pinata behind it."* That function is `js/player.js`, it is called `acquireBlob`, and it
+has three tiers:
+
+1. **OPFS** — `navigator.storage.getDirectory()`, a local file keyed by message id. No network.
+2. **Pinata** — a `fetch` of ``https://{{ site.pinata_gateway }}/ipfs/${record.cid}``
+   (`js/player.js:64`), then write the bytes into OPFS on the way past.
+3. **The Discord CDN**, with their own comment: `// this is will not work after the cdn url's
+   expiration`.
+
+Tier 1 before tier 2 before tier 3, cheapest and most durable first. **The architecture is already
+right.** The remaining gap is one line, not an afternoon: the vendor hostname is Liquid-templated
+into the JavaScript at build time, so *which* gateway is a rebuild rather than a value. Adopting
+bottles later means adding a tier to a function that already takes tiers.
+
+### 3. The auth gate cannot be a prerequisite, and this is structural rather than a choice
+
+The first pass listed *"whether Discord auth is a convenience or a prerequisite"* as something for
+them to decide, and hoped they would keep it a convenience. They cannot make it anything else
+without ceasing to be a static site.
+
+`index.html` loops `site.data` unconditionally and emits every link — CDN URL, IPFS CID, label,
+deep link — into `data-player` attributes at build time. `_includes/auth.html` is an overlay;
+`js/unlocker.js` sets `display: none` on it when Discord returns a matching guild. **The bytes are
+delivered before the gate is drawn, to everyone, always.** View-source is the bypass.
+
+Our rule — *an artifact must remain openable by somebody who never authenticated* — is therefore
+satisfied by construction. We record that as compliance, and simultaneously as the one thing on
+this page they might not know: **a static host cannot gate, it can only decorate.** If the gate is
+meant to be load-bearing, the fix is not a better gate, it is leaving GitHub Pages, and that trade
+should be made deliberately rather than discovered.
 
 ## Why this project first
 
@@ -34,13 +131,13 @@ first time in the act:
 > *nobody is wedged into a workaround by a gap in **our** tools.*
 
 `bot/cdn.py` parses the signed query parameters on a Discord CDN attachment URL — `ex`, `is`, `hm`
-— and computes the expiry. They know, precisely and in code, that the links they catalogue die on
-a clock. So `bin/pin --budget N` and `bin/distribute.mjs` push the bytes to IPFS through Pinata,
-under a budget, to survive it.
+— and computes the expiry. They know, precisely and in code, that the links they catalogue die on a
+clock. So `bin/pin --budget N` and `bin/distribute.mjs` push the bytes to IPFS through Pinata, under
+a budget, to survive it.
 
-That is a **custody layer**, built from scratch, by a project that had no idea we had a word for
-it. It is a correct engineering decision and it was invisible to us until somebody read the repo.
-See [`../trade.md`](../trade.md), "the wedge".
+That is a **custody layer**, built from scratch, by a project that had no idea we had a word for it.
+It is a correct engineering decision and it was invisible to us until somebody read the repo. See
+[`../trade.md`](../trade.md), "the wedge".
 
 ## The words they would claim
 
@@ -52,9 +149,9 @@ Two answers, and the fact that it is two is the first thing this fitting taught 
 | what it holds and serves — music, art, attachments | **`media`** | the health rule is that the artifact still **plays**, and that is a different clock from the repo's |
 | the **authors** in it | see below | this is the part that does not fit cleanly, and it is the honest finding |
 
-**The health rules genuinely differ, which is why this is not pedantry.** A Jekyll build breaking
-is noticed the same afternoon. A container nothing decodes any more is noticed in ten years by
-somebody who is not them. Their `bin/pin` budget guards the second and nothing guards the first.
+**The health rules genuinely differ, which is why this is not pedantry.** A Jekyll build breaking is
+noticed the same afternoon. A container nothing decodes any more is noticed in ten years by somebody
+who is not them. Their `bin/pin` budget guards the second and nothing guards the first.
 
 ### And the part that does not fit: the authors
 
@@ -64,14 +161,20 @@ covered by both, and the project has neither rule written down: entries are keye
 message id, and **there is no withdrawal path** — not because anyone refused one, but because the
 question has not been posed.
 
+The static framing makes this worse in a way worth stating plainly. Withdrawal from a static site is
+a rebuild — fine, they rebuild on every push. But withdrawal from **OPFS is impossible**: those
+bytes are in a stranger's browser profile, and no rebuild reaches them. Any withdrawal promise this
+project could make has a boundary at the reader's disk, and that boundary is a property of being
+static, not a failure of care.
+
 We do not have an answer for them. **A project holds more than one category's worth of obligation
 and our reserved words are per-hostname-level**, so there is nowhere for it to say so. That is
 recorded as [`../../OPEN.md` §10](../../OPEN.md) and it came out of this fitting.
 
 ## Where their philosophy and ours already agree
 
-Worth saying before any recommendation, because it is the reason the fit is close and it means
-most of the work is naming, not building:
+Worth saying before any recommendation, because it is the reason the fit is close and it means most
+of the work is naming, not building:
 
 | their line | our name for it |
 | --- | --- |
@@ -86,54 +189,82 @@ Five independent arrivals at the same five positions. That is not a coincidence 
 anybody with — it is evidence the positions are forced by the problem, which is the strongest form
 of agreement available.
 
-### The fifth one has a bill attached, and they are paying it
+### The first line is the one they are currently breaking
+
+*No third-party vendor support loaded by the frontend runtime* is in their README. `js/player.js`
+line 64, in the frontend runtime, is a `fetch` to a Pinata gateway.
+
+**This is not a gotcha and it is not hypocrisy — it is the absence of an alternative**, which is
+exactly what a wedge is. They needed durable bytes, durable bytes needed a CID, and a CID in a
+browser needs somebody's gateway. Every other vendor was designed out of the runtime; this one
+survived because nothing else was on offer. It is the single strongest argument for bottles on this
+page, and they wrote it themselves as a rule they then had to break.
+
+### The toolchain bill is real, and it is entirely apparatus
 
 *No frameworks* is in their README. **Building this static site requires four toolchains**: Ruby
 with bundler (`Gemfile`, `.ruby-version`), Python with uv (`pyproject.toml`, `.python-version`),
-Node with a package manager (`package.json`, `yarn.lock`), and Cloudflare's wrangler for the auth
-worker. Each is defensible on its own and the total is not what anybody chose.
+Node (`package.json`, `yarn.lock`), and Cloudflare's wrangler for the auth worker. Each is
+defensible on its own and the total is not what anybody chose.
 
-That is exactly the gap the `-enough` family is for, and
-[`jekyll-enough`](https://github.com/FCCN-ANTIBODY/jekyll-enough) closes one of the four outright —
-a Jekyll build over an in-memory `path → content` map, no Ruby, nothing installed, four modules
-importing nothing but each other.
+The static framing sharpens the number in both directions:
 
-**It is not a recommendation to migrate.** Their Jekyll works, they have `_plugins`, and *"your own
-Jekyll, which is probably already working"* is still the honest `without:`. It is on this page
-because a template repository asks strangers to install its toolchain before they can build it, and
-**a four-toolchain floor is the kind of cost that is invisible to whoever already paid it.** The
-number is the finding; what to do about it is theirs.
+- **None of it reaches a reader.** All four are excluded in `_config.yml`. The cost is paid entirely
+  by whoever copies the template, which for a template repository is the whole audience.
+- **It is three, not four** — wrangler goes with the vestigial worker, per correction 1 above.
+
+[`jekyll-enough`](https://github.com/FCCN-ANTIBODY/jekyll-enough) would close Ruby: a Jekyll build
+over an in-memory `path → content` map, no Ruby, nothing installed, four modules importing nothing
+but each other.
+
+**It is still not a recommendation to migrate**, but the first pass overstated the obstacle. It said
+*"they have `_plugins`"* and left it there. Measured: `_plugins/` is **30 lines in two files**, both
+pure Liquid string filters — `clean_title`, `clean_url`, `autolink` — touching no Jekyll internals.
+The real Ruby surface is one gem, `jekyll-link-attributes`, and its nokogiri dependency. That is a
+smaller wall than we implied, and their call either way; *"your own Jekyll, which is probably already
+working"* remains the honest `without:`.
 
 ## What we would suggest, in the order it hurts them
 
-### 1. Bottles — because their clock is already running
+### 1. Bottles — because their clock is already running, and their cache cannot be handed to anyone
 
-Their pain, in their code, today. `bin/pin` is a budget against link death and Pinata is a
-**gateway** — a third-party vendor in the durability path, which their own philosophy dislikes
-everywhere except here, where they had no alternative.
+Their pain, in their code, today. Two distinct problems, and the static framing separates them:
 
-What a bottle changes: the artifact carries its own manifest and opens with a browser and nothing
-else. No gateway to be up, no pin to keep paid, no CID to resolve through somebody. Their offline
-media cache stops being a cache and becomes the artifact.
+**The gateway.** `bin/pin` is a budget against link death and Pinata is a **gateway** — a
+third-party vendor in the read-time path, the one place their own philosophy is violated because
+nothing else was available.
+
+**The cache that nobody can hand over.** *Accumulate offline media caches* is realised in OPFS —
+the origin-private file system. It works, it is genuinely offline, and it is **per-browser,
+per-origin, and unexportable.** A reader who has played a hundred tracks is carrying a hundred
+durable copies they cannot give to anybody, cannot back up, and lose with the profile. The most
+durable artifact this project produces currently exists only somewhere it can never leave.
+
+**A bottle is the exportable form of that cache** — the artifact carries its own manifest and opens
+with a browser and nothing else. No gateway to be up, no pin to keep paid, no CID to resolve through
+somebody. Their offline media cache stops being a cache and becomes the artifact.
 
 **And bottles is `draft`.** The vocabulary is settled; the wire format is not. So the honest
 recommendation is *not* "adopt bottles":
 
-> **Do not remove Pinata. Do not wait for us.** Keep pinning. What is worth doing today is one
-> commit: make the bottle-shaped seam explicit — one function that answers *where do the bytes for
-> this ref live*, with Pinata behind it — so that adopting bottles later is a swap and not a
-> rewrite of every stored reference. That costs them an afternoon and it is the whole of the
-> now-decision in [`../trade.md`](../trade.md).
+> **Do not remove Pinata. Do not wait for us.** Keep pinning. And note that the seam we would have
+> asked for already exists — `acquireBlob()` takes tiers, cheapest first. What is worth doing today
+> is smaller than the first pass claimed: **make the gateway a value rather than a build-time
+> template substitution**, so that adding a bottle tier later is an edit to one function instead of
+> a rebuild of every page. That is well under an afternoon and it is the whole of the now-decision
+> in [`../trade.md`](../trade.md).
 
 ### 2. An advocate seat — because it is free and their first one writes itself
 
 No listener, no runtime, no service, runnable from a terminal. It wakes, does a bounded amount of
-work, writes to its own branch, and opens a pull request.
+work, writes to its own branch, and opens a pull request. **It is apparatus, in their sense** —
+excluded from the artifact, nothing for a reader to depend on.
 
-Their first seat is already implied by their own code: **`bot/cdn.py` can compute an expiry, and
-nothing reads it in aggregate.** A seat that walks `refs.json`, counts how many references are past
-`ex` or close to it, and opens a pull request saying so, turns a known-in-principle decay into a
-number somebody sees on a schedule. That is the cheapest real thing on this page.
+Their first seat is already implied by their own code: **`bot/cdn.py` exposes `is_expired()` and
+`expires_within()`, and nothing calls either in aggregate.** A seat that walks `refs.json`, counts
+how many references are past `ex` or close to it, and opens a pull request saying so, turns a
+known-in-principle decay into a number somebody sees on a schedule. The predicate is written. The
+caller is not. That is the cheapest real thing on this page.
 
 ### 3. Library — because they already are one and did not know
 
@@ -144,41 +275,45 @@ Two shapes, and the choice is theirs:
 
 - **Be held.** A library points at their repository; the content stays inert; nobody reads their
   bytes. Costs nothing, reversible, and gets their enumeration into an index others can plug into.
-- **Be one.** Mount `.library-engine` and their catalogue becomes federatable — an Atlas plugged
-  into it gets the whole index on tap, instead of having to go and crawl for it.
+- **Be one.** Mount `.library-engine` and their catalogue becomes federatable — an Atlas plugged into
+  it gets the whole index on tap, instead of having to go and crawl for it.
 
-**Their Discord auth is fine, and this is the case that makes the rule concrete.** Their
-Cloudflare Worker (`worker/discord-auth.js`) authenticates site visitors against Discord. Our rule
-is *no library card* — nothing central may decide whether a change is allowed, and a card may
-never be a prerequisite. Theirs is not one, and the library README already blesses it: *a library
-card is an establishment's local concern, for their own metrics. Legitimate, and theirs.* The one
-line to hold: **an artifact must remain openable by somebody who never authenticated.** Gate the
-comfortable path, never the bytes.
+**Their Discord auth is fine, and this is the case that makes the rule concrete.** Our rule is *no
+library card* — nothing central may decide whether a change is allowed, and a card may never be a
+prerequisite. Theirs is not one, and the library README already blesses it: *a library card is an
+establishment's local concern, for their own metrics. Legitimate, and theirs.* Per correction 3,
+they satisfy this structurally rather than by policy — the line to hold is not *keep the gate
+cosmetic* but **notice that it already is, and that making it otherwise means leaving static
+hosting.**
 
 ### 4. Tell — because Discord is currently the only door
 
-Everything enters through a Discord message in a category the bot watches. That is a good intake
-and it is a **membership** intake: to give them something you must already be in the server.
+Everything enters through a Discord message in a category the bot watches. That is a good intake and
+it is a **membership** intake: to give them something you must already be in the server.
 
-A Tell is a mailbox for people who hold nothing of theirs. It is inert until spoken to, it needs
-no origin anywhere, and it does not oblige them to accept anything — *witness, not judge*; a
-submission is never blocked, the submitter learns the outcome instead.
+A Tell is a mailbox for people who hold nothing of theirs. It is inert until spoken to, it needs no
+origin anywhere, and it does not oblige them to accept anything — *witness, not judge*; a submission
+is never blocked, the submitter learns the outcome instead.
 
-Not urgent. Named because *"there is no way in without a Discord account"* is a decision they
-should make on purpose rather than inherit from their bot.
+Not urgent. Named because *"there is no way in without a Discord account"* is a decision they should
+make on purpose rather than inherit from their bot.
 
-### 5. Atlas — deliberately last
+### 5. Atlas — deliberately last, and they have already voted
 
 Routability, once there is something worth pointing at. **Discoverable is not joinable**, and a
-publicly discoverable catalogue that admits nobody is a coherent thing. Reversible, and there is
-no reason to think about it this year.
+publicly discoverable catalogue that admits nobody is a coherent thing.
+
+The static framing turns up a vote we missed: `index.html` carries
+`<meta name="robots" content="noindex, nofollow">`. They have explicitly opted out of discovery
+already. Atlas is not merely last, it is **contrary to a preference they have stated in the
+artifact**, and it should not be raised again until they say the preference has changed.
 
 ### What we would not suggest
 
 - **stagecraft** — a render relay. They do not render; nothing to gain.
 - **journal** — content-less Jekyll machinery. They have working Jekyll with their own `_plugins`,
-  and *"your own Jekyll, which is probably working"* is the honest `without:`. Adopting it would be
-  a rewrite in exchange for conventions they have already independently arrived at.
+  and *"your own Jekyll, which is probably working"* is the honest `without:`. Adopting it would be a
+  rewrite in exchange for conventions they have already independently arrived at.
 - **civic-node, antidote** — no jurisdiction, and a skeleton respectively.
 - **judgement** — they have a media-signal admission rule already, in code they can read. A judge
   ships off and would start as a slower way to do what a regex does. Revisit only if admission
@@ -188,22 +323,24 @@ no reason to think about it this year.
 
 | decide now | why now |
 | --- | --- |
+| delete `worker/`, `bin/deploy-discord-auth`, wrangler | it is dead code with a wrong hardcoded origin in a **template** others copy. Four toolchains become three for free |
 | the words: `trade` for the repo, `media` for the holdings | a line in a file today; a migration once anyone federates with them |
-| the addressing seam — one function answering *where do these bytes live* | they are mid-flight on a pinning layer. Retrofitting content-addressing means rewriting every stored reference |
-| whether Discord auth is a convenience or a prerequisite | it is a convenience today, by accident. Making it load-bearing is easy and expensive to undo |
+| make the gateway hostname a value, not a build-time substitution | they are mid-flight on a pinning layer, and `acquireBlob` is already the right shape. This is the last small thing standing between them and swapping a tier in |
+| whether the auth gate is understood to be cosmetic | it is cosmetic by construction. Believing otherwise is the risk, not choosing otherwise |
 
 | decide later | it will still be cheap |
 | --- | --- |
 | every mount | `git submodule add` in, `git rm` out |
-| bottles adoption | the seam above is what buys the option; the swap can wait for `draft` to end |
+| bottles adoption | the seam already exists; the swap can wait for `draft` to end |
 | held vs. being a library | both reversible, and doing one first does not spend the other |
-| a Tell, an Atlas, more seats | independently adoptable, in any order, none obliging the next |
+| a Tell, more seats | independently adoptable, in any order, none obliging the next |
+| an Atlas | not on the table while `noindex` is in the artifact |
 | running anything at all | a mounted engine starts nothing. **The claim is a menu, not a startup script** |
 
 ## What this fitting taught us
 
-The point of publishing the fitting rather than the conclusion. Five findings, and two are
-uncomfortable:
+The point of publishing the fitting rather than the conclusion. The first pass's six findings stand;
+the second pass added three, and the first of them is about the first pass.
 
 1. **They needed a door before they needed a repository.** Nothing in this project would have led
    anyone to `bottles.anecdote.channel` — you would have to already know a bottle was the answer to
@@ -211,31 +348,48 @@ uncomfortable:
    evidence instead of as an opinion. [`../../ADOPTING.md`](../../ADOPTING.md) exists because of it.
 
 2. **The wedge was found by reading their code, not by them reporting it.** Nobody was withholding
-   anything; from inside their project nothing is wrong, because a custody layer *is* the right
-   thing to build when there is no other. Our only current discovery mechanism is *somebody reads
-   your repository*, and that scales to roughly one adopter. Named in
-   [`../trade.md`](../trade.md); no mechanism proposed, because we do not have one.
+   anything; from inside their project nothing is wrong, because a custody layer *is* the right thing
+   to build when there is no other. Our only current discovery mechanism is *somebody reads your
+   repository*, and that scales to roughly one adopter. Named in [`../trade.md`](../trade.md); no
+   mechanism proposed, because we do not have one.
 
-3. **Ranking by pain inverted our architecture, and the inversion is right.** Read
-   bottom-up — origin, engines, categories — bottles is deep infrastructure. Read from their
-   problem, it is the first thing and everything else can wait years. Every door in
-   [`../`](../) should rank by pain, and the roster ordering in `ADOPTING.md` is for orientation
-   only.
+3. **Ranking by pain inverted our architecture, and the inversion is right.** Read bottom-up —
+   origin, engines, categories — bottles is deep infrastructure. Read from their problem, it is the
+   first thing and everything else can wait years. Every door in [`../`](../) should rank by pain,
+   and the roster ordering in `ADOPTING.md` is for orientation only.
 
 4. **Ranking by pain points at our least-finished work, and it will keep doing that.** Their
-   top-ranked engine is `draft`. That is not a scheduling accident: the gaps that hurt adopters
-   most are the gaps we have not closed. So an onboarding document has to be able to say *this is
-   the right answer and it is not ready*, and to give a useful now-move anyway — which is why the
-   bottles recommendation is a seam and not an adoption.
+   top-ranked engine is `draft`. That is not a scheduling accident: the gaps that hurt adopters most
+   are the gaps we have not closed. So an onboarding document has to be able to say *this is the
+   right answer and it is not ready*, and to give a useful now-move anyway.
 
 5. **The fitting missed a whole family on the first pass.** `-enough` was not in the roster at all,
    so the alignment that mattered most to a *no frameworks* project was the one the primer could not
-   surface. The naming convention was deliberately a signal, and a primer that does not explain what
-   a suffix promises leaves the signal to be noticed rather than read. Fixed in
-   [`../../ADOPTING.md`](../../ADOPTING.md); the general lesson is that **a convention is a thing to
-   onboard people into, exactly like an engine.**
+   surface. Fixed in [`../../ADOPTING.md`](../../ADOPTING.md); the general lesson is that **a
+   convention is a thing to onboard people into, exactly like an engine.**
 
 6. **One project holds more than one category's worth of obligation, and cannot say so.** `trade`
-   repo, `media` holdings, `voices`-shaped consent duties toward the artists in it. Our reserved
-   words occupy a level of a hostname; this project needs three of them at once and has nowhere to
-   write that down. [`../../OPEN.md` §10](../../OPEN.md).
+   repo, `media` holdings, `voices`-shaped consent duties toward the artists in it.
+   [`../../OPEN.md` §10](../../OPEN.md).
+
+7. **A fitting written from the README describes a project that does not exist.** Every one of the
+   three corrections above came from reading code the README summarises accurately but incompletely:
+   the worker is documented under *Tooling* and is dead; the addressing seam is undocumented and
+   built; the auth is described as gating and decorates. **The first pass recommended two things they
+   had already done and credited them with one thing they had not.** A fitting has to read the
+   artifact, not the description of it, and this one now says which file and which line for every
+   claim it makes.
+
+8. **We assumed a server, because our own vocabulary has one.** Engines, seats, relays and mailboxes
+   all presume something that can be running. This project's answer to nearly every question is *it
+   is a file that was already built*, and the first pass kept reaching past that — attributing auth
+   to a worker rather than to PKCE in the page, proposing a seam rather than finding one in
+   `player.js`. **Static is not a deployment choice here, it is the design**, and a fitting for a
+   static project should start by sorting the repository into apparatus and artifact, which is what
+   this pass did and what turned up all three errors.
+
+9. **Their `exclude:` list was a better statement of our own principle than ours was.** We say
+   *everything must stay runnable by hand* and *the host must not become a dependency*. They say it
+   as a config block that names, exhaustively, what the published thing does not contain. **A
+   project can hold a principle in a form we do not recognise as a statement of it**, and the only
+   way to find that out is to read the configuration and not just the prose.
