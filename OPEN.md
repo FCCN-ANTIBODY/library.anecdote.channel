@@ -144,6 +144,22 @@ So: **the `you` engine is not required — unless it is the way a grant to take 
 library is understood.** That is the whole hinge, and it is now the only version of this question
 worth asking.
 
+### Answered 2026-09-13: it is the way a grant is understood
+
+The hinge swung, and it swung as a use case rather than as a ruling — the operator describing a
+phone, a passkey, and a Discord authorization that keeps showing you media whose links have expired:
+*"saving them to your local storage is a sign of privilege here."*
+
+That is the grant reading, so **the `you` engine is required**, and it moves from optional
+convenience to the keystone of holding. The lean above survives untouched: the node mounts
+`.you-engine`, the library still never does, and the library still authenticates nobody. It holds
+ciphertext and hands it to anybody who asks. The grant governs who may **read**, never who may
+**fetch**.
+
+Worked out in [`GRANTS.md`](GRANTS.md) — including the correction that a branch supplies isolation
+rather than privacy, and the finding that the no-library-card rule selects the key-derivation
+mechanism by itself.
+
 ## 5. The library keeps its bottles in data-piles, and that is a custody proof
 
 Not an identity question, but it is what §3's hinge turns on.

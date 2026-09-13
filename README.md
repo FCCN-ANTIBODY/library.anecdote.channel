@@ -7,7 +7,7 @@ open: OPEN.md
 
 # library.anecdote.channel
 
-[Adopting](ADOPTING.md) · [Categories](CATEGORIES.md) · [Residency](RESIDENCY.md) · [Seats](SEATS.md) · [Bottles](BOTTLES.md) · [Peers](PEERS.md) · [Exhibit](EXHIBIT.md) · [Open](OPEN.md)
+[Adopting](ADOPTING.md) · [Categories](CATEGORIES.md) · [Residency](RESIDENCY.md) · [Seats](SEATS.md) · [Bottles](BOTTLES.md) · [Grants](GRANTS.md) · [Peers](PEERS.md) · [Exhibit](EXHIBIT.md) · [Open](OPEN.md)
 
 **An engine, and the domain fact that goes with it.** A library keeps knowledge somebody gave it,
 enumerates what it has, and lends it out — and the lending needs nothing from the library at all.
@@ -173,7 +173,7 @@ starting from a blank page.
 | `advocate.anecdote.channel` | `.advocate-engine` | it has seats; the clerk is one | **yes** |
 | `journal.anecdote.channel` | `.journal-engine` | it has to publish directories | likely |
 | `bottles.anecdote.channel` | `.bottles-engine` | it is how the library holds bytes at all | **exists since 2026-09-08; not mounted yet** |
-| `you.anecdote.channel` | `.you-engine` | a person authorizing against it | **open — see [`OPEN.md`](OPEN.md)** |
+| `you.anecdote.channel` | `.you-engine` | a person authorizing against it | **the node mounts it, not the library — [`GRANTS.md`](GRANTS.md)** |
 
 `.bottles-engine` is **not mounted** and nothing here depends on it yet.
 [`BOTTLES.md`](BOTTLES.md) is what this library needs from it, and the repository now exists to

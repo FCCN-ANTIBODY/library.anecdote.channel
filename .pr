@@ -1,1 +1,111 @@
-no draft yet - replace this file: line 1 becomes the PR title, the rest the body
+Grants: the library on a branch, and what makes a local copy a privilege
+Answers `OPEN.md` §3, corrects the OPFS analogy it arrived in, and names the one derivation the
+design turns on. **Nothing has moved** — this is vocabulary and a finding, not a migration.
+
+## What it settles
+
+§3 ended on an explicit hinge: *"the `you` engine is not required — unless it is the way a grant to
+take something out of the library is understood."* The operator's phone/passkey/Discord use case is
+that grant reading, so the hinge swings: **the `you` engine is required, and it is the keystone of
+holding rather than an optional convenience.**
+
+§3's lean is untouched. The node mounts `.you-engine`; the library never does; the library still
+authenticates nobody. It holds ciphertext and hands it to anyone. **The grant governs who may read,
+not who may fetch** — and that distinction carries the whole design.
+
+## The correction: a branch is not OPFS
+
+Productive analogy, wrong exactly where it's load-bearing. `SHELVES.md` and
+`station-node/docs/the-library-as-a-branch.md` both already say *private by default*, and somebody
+will misread that. A branch is listable (`git ls-remote`), fetched by default (`git clone` takes all
+of `refs/heads/*`), and exportable. On a public repo it carries no privilege at all.
+
+What a branch gives is **isolation** — the airlock property, real and worth having. Not privacy.
+So the shape is three separable things, and conflating any two builds it wrong:
+
+> **The branch is the isolation. The encryption is the privilege. The grant is the key.**
+
+Also documented as a genuine refinement that is *not* sufficient: custom ref namespaces
+(`refs/library/*`) aren't fetched by a default clone — the Gerrit `refs/changes/*` idiom. That buys
+"you only have it if you asked," which is one real OPFS property. It's obscurity, not
+confidentiality, and is written down as such so nobody later promotes it.
+
+## The load-bearing piece was not on the list
+
+The operator named tell / atlas / library / bottles / advocate. The engine this actually turns on is
+**`data-pile`**, which is already `running`: a *public* repo, append-only, encrypted at rest, on its
+own `feed/tell` branch, readable by nobody without the key. It is a shipped instance of exactly this
+problem and already a declared peer of library for `custody`.
+
+## The finding I'd most like checked
+
+**The no-library-card rule selects the key-derivation mechanism on its own.** A passkey is
+non-extractable, so it cannot decrypt. That leaves two routes: authenticate to a service that
+releases a wrapped key, or derive on-device via the WebAuthn **PRF** extension (CTAP2
+`hmac-secret`). Route one is a front desk — *"online, trusted and correct,"* which the README refuses
+in as many words. So the constitution admits exactly one option, and the crypto decision was
+effectively made years before anyone reached it.
+
+    passkey ──PRF(salt)──▶ on-device secret ──▶ unwraps age identity ──▶ decrypts the branch
+
+Everything after step one is machinery that exists: `age` throughout data-pile, `seal-enough` as the
+WebCrypto core.
+
+**Held as unverified:** PRF availability is uneven across platforms and authenticators. Written up as
+the first experiment per the store seat's G4 (*run the experiment; do not quote the sentence*), with
+a stated fallback that is deliberately not route one.
+
+## A concrete trap, found while checking the RP ID rule
+
+An RP ID may not be a public suffix, and `github.io` is on the Public Suffix List. So a Pages site at
+`<user>.github.io` can only ever use RP ID `<user>.github.io` — **two GitHub Pages projects under one
+account cannot share a passkey.** That is the deployment of the first worked fitting. A `you` mount
+meant to span properties needs a real domain, and this is the cheapest moment to know it.
+
+## Why a grant is not a library card
+
+The README already sanctions exactly one reason to talk to a library: *"put my name on the signers,
+with an expiration — a request to amend a list, not an authentication."* A grant is that request.
+Three properties keep it on the right side, and the doc names all three: the check is against the
+artifact; ciphertext doesn't adjudicate (a blob that won't decrypt hasn't *refused* you); and the key
+travels with the person, never fetched — which is the rule PRF enforces.
+
+*"An artifact must remain openable by somebody who never authenticated"* is read as a rule about not
+requiring **infrastructure**, not a rule that everything is plaintext. A reader holding their own key
+asks nobody.
+
+## It closes the finding from the last fitting
+
+The artist-lockers refit found the auth gate is cosmetic by construction — *a static host cannot
+gate, it can only decorate* — and recorded it with no remedy. The remedy is to stop gating:
+**serve the ciphertext.** The bytes go to everyone and are readable only by grant-holders. It also
+answers their pain in their terms: a grant-holder's local store holds *bytes*, not links, so it
+outlives the Discord clock, and Discord OAuth is demoted to establishing entitlement once.
+
+## Also worth knowing
+
+- **The branch move is further along than the framing suggested.** `the-library-as-a-branch.md`
+  staged it in five steps; **step 1 completed 2026-09-13**. Step 2 is the remaining precondition and
+  it is in another repository. This PR does not clear it.
+- **The IPFS cluster idea already has an owner** — G4 of the store seat in `advocate.yml`, monthly,
+  told explicitly not to pick a winner. Nothing here chooses IPFS. What it adds is a *requirement*
+  the seat didn't have: the second store must hold ciphertext, because the privilege lives in the
+  encryption rather than the reachability.
+- **Revocation has a hard floor**, and it's the same one the fitting found at OPFS: a derived key
+  cannot be un-derived, and a populated local store is permanent. Written as something to state
+  plainly to artists rather than engineer away.
+
+## Changed
+
+- `GRANTS.md` — new.
+- `OPEN.md` §3 — marked answered, with the reasoning and a pointer. The question is not deleted.
+- `README.md` — `Grants` in the nav; the `you.anecdote.channel` row now points at the answer instead
+  of at the open question.
+
+## Deliberately not done
+
+- **Nothing moved.** No `git mv`, no branch created, no engine scaffolded.
+- **The `you` engine was not built.** It remains a brief at `notes/you-engine-brief.md`. This PR
+  raises its priority and says why; it does not start it.
+- **No petition filed** for the step-2 precondition in station-node — flagged, not escalated, since
+  the audit there already owns it.
