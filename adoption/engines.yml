@@ -19,7 +19,8 @@
 # absent row. An absent row is visibly absent. Reasoning: ../PEERS.md, "the second
 # surface".
 #
-# SHAPE. Two flat top-level blocks -- nodes, then edges -- rather than peers nested
+# SHAPE. Three flat top-level blocks -- nodes, instruments, then edges -- rather than
+# peers nested
 # under engines. Flat on purpose: the readers that consume residency files in this
 # constellation are small hand-written parsers, not YAML libraries, and an edge list is
 # what they can already read. It is also the better form for the question actually
@@ -177,6 +178,112 @@ engines:
     note: "the phone end of the bottle story. Read the repo before planning around it."
     declared: transcribed
     source: "station-node/README.md -- what is mounted here"
+
+# ===================================================================== instruments ==
+# NOT ENGINES. Libraries you import, not machinery you mount -- no `.X-engine` path, no
+# residency, no category. Listed here because nothing in the engines block above would
+# lead an adopter to them, and for a project that already refuses frameworks they are
+# the most directly adoptable thing in the constellation.
+#
+# THE SUFFIX IS A PROMISE: enough of that tool to do the work HERE, with nothing
+# installed. The real tool needs a machine; these need a tab. The membership test is
+# mechanical and shipped as a suite (jekyll-enough/dependencies.test.mjs) -- the modules
+# import each other and nothing else, not a package, not a node: builtin, not a file
+# outside the repository. What ends a member is not a bad feature, it is an import.
+#
+# state: repo | in-origin | designed | new-work | intended
+#   repo       has its own address
+#   in-origin  built, living inside anecdote.channel
+#   designed   worked out and decided, not built
+#   new-work   would not be an extraction. Named so nobody assumes it is cheap
+#   intended   named, nothing more
+instruments:
+  - instrument: jekyll-enough
+    repo: FCCN-ANTIBODY/jekyll-enough
+    state: repo
+    gives: "a Jekyll build -- front matter, Liquid, _data, permalinks -- over an in-memory path->content map, never touching a filesystem"
+    without: "Ruby, bundler, and a machine that has them"
+    declared: transcribed
+    source: "jekyll-enough/README.md; dependencies.test.mjs"
+
+  - instrument: git-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: in-origin
+    gives: "the push -- a git client that speaks send-pack from a tab"
+    without: "a git binary, and a workstation to run it on"
+    declared: transcribed
+    source: "anecdote.channel/docs/git-enough.md"
+
+  - instrument: qr-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: in-origin
+    gives: "a vendorless byte-mode QR encoder, verified scannable against real decoders"
+    without: "a QR library, which is a vendor in the frontend runtime"
+    declared: transcribed
+    source: "anecdote.channel/composer/qr-encode.mjs"
+
+  - instrument: seal-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: designed
+    gives: "the encryption factory -- the pile's crypto core, almost entirely WebCrypto-native"
+    without: "a seal step that only exists inside somebody's CI"
+    # The one gap is the age seed-wrap: subtle has X25519 and not ChaCha20-Poly1305.
+    # Resolved rather than worked around -- native-local at rest, `age` synthesized only
+    # on export, because age is needed at the HANDOFF boundary and nowhere else. A pile
+    # that stays yours needs no age at all.
+    declared: transcribed
+    source: "anecdote.channel/docs/git-enough.md -- the crux: the encryption factory"
+
+  - instrument: actions-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: designed
+    gives: "the workflows -- running a CI definition without a runner"
+    without: "a hosted runner, and the assumption that one is reachable"
+    declared: transcribed
+    source: "anecdote.channel/docs/actions-enough.md"
+
+  - instrument: sh-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: new-work
+    gives: "a shell interpreter -- control flow, test, echo, assignment, redirection"
+    without: "the one workflow bucket nothing else closes"
+    # Named with its warning attached: this would be NEW WORK, not an extraction, and it
+    # is not the whole answer even for the bucket it targets. Recorded so nobody costs it
+    # like the others.
+    declared: transcribed
+    source: "anecdote.channel/docs/origin.md; docs/actions-enough.md"
+
+  - instrument: yaml-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: intended
+    gives: "a deliberately dumb yaml reader, standing on its own"
+    without: "the copy that currently lives inside jekyll-enough"
+    declared: transcribed
+    source: "jekyll-enough/README.md -- siblings, current and intended"
+
+  - instrument: cron-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: intended
+    gives: "schedules, without something that has to stay awake"
+    without: "a scheduler, which is a host you now depend on"
+    declared: transcribed
+    source: "jekyll-enough/README.md -- siblings, current and intended"
+
+  - instrument: node-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: intended
+    gives: "the node-shaped surface a module reaches for, in a tab"
+    without: "node, for the things that only wanted a little of it"
+    declared: transcribed
+    source: "jekyll-enough/README.md -- siblings, current and intended"
+
+  - instrument: liquid-enough
+    repo: FCCN-ANTIBODY/anecdote.channel
+    state: intended
+    gives: "the template language on its own, out of jekyll-enough"
+    without: "the whole site builder, when you wanted the templating"
+    declared: transcribed
+    source: "anecdote.channel/docs/origin.md"
 
 # =========================================================================== peers ==
 # One row per EDGE. `of:` is the engine that has the dependency; `peer:` is what it
