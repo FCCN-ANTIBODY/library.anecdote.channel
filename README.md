@@ -1,4 +1,13 @@
+---
+permalink: /
+name: NAME
+agents: AGENTS.md
+open: OPEN.md
+---
+
 # library.anecdote.channel
+
+[Adopting](ADOPTING.md) · [Categories](CATEGORIES.md) · [Residency](RESIDENCY.md) · [Seats](SEATS.md) · [Bottles](BOTTLES.md) · [Peers](PEERS.md) · [Exhibit](EXHIBIT.md) · [Open](OPEN.md)
 
 **An engine, and the domain fact that goes with it.** A library keeps knowledge somebody gave it,
 enumerates what it has, and lends it out — and the lending needs nothing from the library at all.

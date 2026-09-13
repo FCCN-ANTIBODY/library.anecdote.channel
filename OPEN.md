@@ -305,6 +305,34 @@ holding is categorised separately from the repository that serves it, and that o
 [`CATEGORIES.md`](CATEGORIES.md) already hands to `anecdote.channel`. Recorded here because the
 fitting found it and the reasoning should not have to be re-derived by the next one.
 
+## 11. What does a library exhibit when it cannot serve a README?
+
+`status: draft` — raised 2026-09-13 by [`EXHIBIT.md`](EXHIBIT.md), which decides that README is the
+index and then runs out of ground.
+
+The scheme assumes a library can serve a markdown file at its bare address. **A library is a
+branch**, and `store:` in [`residency.yml`](residency.yml) already anticipates that a second one
+might not be a filesystem at all. An IPFS-backed library plausibly has an index and nothing that
+answers a request for `README.md` — the content is *in the bottle*, and opening the bottle is what
+produces something to read.
+
+Which suggests, without settling it, that the exhibit is not a file but **a thing a bottle
+contains**, and that serving a README is one implementation of exhibiting rather than the
+definition of it. If that is right, `EXHIBIT.md` currently describes the filesystem case and calls
+it the general one.
+
+Three ways this could land, and they are not equally cheap:
+
+- **The README is a build artifact of the branch**, compiled into whatever fragment the library
+  contributes, and each store implements *producing* one. Cheapest, and it keeps the strong posture.
+- **The exhibit lives in a bottle** and a store that cannot serve files serves the bottle instead.
+  Consistent with bottles being the transit object, and it means a stranger's first contact is the
+  same artifact whether they arrived by URL or by QR.
+- **Some libraries do not exhibit.** Legitimate, and it costs the guarantee that made the strong
+  posture worth taking — *there is always a door* stops being true.
+
+**Not resolving it.** It needs the branch-fragment build to exist first, and that does not.
+
 ## Related, elsewhere
 
 - **The control QR.** The `discoverywritten` work wants it for onboarding onto the bottle surface.
