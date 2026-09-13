@@ -41,6 +41,30 @@ holding another library's catalogue is the useful fact that the thing is availab
 one place. Being forced to be one *category* is what makes the word canonical; being forced to be
 one *collection* would not.
 
+## Spoken for, and not categories
+
+Two more words are taken at a library's top level, and **neither is a category.** They are
+**shelves** — a library's own working prefixes — declared in [`SHELVES.md`](SHELVES.md):
+
+| word | what it means | status |
+|---|---|---|
+| `share` | held in order to be handed on. Where moniker groups belong | reserved, **not a category** |
+| `build` | intermediates the library made and sources deterministically | reserved, **not a category** |
+
+They are registered here for one reason and it is the reason this file exists at all: **they are
+bare words at the top level, so they can collide with a future category, and un-reserving is
+expensive.** A library whose `share/` held the trade category, or whose `build/` was promoted to a
+category word by somebody who did not know, is the exact federation failure the rest of this
+document is written to prevent — an Atlas plugged into two libraries getting two meanings for one
+word, with no repair that is not a migration of somebody's tree.
+
+Wings did not need this. A wing always begins with `.` and a category never does, so they cannot
+collide by construction. **Shelves are bare words and can**, which is why they get a line here
+rather than only a document of their own.
+
+The three refusals in the next section apply to these two as well, with one substitution: a shelf
+may not be promoted *to* a category, and a category may not be demoted to a shelf.
+
 ## Why forcefully, and why now
 
 **Reserving costs nothing and un-reserving is expensive.** Introducing `library` cost nothing
