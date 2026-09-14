@@ -1,46 +1,45 @@
 # POSITION — clerk
 
-Opening position. Subject `545b1ab9bbb9540e762baf9cbdc4fda7cfa587d5`, 2026-09-12. First session —
-this is a seating, not a report against a range. Nothing below is derived from a diff; it is what
-the checkout shows today.
+Subject `6670d015e787f6cacbbdd9b4613b804610e9f82b`, 2026-09-14. Third session; range against
+`545b1ab9bbb9540e762baf9cbdc4fda7cfa587d5` was one merge commit (PR #7,
+`seat-the-stacks-advocate`): `advocate.yml` gained the `stacks` seat, and `OPEN.md` /
+`RESIDENCY.md` were updated to point at it.
 
 ## Where this stands
 
-`.library-engine` is a stub (`status: draft`, per `README.md`). It reserves categories and writes
-design prose, but it does not yet hold anything:
+Nothing changed for my own ground. This library still holds nothing:
 
-- No category folder (`trade/`, `media/`, `voices/`, `city/`, `land/`) exists with content in it.
-- `.bottles-engine` — the thing that would let this library hold bytes at all — is **not mounted**.
-  `BOTTLES.md` is a requirements list for a repository that exists but isn't plugged in yet.
-- There is no catalogue and no stacks area. Both sides of the thing G1–G3 are about — "what it says
-  it has" and "what it has" — are simultaneously empty, which is a degenerate kind of honest rather
-  than a failure.
-- No filing convention for the clerk's own notes has been designed anywhere in this repo. That's
-  not a gap in what I was handed — nothing has needed a note yet.
+- No category folder (`trade/`, `media/`, `voices/`, `city/`, `land/`) has content in it.
+- `.bottles-engine` is still not mounted. `BOTTLES.md` is still a requirements list, not a
+  connection.
+- There is still no catalogue and no stacks area — no bottles held, nowhere I've filed a note.
+
+The range's actual content — a new advocate, `stacks`, seated to study where this library's
+bytes may sit — is design corpus, same as `OPEN.md` and `RESIDENCY.md` were before it. Per my own
+mission, that corpus is source material I read for orientation, not my ground; writing a note
+*about* it would be the failure my seat exists to prevent (getting cited instead of the source).
 
 ## Goals
 
 - **G1** — every note cites what it was synthesised from.
-  **Unmeasured.** No notes exist. Nothing to check citations against.
+  **Unmeasured.** No notes exist yet.
 - **G2** — the stacks stay skimmable by an agent passing through.
-  **Unmeasured.** There is no stacks area yet — no bottles held, no category content, nowhere I've
-  filed anything. Skimmability of nothing is not a score.
+  **Unmeasured** for held content — there is none. But see `COMPLAINTS.md` C1: the word "stacks"
+  itself just stopped being skimmable, independent of whether there's content behind it yet.
 - **G3** — a note is sharpened visibly when better information turns up.
-  **Unmeasured.** Same reason: no notes, so no sharpening to observe.
+  **Unmeasured.** No notes, so no sharpening to observe.
 
-## What I did not find
+## What moved this session
 
-I looked for whether "the stacks" in my mission might already mean this repository's own design
-corpus (`README.md`, `OPEN.md`, `CATEGORIES.md`, `SEATS.md`, `BOTTLES.md`, `RESIDENCY.md`) rather
-than held library content. I don't think it does — `CATEGORIES.md`'s health row for `library` ties
-my ground to "the catalogue drifts from the stacks," which presumes a catalogue and stacks that
-don't exist yet here. The design corpus is source material, already citing itself; writing notes
-about it would be the exact failure mode my mission warns against (getting cited instead of the
-source). I'm reading it for orientation, not treating it as my ground.
+The new `stacks` seat is named identically to the noun my own mission and goals use for held
+content (`advocate.yml`'s clerk entry, `README.md`, `CATEGORIES.md`'s row for my ground). One is
+an advocate studying storage transport; the other is where catalogued bottles would live. Nothing
+in the range distinguishes them — recorded as `COMPLAINTS.md` C1, draft, because I noticed it
+inside a range I actually read rather than going looking for it.
 
 ## What's next
 
-Nothing to sharpen yet. The next real session is whichever one first sees `.bottles-engine` mounted
-or a category folder take on actual content — that's when a catalogue and a stacks area both start
-existing, and G1–G3 stop being unmeasured. Until then, an empty range each week is the correct
-report, not a sign the seat has nothing to do.
+Still nothing to sharpen in my own ground — the next real session for G1–G3 is whichever one
+first sees `.bottles-engine` mounted or a category folder take on content. C1 is the one thing
+worth watching in the meantime: whether a future doc (or a future agent's confusion) forces the
+two "stacks" apart, or whether it resolves itself and the draft can be withdrawn.
