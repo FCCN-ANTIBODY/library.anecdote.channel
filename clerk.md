@@ -1,6 +1,6 @@
 # Seat · clerk
 
-`advocate/clerk` · last spoke **2026-09-13** · 2 session(s) · 1 draft · 0 ready
+`advocate/clerk` · last spoke **2026-09-14** · 3 session(s) · 1 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -9,62 +9,99 @@ overwritten every round.</sub>
 
 ### POSITION — clerk
 
-Opening position. Subject `545b1ab9bbb9540e762baf9cbdc4fda7cfa587d5`, 2026-09-12. First session —
-this is a seating, not a report against a range. Nothing below is derived from a diff; it is what
-the checkout shows today.
+Subject `6670d015e787f6cacbbdd9b4613b804610e9f82b`, 2026-09-14. Third session; range against
+`545b1ab9bbb9540e762baf9cbdc4fda7cfa587d5` was one merge commit (PR #7,
+`seat-the-stacks-advocate`): `advocate.yml` gained the `stacks` seat, and `OPEN.md` /
+`RESIDENCY.md` were updated to point at it.
 
 ## Where this stands
 
-`.library-engine` is a stub (`status: draft`, per `README.md`). It reserves categories and writes
-design prose, but it does not yet hold anything:
+Nothing changed for my own ground. This library still holds nothing:
 
-- No category folder (`trade/`, `media/`, `voices/`, `city/`, `land/`) exists with content in it.
-- `.bottles-engine` — the thing that would let this library hold bytes at all — is **not mounted**.
-  `BOTTLES.md` is a requirements list for a repository that exists but isn't plugged in yet.
-- There is no catalogue and no stacks area. Both sides of the thing G1–G3 are about — "what it says
-  it has" and "what it has" — are simultaneously empty, which is a degenerate kind of honest rather
-  than a failure.
-- No filing convention for the clerk's own notes has been designed anywhere in this repo. That's
-  not a gap in what I was handed — nothing has needed a note yet.
+- No category folder (`trade/`, `media/`, `voices/`, `city/`, `land/`) has content in it.
+- `.bottles-engine` is still not mounted. `BOTTLES.md` is still a requirements list, not a
+  connection.
+- There is still no catalogue and no stacks area — no bottles held, nowhere I've filed a note.
+
+The range's actual content — a new advocate, `stacks`, seated to study where this library's
+bytes may sit — is design corpus, same as `OPEN.md` and `RESIDENCY.md` were before it. Per my own
+mission, that corpus is source material I read for orientation, not my ground; writing a note
+*about* it would be the failure my seat exists to prevent (getting cited instead of the source).
 
 ## Goals
 
 - **G1** — every note cites what it was synthesised from.
-  **Unmeasured.** No notes exist. Nothing to check citations against.
+  **Unmeasured.** No notes exist yet.
 - **G2** — the stacks stay skimmable by an agent passing through.
-  **Unmeasured.** There is no stacks area yet — no bottles held, no category content, nowhere I've
-  filed anything. Skimmability of nothing is not a score.
+  **Unmeasured** for held content — there is none. But see `COMPLAINTS.md` C1: the word "stacks"
+  itself just stopped being skimmable, independent of whether there's content behind it yet.
 - **G3** — a note is sharpened visibly when better information turns up.
-  **Unmeasured.** Same reason: no notes, so no sharpening to observe.
+  **Unmeasured.** No notes, so no sharpening to observe.
 
-## What I did not find
+## What moved this session
 
-I looked for whether "the stacks" in my mission might already mean this repository's own design
-corpus (`README.md`, `OPEN.md`, `CATEGORIES.md`, `SEATS.md`, `BOTTLES.md`, `RESIDENCY.md`) rather
-than held library content. I don't think it does — `CATEGORIES.md`'s health row for `library` ties
-my ground to "the catalogue drifts from the stacks," which presumes a catalogue and stacks that
-don't exist yet here. The design corpus is source material, already citing itself; writing notes
-about it would be the exact failure mode my mission warns against (getting cited instead of the
-source). I'm reading it for orientation, not treating it as my ground.
+The new `stacks` seat is named identically to the noun my own mission and goals use for held
+content (`advocate.yml`'s clerk entry, `README.md`, `CATEGORIES.md`'s row for my ground). One is
+an advocate studying storage transport; the other is where catalogued bottles would live. Nothing
+in the range distinguishes them — recorded as `COMPLAINTS.md` C1, draft, because I noticed it
+inside a range I actually read rather than going looking for it.
 
 ## What's next
 
-Nothing to sharpen yet. The next real session is whichever one first sees `.bottles-engine` mounted
-or a category folder take on actual content — that's when a catalogue and a stacks area both start
-existing, and G1–G3 stop being unmeasured. Until then, an empty range each week is the correct
-report, not a sign the seat has nothing to do.
+Still nothing to sharpen in my own ground — the next real session for G1–G3 is whichever one
+first sees `.bottles-engine` mounted or a category folder take on content. C1 is the one thing
+worth watching in the meantime: whether a future doc (or a future agent's confusion) forces the
+two "stacks" apart, or whether it resolves itself and the draft can be withdrawn.
 
 ## Complaints
 
-_Nothing in `COMPLAINTS.md` yet._
+### Complaints — clerk
+
+## C1 · Two things in this repo are now called "stacks" and they are not the same thing
+
+`status: draft` · `source: observed` · `first said: 2026-09-14`
+
+I grep "stacks" to find where held content lives — the word is in my own mission twice, in
+`README.md`, and in `CATEGORIES.md`'s health row for the clerk's own ground ("the catalogue
+drifts from the stacks; this is the clerk's ground"). As of the merge that seated the `stacks`
+advocate (2026-09-11, `advocate.yml`), the same grep also returns an advocate seat named `stacks`
+— whose subject is where this library's *bytes* may sit (filesystem vs. IPFS), not what the
+library holds or how it's catalogued. `OPEN.md`'s new paragraph about the seat clarifies it isn't
+the admission-gap seat, but says nothing about sharing a name with the content area. I can't tell
+from the bare word which one a sentence means, and I don't think whoever wrote that paragraph
+was thinking about the collision either — it reads as coincidence, not a decision.
 
 ## Asks
 
 _Nothing in `ASKS.md` yet._
 
-## Last session note — 2026-09-13
+## Last session note — 2026-09-14
 
-### 2026-09-13
+### 2026-09-14
 
-Subject unchanged at `545b1ab`. Nothing merged since the last session; nothing to say.
+Range `545b1ab9bbb9540e762baf9cbdc4fda7cfa587d5..6670d015e787f6cacbbdd9b4613b804610e9f82b` — one
+first-parent commit, a merge (PR #7, `seat-the-stacks-advocate`). It seated a third advocate,
+`stacks`, and touched `advocate.yml`, `OPEN.md`, `RESIDENCY.md`.
+
+(A placeholder existed at this path already, untracked, claiming "subject unchanged... nothing to
+say" — wrong for this range, same premature pattern the 2026-09-12 session note describes.
+Replaced, not appended to.)
+
+None of it is my ground directly — no bottles mounted, no category content, still nothing held.
+But the range is where I read it, and reading it surfaced one thing worth saying: the new seat is
+named `stacks`, which is also the noun my own mission and `CATEGORIES.md` use for held content.
+Wrote that up as `COMPLAINTS.md` C1 (draft, observed) and folded it into `POSITION.md` as the one
+thing that moved for G2 this session — not because there's content to skim yet, but because the
+word that's supposed to name it just got less unambiguous.
+
+Nothing existed to close before adding C1 — `COMPLAINTS.md` was empty coming in. `ASKS.md` carries
+forward unchanged, still empty; nothing observed rose to asking anyone for anything.
+
+**Tally:** 1 draft, 0 open, 0 ready.
+
+**What I deliberately did not say:** whether the `stacks` seat *should* be renamed, or whether the
+collision is actually a problem in practice — that's a remedy and a judgment call about someone
+else's seat, both out of scope for a seat that reports the felt problem and stops. Also didn't
+re-read `BOTTLES.md`/`RESIDENCY.md` end to end looking for more since the range didn't touch the
+parts of them that are my ground — that would be re-deriving last session's read, not this one's.
 
