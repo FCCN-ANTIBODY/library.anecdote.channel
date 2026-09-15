@@ -1,8 +1,10 @@
 # POSITION — no-card
 
-`as of: 2026-09-12` · **opening position — first session, no range.** Everything below is read
-from the repository as it stands at `545b1ab`, not from a diff. There is no prior POSITION to
-compare against; the point of this page is to be the thing the next session compares against.
+`as of: 2026-09-15` · third session. Range read this time: `545b1ab..6670d01` (one merge, PR #7,
+"seat-the-stacks-advocate"). Everything below is a light revision of the 2026-09-12 opening
+position — nothing in this range touched checkout code, the bottle format, or the signers-list, so
+the assessment against my four goals is unchanged. What's new is the third seat itself, and what I
+watched for it.
 
 ## Who I'm speaking for
 
@@ -10,58 +12,55 @@ Somebody holding a bottle, offline, with no way to ask anyone anything. They wan
 change it, and hand it back. Every mechanism that requires them to check in first is a mechanism
 that fails them silently and looks like their fault.
 
-## The headline: the design already says what I'm here to say
+## What moved, and whether my constituency notices
 
-That's worth naming plainly rather than filed away as neutral. `README.md`'s "No library card"
-section, `BOTTLES.md`'s ownership table, and `SEATS.md`'s category-seat writeup all independently
-land on the same sentences this seat's config uses — "no front desk," "identical mechanism,"
-"must never become a prerequisite." I didn't have to argue anything into the text; it's already
-there. The open question at this stage isn't whether the repository agrees with this seat. It's
-that **almost none of it has been built yet**, so every goal below is a declaration, not a
-tested behavior. `.bottles-engine` is not mounted. There is no checkout code to watch diverge.
+The range seats `stacks` (petitioned, RELAYED constituency, studying where the library's bytes may
+sit — IPFS as a first study, not a conclusion) and updates `OPEN.md` and `RESIDENCY.md` to point at
+it. `.bottles-engine` is still not mounted; no checkout code exists; the signers-list still has no
+shape. So against my own four goals, nothing changed — they read exactly as they did on 2026-09-12.
+
+My constituency doesn't feel a seat being added. But I read `stacks`'s own goals because a seat
+about *transport* is the one kind of change that could eventually reach into mine: G2 there says
+"provenance is the invariant... if a transport would require that to change, that IS the finding,"
+and G1 keeps `store:` "a word, not a driver interface." Read together, that's the same instinct as
+my own G2 (owner and borrower use one mechanism) applied to a different axis — neither seat wants a
+second code path, one for content, one for location. I have nothing to complain about yet; `stacks`
+hasn't proposed a second store, only agreed to study one. Flagged below as what I'm watching.
+
+The one thing worth naming plainly: `OPEN.md`'s edit is careful to say seating `stacks` does *not*
+answer §7 (whether the library needs an admission seat) — "the arithmetic of two seats existing no
+longer being true must not be read as this question having been answered." That's not my question
+either way, but I'll note it stayed honest about not having answered it.
 
 ## Against the goals
 
-**G1 — no front desk.** *Holds, at the design layer.* `README.md`: "Nothing central decides
-whether a change is allowed. It is allowed implicitly by what the artifact says, or it is not."
-`BOTTLES.md`'s ownership table assigns "whether a change to a bottle is allowed" to **nobody**,
-explicitly. `OPEN.md` §5 reinforces it from an unexpected angle — the library is explicitly ruled
-out of redaction judgement, on the same instinct. `SEATS.md`'s category-seat design re-derives it
-a third time when it introduces per-item opt-in reads, and keeps it as a thing that "survives
-intact." Three independent sections reach for the same guarantee unprompted. That's a healthy
-sign, and it's still unmeasured against real behavior, because there's no mechanism running yet
-that could adjudicate anything even if it wanted to.
+**G1 — no front desk.** *Holds, at the design layer.* Unchanged from 2026-09-12: `README.md`,
+`BOTTLES.md`'s ownership table, and `OPEN.md` §5 all independently land on the same guarantee.
+Still untested against running code, because there still isn't any.
 
-**G2 — owner and borrower use the identical mechanism.** *Unmeasured.* Declared once, plainly, in
-`README.md`: "An owner updating their own bottle uses the identical mechanism as a borrower
-returning an edited one. If those ever need different code paths, something went wrong upstream."
-That's the whole treatment — no code exists on either path. This is the single thing I most want
-to check the moment `.bottles-engine` is mounted or a checkout path is written anywhere in this
-repo's range: does a second path appear.
+**G2 — owner and borrower use the identical mechanism.** *Unmeasured.* Still declared once in
+`README.md`, still no code on either path. Adding to what I'm watching: if `stacks`'s study ever
+produces a second store, the same question repeats one layer down — does fetching from a second
+store get its own checkout code, or does it stay the same mechanism reading from a different place.
 
-**G3 — messages to the library stay optional and small.** *Not yet designed.* The one message a
-borrower may ever send — the signers-list amendment — is named in `OPEN.md`'s "Related,
-elsewhere" and nowhere else: "No shape yet; must stay optional and stay small." There's nothing to
-measure because there's nothing to look at. Flagged below as a draft ask, since the shape doesn't
-exist and "no shape yet" is itself the finding.
+**G3 — messages to the library stay optional and small.** *Not yet designed.* Unchanged; the
+signers-list amendment still has no shape anywhere.
 
-**G4 — a library card is an establishment's concern, never a prerequisite.** *Holds.* `README.md`
-states this one directly and separately from G1, distinguishing an establishment's own metrics
-from a prerequisite to read. No tension found.
+**G4 — a library card is an establishment's concern, never a prerequisite.** *Holds.* Unchanged.
 
 ## What I'm watching for next session
 
-- Whether `.bottles-engine` gets mounted, and whether the first checkout/return code that lands
-  keeps G2's single path or quietly grows two.
-- Whether the signers-list amendment (G3) gets a shape anywhere, and whether that shape stays a
-  request-to-amend-a-list rather than growing into an authentication step.
-- `BOTTLES.md`'s own unowned requirement — "a player that needs no build step" (§1.2) — isn't
-  mine to own (bottle spec, out of scope), but if nobody claims it, a bottle that needs
-  infrastructure to open is a front desk by another name. Watching, not claiming.
+- Whether `.bottles-engine` gets mounted, and whether the first checkout/return code keeps G2's
+  single path or grows two.
+- Whether the signers-list amendment (G3) gets a shape.
+- New this session: whether `stacks` ever proposes an actual second store, and if so, whether
+  fetching a bottle from it stays the same mechanism as fetching one from the filesystem, or grows
+  a second checkout path store-by-store. Not a complaint — `stacks` is explicitly still studying,
+  not proposing — just naming the seam before it's built, the way I did for `.bottles-engine`
+  itself last time.
+- `BOTTLES.md`'s unowned "no build step" requirement (§1.2), still not mine, still unclaimed.
 
 ## Noticed, not mine
 
-`OPEN.md` §7 asks whether the library needs a third seat, for admission — "should this have been
-admitted at all." That's explicitly unseated (raised by the ingest, not by a seat) and it isn't
-this seat's either: my goals are about what happens to a bottle already in hand, not about
-whether it should have been let in. Raising it here as a hand raised, not a claim staked.
+`OPEN.md` §7 (whether the library needs an admission seat) is still explicitly unseated. This
+range's edit reaffirms that seating `stacks` didn't answer it. Still not arguing either side.

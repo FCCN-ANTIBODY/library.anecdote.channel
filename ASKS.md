@@ -24,3 +24,5 @@ both expressed as the same kind of diff-against-a-frozen-base the format already
 everything else — not a special message type, and not something the library layers on top.
 Target: `bottles.anecdote.channel`, once there's a wire format to check this against. Nothing to
 promote yet; there's no spec surface to point at.
+
+Reviewed 2026-09-15: unchanged. Still no wire format to check it against.
