@@ -204,21 +204,46 @@ through the platform keychain, so it would survive both. That is a real advantag
 a cause to weigh if device loss becomes the complaint, and nowhere near the first build.
 
 
-## The RP ID constraint, and a concrete trap in the worked case
+## The RP ID is a choice this constellation makes, not a ceiling it hits
 
 The `you`-engine brief establishes that **the RP ID is exactly one decision, fixed at registration,
-and not re-scopable afterward.** Two consequences that bear directly on the phone use case:
+and not re-scopable afterward.** That decide-once-ness is real and it is the part worth carrying:
 
 - **A credential is usable from any origin the RP ID is a registrable suffix of.** Created at
   `domain.com`, it works at `name.you.domain.com`. The reverse does not hold, and sibling labels
   cannot see each other's credentials.
 - **An RP ID may not be a public suffix.** `github.io` is on the Public Suffix List, so a Pages site
-  at `<user>.github.io` can only ever set RP ID to `<user>.github.io` — never `github.io`. **Two
-  GitHub Pages projects under the same account cannot share a passkey.**
+  at `<user>.github.io` can only ever set RP ID to `<user>.github.io` — never `github.io`.
 
-That last one is not hypothetical: it is the exact deployment of the first worked fitting, which is
-served from Pages. **A `you` mount that is meant to span more than one property needs a real domain
-under it**, and this is the cheapest possible moment to know that.
+### Do not raise this as an objection to our deployment
+
+**An earlier version of this section did, and it was wrong to.** It presented the `github.io` case
+as *"a concrete trap in the worked case"* and concluded that a `you` mount spanning properties
+*"needs a real domain under it."* The facts are accurate; the framing has cost the operator the same
+conversation with agent after agent, because this was the only mention of the Public Suffix List
+anywhere in the constellation and reading it primed the objection.
+
+Three corrections, and the third is the one that matters:
+
+1. **GitHub Pages is not the deployment.** Cloudflare is. Where a Pages site still appears it is a
+   demonstration that something works *without a worker*, not the architecture.
+2. **The domain is ours**, so the suffix question was always a choice rather than a ceiling. The
+   sentence *"needs a real domain under it"* described a requirement that was already met.
+3. **Breadth is not what is wanted, and the scoping rule delivers the requirement.** The objection
+   assumes an attempt to make one credential span properties. For a floor, the goal is the
+   opposite — a credential that is *only for this one thing* — so a rule that prevents a credential
+   from wandering is the feature. And scope is already a configuration rather than a constraint:
+   **D9** records that `composer/gesture.mjs` parameterizes rpId, and **D12** settles which scope
+   was chosen and why.
+
+**The strategy has a name now: see `anecdote.channel/docs/flooring.md`.** One identical page served
+at every label under a wildcard, nothing provisioned ever, the label chosen rather than allocated —
+which is this library's own *no front desk* rule expressed in DNS. That document is the destination
+for this objection, and it is written to be found by whoever is about to raise it.
+
+What survives here, unchanged, is only the decide-once-ness: an RP ID is baked into a credential at
+creation, so **it is settled before the first enrolment or it is settled by re-enrolling everybody.**
+That is a fact about WebAuthn and it is not an argument against anything we are doing.
 
 ## Why a grant is not a library card
 
