@@ -26,3 +26,14 @@ Target: `bottles.anecdote.channel`, once there's a wire format to check this aga
 promote yet; there's no spec surface to point at.
 
 Reviewed 2026-09-15: unchanged. Still no wire format to check it against.
+
+Reviewed 2026-09-16 (range `6670d01..5b8f333`): **half-answered, and only half.** `GRANTS.md` names
+the composer's "grant" (Discord OAuth once, a passkey ceremony, an on-device `age` identity, a
+lease, a hash-chained chronicle — all `anecdote.channel`'s machinery, not this library's) as *the*
+signers-list amendment request — but only works this out for the private/encrypted-branch use case.
+It does not say what an ordinary, unencrypted bottle's checkout request looks like, or whether it
+shares this apparatus or gets something lighter. Still no wire format. Still targeting
+`bottles.anecdote.channel` and, for the grant mechanism specifically, `anecdote.channel`'s own
+decision record — this seat has no better words for either and isn't inventing any. What's new to
+watch: whether the ordinary case ever gets its own answer, and whether it's one mechanism or two.
+See `COMPLAINTS.md` C1 and `POSITION.md` for the reasoning.
