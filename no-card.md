@@ -1,6 +1,6 @@
 # Seat · no-card
 
-`advocate/no-card` · last spoke **2026-09-15** · 3 session(s) · 1 draft · 0 ready
+`advocate/no-card` · last spoke **2026-09-16** · 4 session(s) · 1 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -121,48 +121,9 @@ promote yet; there's no spec surface to point at.
 
 Reviewed 2026-09-15: unchanged. Still no wire format to check it against.
 
-## Last session note — 2026-09-15
+## Last session note — 2026-09-16
 
-### Session — 2026-09-15
+### 2026-09-16
 
-**Range:** `545b1ab9bbb9540e762baf9cbdc4fda7cfa587d5..6670d015e787f6cacbbdd9b4613b804610e9f82b`
-— one first-parent commit, `6670d01`, merging PR #7 ("seat-the-stacks-advocate").
-
-## What I read
-
-The diff: `advocate.yml` (adds the `stacks` seat), `OPEN.md` (a note that seating `stacks` does not
-answer §7's admission question), `RESIDENCY.md` (points its second-store discussion at the new
-seat instead of an unseated petition). Re-read `stacks`'s own goals in `advocate.yml` to judge
-whether its concern is adjacent to mine. Confirmed `.bottles-engine` is still not mounted and no
-checkout code exists anywhere in the tree at the subject commit.
-
-## What changed in the three files
-
-- **`POSITION.md`** — rewritten whole. Against all four goals, nothing moved: no code landed in
-  this range, so G1/G4 still hold at the design layer and G2/G3 are still unmeasured, exactly as
-  reported 2026-09-12. Added one paragraph reading the new `stacks` seat for whether my
-  constituency notices it — it doesn't, directly, but `stacks`'s "provenance outranks transport"
-  goal is the same one-mechanism instinct as my own G2, aimed at a different axis, and I flagged the
-  seam (a second store someday getting its own checkout path) as something to watch, not a
-  complaint — `stacks` hasn't proposed a second store, only agreed to study one.
-- **`COMPLAINTS.md`** — no new complaint. Added a one-line review note: still nothing built for my
-  constituency to feel friction against.
-- **`ASKS.md`** — A1 unchanged, still `draft`, still no bottle-format spec surface to check it
-  against. Added a one-line review note; nothing to promote.
-
-## Tally
-
-drafts: 1 (A1) · open: 0 · ready: 0 · complaints: 0 — unchanged from last session.
-
-## What I deliberately did not say
-
-- Did not take a position on `stacks` itself, its choice of IPFS as a first study, or whether it
-  should exist — a seat's mission is given, not mine to evaluate, and none of that is my
-  constituency's business until it reaches a checkout mechanism.
-- Did not treat the second-store seam as a complaint. Nothing has been proposed yet; naming it now
-  as a watch item is the honest amount of concern, not the finished one.
-- Did not revisit `OPEN.md` §7 (the admission question) beyond noting the range's own text says
-  seating `stacks` didn't answer it. Still not mine either way.
-- Corrects an earlier draft of this file, written before I read the diff, that said the subject was
-  unchanged and there was nothing to say. That was wrong — the subject moved and I read it above.
+Subject unchanged at `6670d01`. Nothing merged since the last session; nothing to say.
 
