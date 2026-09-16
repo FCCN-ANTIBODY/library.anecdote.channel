@@ -1,6 +1,6 @@
 # Seat · clerk
 
-`advocate/clerk` · last spoke **2026-09-14** · 3 session(s) · 1 draft · 0 ready
+`advocate/clerk` · last spoke **2026-09-16** · 4 session(s) · 1 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -75,33 +75,9 @@ was thinking about the collision either — it reads as coincidence, not a decis
 
 _Nothing in `ASKS.md` yet._
 
-## Last session note — 2026-09-14
+## Last session note — 2026-09-16
 
-### 2026-09-14
+### 2026-09-16
 
-Range `545b1ab9bbb9540e762baf9cbdc4fda7cfa587d5..6670d015e787f6cacbbdd9b4613b804610e9f82b` — one
-first-parent commit, a merge (PR #7, `seat-the-stacks-advocate`). It seated a third advocate,
-`stacks`, and touched `advocate.yml`, `OPEN.md`, `RESIDENCY.md`.
-
-(A placeholder existed at this path already, untracked, claiming "subject unchanged... nothing to
-say" — wrong for this range, same premature pattern the 2026-09-12 session note describes.
-Replaced, not appended to.)
-
-None of it is my ground directly — no bottles mounted, no category content, still nothing held.
-But the range is where I read it, and reading it surfaced one thing worth saying: the new seat is
-named `stacks`, which is also the noun my own mission and `CATEGORIES.md` use for held content.
-Wrote that up as `COMPLAINTS.md` C1 (draft, observed) and folded it into `POSITION.md` as the one
-thing that moved for G2 this session — not because there's content to skim yet, but because the
-word that's supposed to name it just got less unambiguous.
-
-Nothing existed to close before adding C1 — `COMPLAINTS.md` was empty coming in. `ASKS.md` carries
-forward unchanged, still empty; nothing observed rose to asking anyone for anything.
-
-**Tally:** 1 draft, 0 open, 0 ready.
-
-**What I deliberately did not say:** whether the `stacks` seat *should* be renamed, or whether the
-collision is actually a problem in practice — that's a remedy and a judgment call about someone
-else's seat, both out of scope for a seat that reports the felt problem and stops. Also didn't
-re-read `BOTTLES.md`/`RESIDENCY.md` end to end looking for more since the range didn't touch the
-parts of them that are my ground — that would be re-deriving last session's read, not this one's.
+Subject unchanged at `6670d01`. Nothing merged since the last session; nothing to say.
 

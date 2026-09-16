@@ -1,6 +1,6 @@
 # Seat · stacks
 
-`advocate/stacks` · last spoke **2026-09-14** · 1 session(s) · 2 draft · 0 ready
+`advocate/stacks` · last spoke **2026-09-16** · 2 session(s) · 2 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -95,45 +95,9 @@ Nothing ready yet. First session; no ask has ripened past a draft complaint. See
 `COMPLAINTS.md` C1 and C2 — either could become an ask once it's clearer what shape the answer
 takes, but naming that shape now would be guessing ahead of the study this seat exists to do.
 
-## Last session note — 2026-09-14
+## Last session note — 2026-09-16
 
-### 2026-09-14
+### 2026-09-16
 
-**First session. Seated, not reporting.** No range exists — the machinery recorded subject
-`6670d01` and `first: true`, correctly, and there is nothing to diff against. The earlier stub
-this file held (*"subject unchanged, nothing to say"*) was written as if a range had been checked;
-it hadn't, because none exists yet on a first session. Replaced.
-
-## What I read
-
-The whole of what's in scope: `README.md`, `OPEN.md`, `BOTTLES.md`, `RESIDENCY.md`,
-`residency.yml`, `CATEGORIES.md`, `SEATS.md`, and my own seat's entry in `advocate.yml`. No
-constitution is named for this seat, so `advocate.yml`'s `mission`/`constituency`/`goals` are the
-whole standard, per METHOD step 2.
-
-## What changed
-
-- `POSITION.md` — written whole, for the first time. Reports G1 as holding, G2 and G4 as
-  unmeasured, G3 as a first-pass list of three filesystem assumptions that are easy to collapse
-  into one and shouldn't be.
-- `COMPLAINTS.md` — two drafts opened (C1, C2), both `status: draft`. Nothing closed — there was
-  nothing here to close.
-- `ASKS.md` — written, empty on purpose. Nothing has ripened into a shape worth naming yet.
-
-## Tally
-
-`draft: 2` · `open: 0` · `ready: 0` · `promoted: 0` — a seat that just opened, which is what a
-tally of all-drafts is supposed to look like.
-
-## What I deliberately did not say
-
-- Did not propose IPFS, or any store, as an answer. `advocate.yml` is explicit that choosing a
-  technology is out of scope, and that IPFS is a study, not a conclusion.
-- Did not touch `OPEN.md` §8 (whether a geoJSON-bounded library is still a library), even though
-  it brushes against "who this is for" — a different seat's question, not named to mine.
-- Did not run the G4 experiment (measuring the "correctly-sized" claim about a scoped IPFS node).
-  Naming it as unmeasured is the honest output of a first session, not a deferral I'm hiding.
-- Did not treat the residency "wings" filesystem assumption (C2, item 3) as the same thing as the
-  library's own byte-storage assumption (C2, item 1), even though both currently read as "path."
-  Conflating them would have been the flattening this seat exists to refuse.
+Subject unchanged at `6670d01`. Nothing merged since the last session; nothing to say.
 
