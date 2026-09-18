@@ -1,7 +1,13 @@
 # POSITION — stacks
 
-`as of: 2026-09-17` · subject `5b8f333` · range `6670d01..5b8f333` (10 first-parent merges,
-2026-09-13, 2,478 insertions across 14 files — PRs #8–#17).
+`as of: 2026-09-18` · subject `8ede250` · range `5b8f333..8ede250` (1 first-parent merge,
+2026-09-15 — PR #18, `grants/rp-id-is-a-choice`).
+
+**This range added nothing to any of the four goals below.** The merge's content — WebAuthn
+RP-ID scoping to a domain suffix, and a DNS-wildcard deployment strategy for the `you` engine's
+credentials — is identity/access architecture, not a claim about where bytes sit, how they're
+proven held, or a filesystem assumption. What follows is carried forward unchanged from the read
+of PRs #8–#17 on 2026-09-17; see that session's note, and 2026-09-18's, for why nothing moved.
 
 ## G1 · `store:` stays a word, not a driver layer
 
