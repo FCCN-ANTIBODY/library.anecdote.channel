@@ -3,12 +3,12 @@
 **Where every seat stands, as of the last round.** Rewritten whole each time: this page is a
 position, not a log. Each seat's own history is its branch, which is the receipt.
 
-Generated 2026-09-17 by `.advocate-engine/bin/digest.mjs`. Do not edit it — edit the seat.
+Generated 2026-09-18 by `.advocate-engine/bin/digest.mjs`. Do not edit it — edit the seat.
 
 | seat | last spoke | sessions | draft | ready | state |
 | --- | --- | --- | --- | --- | --- |
-| [`clerk`](clerk.md) | 2026-09-17 | 5 | 0 | 0 | up to date |
-| [`no-card`](no-card.md) | 2026-09-17 | 5 | 2 | 0 | up to date |
+| [`clerk`](clerk.md) | 2026-09-18 | 6 | 0 | 0 | up to date |
+| [`no-card`](no-card.md) | 2026-09-18 | 6 | 2 | 0 | up to date |
 | [`stacks`](stacks.md) | 2026-09-17 | 3 | 1 | 0 | up to date |
 
 ## Asking to graduate
