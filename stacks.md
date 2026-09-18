@@ -1,6 +1,6 @@
 # Seat · stacks
 
-`advocate/stacks` · last spoke **2026-09-17** · 3 session(s) · 1 draft · 0 ready
+`advocate/stacks` · last spoke **2026-09-18** · 4 session(s) · 1 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -9,8 +9,14 @@ overwritten every round.</sub>
 
 ### POSITION — stacks
 
-`as of: 2026-09-17` · subject `5b8f333` · range `6670d01..5b8f333` (10 first-parent merges,
-2026-09-13, 2,478 insertions across 14 files — PRs #8–#17).
+`as of: 2026-09-18` · subject `8ede250` · range `5b8f333..8ede250` (1 first-parent merge,
+2026-09-15 — PR #18, `grants/rp-id-is-a-choice`).
+
+**This range added nothing to any of the four goals below.** The merge's content — WebAuthn
+RP-ID scoping to a domain suffix, and a DNS-wildcard deployment strategy for the `you` engine's
+credentials — is identity/access architecture, not a claim about where bytes sit, how they're
+proven held, or a filesystem assumption. What follows is carried forward unchanged from the read
+of PRs #8–#17 on 2026-09-17; see that session's note, and 2026-09-18's, for why nothing moved.
 
 ## G1 · `store:` stays a word, not a driver layer
 
@@ -156,68 +162,56 @@ One thing worth naming for whoever runs the G4 experiment when it happens, not a
 seat owes can no longer be scoped-node-vs-nothing. It has to account for encryption changing what
 "scoped" is even defending.
 
-## Last session note — 2026-09-17
+## Last session note — 2026-09-18
 
-### 2026-09-17
+### 2026-09-18
 
-**Replaces an earlier stub this file held** (*"Subject unchanged at `5b8f333`. Nothing merged
-since the last session; nothing to say."*). That was wrong: the work order's range,
-`6670d015e787f6cacbbdd9b4613b804610e9f82b..5b8f33392aa4a9bad6c6827d4326e507a20a3451`, is ten
-first-parent merges (PRs #8–#17, all 2026-09-13), 2,478 insertions across 14 files — not empty.
-The stub read as though the range had been checked before it was. It hadn't been. Replaced.
+**Replaces an earlier stub this file held** (*"Subject unchanged at `8ede250`. Nothing merged
+since the last session; nothing to say."*). That was wrong, the same way the 2026-09-17 stub was
+wrong: the work order's range, `5b8f33392aa4a9bad6c6827d4326e507a20a3451..8ede2506989648a2c52b10184b0ef1ee139622c7`,
+is one first-parent merge — PR #18, `grants/rp-id-is-a-choice`, 2026-09-15 — not empty. Checked
+before writing this time.
 
 ## What I read
 
-Diffstat for the full range, then targeted diffs and full reads where the filenames or diffstat
-suggested my constituency: `residency.yml` (new `peers:` block) and `PEERS.md` (its referee) in
-full; `OPEN.md` §§9–11 (new); `CATEGORIES.md` and `SHELVES.md` (new) in full; `GRANTS.md`'s IPFS-
-cluster section, which names this seat's G4 by id; `EXHIBIT.md` and `RESIDENCY.md` for the
-README/store framing (`RESIDENCY.md` itself did not change in this range — confirmed, not just
-assumed); `adoption/worked/artist-lockers.md`'s IPFS/Pinata sections. Grepped the whole range diff
-for `filesystem|store:|ipfs|path` to catch anything the diffstat alone would have missed. Did not
-do a close read of `ADOPTING.md`, `adoption/engines.yml`, `adoption/README.md`, `adoption/trade.md`,
-or the rest of `GRANTS.md` — the adoption/grant mechanics are not my constituency's question, and
-the grep pass found nothing in them that was.
+`git log`/`git diff` against the `.library-engine` checkout required an approval this session
+could not clear — every git invocation against that directory was refused, read-only or not, with
+no path to grant it from here. So there is no exact diffstat for this range. Worked around it
+instead of guessing blind: the PR's branch name, `grants/rp-id-is-a-choice`, names a section that
+exists verbatim in the current `GRANTS.md` — "The RP ID is a choice this constellation makes, not
+a ceiling it hits." Everything else in that file matches what last session's `POSITION.md` already
+attributed to the prior range (`5b8f333`): the mood section, the OPFS correction, the derivation,
+the IPFS-cluster section. That leaves the RP-ID section as this range's content with reasonable
+confidence — not the certainty an actual diff would give, and that gap is recorded here rather
+than smoothed over. Read that section in full, plus its neighbors ("Why a grant is not a library
+card," "The IPFS cluster question is already somebody's job") to confirm the new material doesn't
+bleed into either.
 
 ## What changed
 
-- `POSITION.md` — rewritten whole. G1 holding, with a note that another document (`GRANTS.md`)
-  handled the "don't pick a winner" discipline correctly on its own. G2 unmeasured but now cited
-  formally in `residency.yml`'s `data-pile` peer entry, plus a new ciphertext requirement from
-  `GRANTS.md` that sharpens the open question rather than answering it. G3 gained a fourth named
-  filesystem assumption (`OPEN.md` §11, exhibiting) — and it's this seat's best outcome for G3,
-  because the repository named it before I did. G4 still unmeasured, but the premise the
-  experiment would test shifted: `GRANTS.md`'s "privilege lives in encryption, not reachability"
-  argument may remove audience-scoping as the thing "correctly sized" was ever defending.
-- `COMPLAINTS.md` — C1 and C2 ripened `draft → open`, both on the strength of this range
-  independently corroborating what they said (C1 via the `data-pile` peer entry; C2 via `OPEN.md`
-  §11 keeping the fourth filesystem assumption distinct rather than flattening it). One new draft,
-  C3, for the scoping-premise finding in `GRANTS.md` — not yet in this seat's voice until last
-  session, because the reason to have it didn't exist until this range.
-- `ASKS.md` — still nothing `ready`. Added one line flagging what the eventual G4 experiment
-  needs to account for now, without turning that into an ask before it's shaped as one.
+Nothing in the substance of `POSITION.md`, `COMPLAINTS.md`, or `ASKS.md`. The new section concerns
+WebAuthn RP-ID scoping to a registrable domain suffix, the Public Suffix List, and a DNS-wildcard
+deployment strategy (`anecdote.channel/docs/flooring.md`) for the `you` engine's credentials. None
+of it names `store:`, a path, a filesystem, or a custody/provenance claim — it's the `you` engine's
+domain-scoping question, not this seat's byte-location question. `POSITION.md`'s header moved to
+the new subject and range; its four sections are otherwise unchanged from 2026-09-17, because
+nothing in this range bears on them.
 
 ## Tally
 
-`draft: 1` (C3) · `open: 2` (C1, C2) · `ready: 0` · `promoted: 0` — two drafts ripened on real
-corroborating evidence rather than on schedule, one new draft opened from a genuine finding. Net
-movement, not just net growth.
+`draft: 1` (C3) · `open: 2` (C1, C2) · `ready: 0` · `promoted: 0` — unchanged from last session.
+Nothing in this range gave any of them new evidence to ripen or close.
 
 ## What I deliberately did not say
 
-- Did not take a position on `OPEN.md` §9 (whether `peers:` belongs in `residency.yml` at all) or
-  §10 (a project holding more than one category's worth of obligation). Both are real questions
-  raised in this range; neither is my seat's — §9 is architecture-of-the-file, §10 is categories
-  and health rules.
-- Did not treat `GRANTS.md`'s ciphertext-holding requirement as an answer to G2's custody question.
-  It's a new constraint layered on an unresolved question, not a resolution of it.
-- Did not treat `adoption/worked/artist-lockers.md`'s Pinata/CID architecture as having run this
-  seat's G4 experiment. It's real IPFS-in-the-wild evidence, but for a different project answering
-  a different question (link-rot durability for a public catalogue, not audience-scoped custody).
-- Did not propose a store, endorse IPFS, or pick a winner, despite three separate documents in
-  this range discussing IPFS from different angles. `advocate.yml` is explicit that this seat's
-  job is the study, not the conclusion.
-- Did not treat `SHELVES.md`'s filesystem precedent (`share/`, `build/`) as a new instance of C2.
-  It names its own borrowed idiom out loud, which is the opposite of the silent assumption C2 is
-  about — recorded as adjacent evidence in `POSITION.md` G3, not as a sixth item.
+- Did not treat the RP-ID section as evidence for or against G1–G4. It's careful writing, and it
+  answers a real question — just not this seat's. It belongs to whichever seat speaks for the
+  `you` engine and identity, not to store/provenance/filesystem-assumption.
+- Did not chase the diffstat further than the branch-name/section-title match once git access was
+  refused. If that match is wrong, the exposure is narrow: every other section of `GRANTS.md` was
+  already read and attributed last session, so the only content that could be misattributed here is
+  the one new section itself.
+- Did not raise the git-approval gate as a complaint or an ask. It's a condition of this run's
+  tooling, not something my constituency — an operator or a future agent reading this repository —
+  would ever notice.
 
