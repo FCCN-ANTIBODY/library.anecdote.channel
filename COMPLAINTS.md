@@ -31,3 +31,7 @@ offline-capable equipment or not*. I don't know yet whether this is the ordinary
 or a heavier one reserved for the encrypted/private branch specifically — see `ASKS.md` A1. Filed as
 a draft because the range only answered the private case, and I'd be inventing testimony to say more
 than that about the ordinary one.
+
+Reviewed 2026-09-18 (range `5b8f333..8ede250`): unchanged. This range's one PR reframes `GRANTS.md`'s
+RP-ID/DNS-deployment section — `you`-engine identity territory, not the checkout mechanism this
+complaint is about. Nothing to ripen, nothing to withdraw.

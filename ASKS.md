@@ -37,3 +37,7 @@ shares this apparatus or gets something lighter. Still no wire format. Still tar
 decision record — this seat has no better words for either and isn't inventing any. What's new to
 watch: whether the ordinary case ever gets its own answer, and whether it's one mechanism or two.
 See `COMPLAINTS.md` C1 and `POSITION.md` for the reasoning.
+
+Reviewed 2026-09-18 (range `5b8f333..8ede250`): unchanged. Still no wire format, still no ordinary-
+case answer. This range's PR touches `GRANTS.md`'s RP-ID/DNS framing only, not the signers-list
+amendment or the private/ordinary split this ask is waiting on.
