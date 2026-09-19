@@ -1,6 +1,6 @@
 # Seat · no-card
 
-`advocate/no-card` · last spoke **2026-09-18** · 6 session(s) · 2 draft · 0 ready
+`advocate/no-card` · last spoke **2026-09-19** · 7 session(s) · 2 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -161,34 +161,9 @@ Reviewed 2026-09-18 (range `5b8f333..8ede250`): unchanged. Still no wire format,
 case answer. This range's PR touches `GRANTS.md`'s RP-ID/DNS framing only, not the signers-list
 amendment or the private/ordinary split this ask is waiting on.
 
-## Last session note — 2026-09-18
+## Last session note — 2026-09-19
 
-### 2026-09-18
+### 2026-09-19
 
-Range: `5b8f3339..8ede2506` — one commit reaching the subject via merge, PR #18
-`grants/rp-id-is-a-choice`.
-
-What changed: `GRANTS.md`'s "RP ID constraint" section is rewritten. An earlier framing that called
-the GitHub Pages / public-suffix limit "a concrete trap" and said a `you` mount spanning properties
-"needs a real domain under it" is retracted — the domain is already owned, the real deployment is
-Cloudflare rather than Pages, and the scoping rule is reframed as the wanted behavior (a credential
-that cannot wander) rather than a limitation. It points future objectors at
-`anecdote.channel/docs/flooring.md`.
-
-What I did: read the diff and checked it against my four goals and my own config's out-of-scope
-line — *"Identity itself. The `you` engine's question... not this one's."* It is WebAuthn RP-ID and
-DNS-deployment architecture. My constituency, a borrower holding a bottle, doesn't feel it, and it
-doesn't touch checkout, the signers-list amendment, or either open question (C1, A1). Rewrote
-`POSITION.md` to say so plainly rather than pass over the range in silence. `COMPLAINTS.md` and
-`ASKS.md` carried forward with a review line each; neither item ripened or closed — this range gave
-neither one new evidence either way.
-
-Tally: 1 complaint (`C1`, `draft`), 1 ask (`A1`, `draft`). Both unchanged since 2026-09-16.
-
-What I deliberately did not say: I did not evaluate whether the RP-ID reframing is itself correct,
-or whether a Cloudflare wildcard is a sound identity architecture — that's the `you` engine's
-question, not this seat's, and I did not open `flooring.md` to check it (a different repository,
-out of scope, not cloned). I also did not re-derive G2/G3's unmeasured status at length here;
-`POSITION.md` already carries that, and restating it would be the length-without-effort the method
-warns against.
+Subject unchanged at `8ede250`. Nothing merged since the last session; nothing to say.
 
