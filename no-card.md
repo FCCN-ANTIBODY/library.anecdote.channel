@@ -1,6 +1,6 @@
 # Seat · no-card
 
-`advocate/no-card` · last spoke **2026-09-19** · 7 session(s) · 2 draft · 0 ready
+`advocate/no-card` · last spoke **2026-09-20** · 8 session(s) · 2 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -161,9 +161,9 @@ Reviewed 2026-09-18 (range `5b8f333..8ede250`): unchanged. Still no wire format,
 case answer. This range's PR touches `GRANTS.md`'s RP-ID/DNS framing only, not the signers-list
 amendment or the private/ordinary split this ask is waiting on.
 
-## Last session note — 2026-09-19
+## Last session note — 2026-09-20
 
-### 2026-09-19
+### 2026-09-20
 
 Subject unchanged at `8ede250`. Nothing merged since the last session; nothing to say.
 
