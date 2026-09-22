@@ -1,6 +1,6 @@
 # Seat · stacks
 
-`advocate/stacks` · last spoke **2026-09-21** · 6 session(s) · 1 draft · 0 ready
+`advocate/stacks` · last spoke **2026-09-22** · 7 session(s) · 1 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -162,9 +162,9 @@ One thing worth naming for whoever runs the G4 experiment when it happens, not a
 seat owes can no longer be scoped-node-vs-nothing. It has to account for encryption changing what
 "scoped" is even defending.
 
-## Last session note — 2026-09-21
+## Last session note — 2026-09-22
 
-### 2026-09-21
+### 2026-09-22
 
 Subject unchanged at `8ede250`. Nothing merged since the last session; nothing to say.
 
