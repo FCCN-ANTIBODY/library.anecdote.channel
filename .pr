@@ -151,6 +151,35 @@ residency block every engine may carry, and the second wizard anyone meets will 
 different engine than the first — which is the namespace question answered by construction: the
 reference is `<engine> + <label>`, so `stagecraft + setup` and `you + setup` cannot collide.
 
+## The project credential: the client is the team lead of their own project
+
+`Ruled 2026-09-22.` A project gets its own origin — `thing-from-wizard-1.you.discoverywritten.com` —
+and therefore its own credential, because an RP ID is per-origin and a passkey cannot be scoped down
+from a parent name. So a client ends up holding **two**, and the question was what joins them:
+
+> *"It becomes project credential that comes from their own main, the way a team lead would add a
+> delegated team member (fcpm shows, nccv team)."*
+
+**It is the sub-key shape with a different `who`.** The three grant shapes above list `sub-key` as
+*a team member who must act as the operator*; this is the same move performed by the client, over
+their own project. Their `you` identity authorizes the project credential, and the authorization is
+recorded **on their main** — which is exactly `descendant = authorized-by`, already settled above,
+so nothing new is needed and nothing is derived from anybody's secret.
+
+Two consequences worth banking:
+
+- **The `you` identity backs the *request*; the project credential governs the *project*.** They do
+  not replace each other, and the onboarding-passkey wizard runs once per project origin — which is
+  what makes it reusable rather than bespoke.
+- **FCPM and NCCV are the same mechanism, not analogies.** Both already plan a lead adding delegated
+  members. A client delegating to their own project origin exercises that path first, on somebody
+  whose team is one person.
+
+**Why the user picks the label:** *"user might pick because two instances of wizard."* Two runs of
+one wizard make two projects, and they have to be told apart — so naming is disambiguation, not
+vanity. Still open: what happens when two people want one word, given how carefully
+`anecdote.channel/config/san-list.txt` reasons about label cost.
+
 ## The open questions
 
 1. **What may a wizard declare about itself?** Its own label (the reference key), an entry
@@ -175,6 +204,8 @@ reference is `<engine> + <label>`, so `stagecraft + setup` and `you + setup` can
 - [ ] `descendant = authorized-by` is stated where an implementer will hit it
 - [ ] the label-not-pin rule is stated where an implementer will reach for a version
 - [ ] the two grant tiers are written down, with the wizard as the namespace for workflow labels
+- [x] what joins the `you` identity to a project credential: authorized-by, recorded on their main
+- [ ] label collision: who wins when two clients want one word
 - [x] the first wizard is named (`greet`) and declared in an engine's residency — you.anecdote.channel#4
 - [x] a second engine declares a wizard by the same block — `stagecraft + render`; the namespace holds by construction
 - [ ] the one-ledger-or-two question is answered, because `truant` depends on it
