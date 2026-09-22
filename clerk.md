@@ -1,6 +1,6 @@
 # Seat · clerk
 
-`advocate/clerk` · last spoke **2026-09-21** · 9 session(s) · 0 draft · 0 ready
+`advocate/clerk` · last spoke **2026-09-22** · 10 session(s) · 0 draft · 0 ready
 
 <sub>Copied whole from the branch, which is the authority. Do not edit this page — it is
 overwritten every round.</sub>
@@ -98,9 +98,9 @@ not a new complaint.
 
 _Nothing in `ASKS.md` yet._
 
-## Last session note — 2026-09-21
+## Last session note — 2026-09-22
 
-### 2026-09-21
+### 2026-09-22
 
 Subject unchanged at `8ede250`. Nothing merged since the last session; nothing to say.
 
