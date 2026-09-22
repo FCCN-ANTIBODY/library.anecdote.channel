@@ -106,16 +106,55 @@ have made every consumer of a wizard care about a version they should never see.
 start life as a folder inside an engine and later become its own repository **without breaking
 anything that references it.** So placement is not a decision that has to be made first.
 
+## The grant is two-tiered, and the outer tier needs no new vocabulary
+
+`Refined 2026-09-21.` The first grant targets **`.you-engine` plus one of the wizard names** — *"I'm
+trying to say what they're allowed to use."* And then:
+
+> *"I guess I'm granting them a wizard at first, but then once they're in a wizard I'm granting them
+> workflow."*
+
+| tier | target | what it says |
+| --- | --- | --- |
+| **the wizard grant** | `<engine reference> + <wizard label>` | you may use this wizard at all |
+| **the workflow grant** | a label *inside* that wizard | what you may do once you are in it |
+
+**Two things fall out, and both are simplifications.**
+
+The outer tier needs **no invented vocabulary**: its label *is* the wizard reference already settled
+above. Nothing new to name — the reference form does double duty as the grant target.
+
+And the inner tier is **namespaced by the wizard**, so there is no global workflow vocabulary to
+design. Each wizard names its own workflow labels, and two wizards may reuse a word without
+colliding. This is the pattern `.ablative-engine/residency.yml` already uses, where each `serves:`
+entry carries its own `required-for:` list rather than drawing on a shared registry.
+
+## `bin/grant` already holds the doctrine; it needs a second claimant
+
+station-node's `bin/grant` is the same idea, built for a different subject. Its record is
+`{id, holding, intent, by, at, held_by, revoked}`, and its doctrine is exactly this one — *provisioned
+before the subject exists, never at the subject's request, and truancy is detectable*.
+
+What differs is **who claims**. `bin/grant claim --session <id> --cwd <dir>` is session-shaped: an
+agent appearing in a pool on this machine. A wizard grant is claimed by **a passkey holder, off
+station**. So the philosophy transfers unchanged and the mechanism needs one more claim path, not a
+second design. Worth deciding deliberately whether these are one ledger with two claimant kinds or
+two ledgers that share a doctrine — the answer affects whether `truant` means anything for a client.
+
 ## The open questions
 
 1. **What may a wizard declare about itself?** Its own label (the reference key), an entry
    `README.md` (the onboarding, per `bottles.anecdote.channel#format/the-workspace-payload`), and
    what else. The label is now load-bearing, since it is how anything finds the wizard.
-2. **What the first label vocabulary is.** Any label is permitted; some label has to be *chosen* for
-   the owner bind, and the mapping written beside it.
-3. **Where the mapping lives** — label to meaning. In the resident's `residency.yml` beside the
-   declaration, or in the library as the referee's register. This is the only genuinely open
-   placement question left, because the reference itself is version- and path-blind.
+2. ~~What the first label vocabulary is~~ — **the outer tier needs none; the wizard reference is the
+   target.** What is still needed is the **wizard's own name**, which is the one string nothing here
+   can invent.
+3. **Where the workflow label mapping lives** — in the resident's `residency.yml` beside the wizard
+   declaration, or in the library as the referee's register. Leaning toward the resident declaring
+   and the library refereeing, matching how `serves:` already works.
+4. **One grant ledger or two.** `bin/grant`'s claim path is session-shaped; a wizard grant is claimed
+   by a passkey off station. Whether that is one ledger with two claimant kinds decides whether
+   `truant` has any meaning for a client.
 
 ## Merge qualifications
 
@@ -125,6 +164,8 @@ anything that references it.** So placement is not a decision that has to be mad
 - [ ] the binding step that writes a commit is described, and it is not a trust-me configuration
 - [ ] `descendant = authorized-by` is stated where an implementer will hit it
 - [ ] the label-not-pin rule is stated where an implementer will reach for a version
+- [ ] the two grant tiers are written down, with the wizard as the namespace for workflow labels
+- [ ] the one-ledger-or-two question is answered, because `truant` depends on it
 - [ ] revocation is written down as a later signed commit, tied to the divestment record
 - [ ] the three shapes appear with what each one grants, in prose, before any schema **(form
       decided: a label plus a mapping, no claims language)**
