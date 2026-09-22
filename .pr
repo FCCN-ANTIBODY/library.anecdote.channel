@@ -71,27 +71,63 @@ a later signed commit removing the authorization, which only her key can author,
 copy must fast-forward past. Two peers authorizing into the same repository still works — their
 authorizations are independent signatures over the same log.
 
+## Decided 2026-09-21 — the target documents are not yet edited, so the boxes below stay open
+
+**A wizard is a declaration inside residency. Not a fourth relationship.** *"I don't want it to be
+any better than that."* The reasoning is the useful part: residency already covers more than one
+reason to want it — *"the civic node should treat you as a stockpile of something useful, or an
+active service. You're taking part in runtime."* A wizard is another reason, not another kind of
+relationship. `RESIDENCY.md`'s three stay three.
+
+**What a client is granted is a LABEL, for now, and that is deliberate.** *"Almost any label I want
+to come up with, as long as it's checked on the other side and I have a mapping of what the hell it
+means. Eventually it's going to mean a group of permissions maybe… but I'm okay with labels right
+now."* So: no claims language, no schema. A label plus a mapping, and the checking implemented later.
+
+What the labels are *for* is the sharper half: **major user states** — whether they are leveraged
+into a passkey, and what they are signing for. What they sign for should be **a service this host
+has residency for**, because then the grant can reference what they are getting.
+
+**AND THE REFERENCE IS BY LABEL, NOT BY PIN — which corrects this document.** Above, "residency and a
+commit hash" was read as mount + pin. That is how the *library holds an engine*. It is not how a
+*wizard is referenced*:
+
+> *"That reference alone would point and imply to the residency that supplies wizards for it… this
+> library engine reference, this wizard by label from their residency. And that's enough indirection
+> that the thing asking for the wizard doesn't need to know about the head version right now. It's
+> like whatever we've got."*
+
+So a reference is `<engine reference> + <wizard label>`, resolved through that engine's residency to
+**whatever its head currently is.** The asker is deliberately version-blind. The pin still exists —
+it is how the host holds the engine — but it is not in the reference, and conflating the two would
+have made every consumer of a wizard care about a version they should never see.
+
+**One consequence worth banking:** because the reference carries no version and no path, a wizard can
+start life as a folder inside an engine and later become its own repository **without breaking
+anything that references it.** So placement is not a decision that has to be made first.
+
 ## The open questions
 
-1. **What may a wizard declare about itself?** Its own `NAME`, an entry `README.md` (the onboarding,
-   per `bottles.anecdote.channel#format/the-workspace-payload`), and what else.
-2. **Does a wizard hold a residency, or is it declared *by* one?** It is not `holding` (the content
-   matters) and not quite `residency` (a wizard does not write). Probably declared by a resident
-   rather than being one — but `RESIDENCY.md` names three relationships and this may be a fourth.
-3. **What is actually granted to a client**, in words, before agents are asked to interpret it. The
-   operator: *"we don't have a strong list of real claims and grants that we can give them, but we
-   could certainly write down our intent."* Intent written down beats a schema guessed at.
-4. **Where the first one is packed.** `.you-engine` is the operator's instinct and it is the engine
-   that owns the control point. The library holds the *reference*; the engine holds the wizard.
+1. **What may a wizard declare about itself?** Its own label (the reference key), an entry
+   `README.md` (the onboarding, per `bottles.anecdote.channel#format/the-workspace-payload`), and
+   what else. The label is now load-bearing, since it is how anything finds the wizard.
+2. **What the first label vocabulary is.** Any label is permitted; some label has to be *chosen* for
+   the owner bind, and the mapping written beside it.
+3. **Where the mapping lives** — label to meaning. In the resident's `residency.yml` beside the
+   declaration, or in the library as the referee's register. This is the only genuinely open
+   placement question left, because the reference itself is version- and path-blind.
 
 ## Merge qualifications
 
-- [ ] `RESIDENCY.md` says whether a wizard is a fourth relationship or a declaration within the third
-- [ ] the `wizards:` block is specified — fields, and which are required
+- [ ] `RESIDENCY.md` records that a wizard is a declaration within residency **(decided; unwritten)**
+- [ ] the `wizards:` block is specified — fields, and which are required. Constrained now: keyed by
+      **label**, carrying no version, since the reference resolves to whatever head the resident has
 - [ ] the binding step that writes a commit is described, and it is not a trust-me configuration
 - [ ] `descendant = authorized-by` is stated where an implementer will hit it
+- [ ] the label-not-pin rule is stated where an implementer will reach for a version
 - [ ] revocation is written down as a later signed commit, tied to the divestment record
-- [ ] the three shapes appear with what each one grants, in prose, before any schema
+- [ ] the three shapes appear with what each one grants, in prose, before any schema **(form
+      decided: a label plus a mapping, no claims language)**
 - [ ] `ADOPTING.md` routes to it — one home, per its own rule
 - [ ] nothing here provisions, signs or publishes anything
 
