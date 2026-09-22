@@ -141,6 +141,16 @@ station**. So the philosophy transfers unchanged and the mechanism needs one mor
 second design. Worth deciding deliberately whether these are one ledger with two claimant kinds or
 two ledgers that share a doctrine — the answer affects whether `truant` means anything for a client.
 
+**The first wizard is named: `greet`** (you.anecdote.channel#4) — onboarding at the `you` subdomain,
+for staff or a client alike. Which of the three shapes applies is the **grant's** business, not the
+wizard's: one onboarding wizard, three kinds of grant behind it.
+
+**Project wizards come from the engine that owns the capability.** *"If one of my projects is to use
+my stagecraft thing, I would be giving them a wizard from stagecraft."* So `wizards:` is a general
+residency block every engine may carry, and the second wizard anyone meets will be declared by a
+different engine than the first — which is the namespace question answered by construction: the
+reference is `<engine> + <label>`, so `stagecraft + setup` and `you + setup` cannot collide.
+
 ## The open questions
 
 1. **What may a wizard declare about itself?** Its own label (the reference key), an entry
@@ -165,6 +175,7 @@ two ledgers that share a doctrine — the answer affects whether `truant` means 
 - [ ] `descendant = authorized-by` is stated where an implementer will hit it
 - [ ] the label-not-pin rule is stated where an implementer will reach for a version
 - [ ] the two grant tiers are written down, with the wizard as the namespace for workflow labels
+- [x] the first wizard is named (`greet`) and declared in an engine's residency — you.anecdote.channel#4
 - [ ] the one-ledger-or-two question is answered, because `truant` depends on it
 - [ ] revocation is written down as a later signed commit, tied to the divestment record
 - [ ] the three shapes appear with what each one grants, in prose, before any schema **(form
