@@ -1,1 +1,102 @@
-no draft yet - replace this file: line 1 becomes the PR title, the rest the body
+Wizards: a fourth thing a residency declares, and the three shapes the first ones take
+
+`status: WIP — goals first, boxes unchecked on purpose.` Nothing here is built. If the boxes are
+unmarked this is not ready, however finished the prose reads.
+
+## The goal
+
+**Name what a wizard is to this library, so the first one can be packed by an engine and found
+neutrally.** The operator's framing, 2026-09-21: *"if residency says what wizards are available… it
+would let the library take up what the origin is so that it can start following the fast forwards
+itself."*
+
+## The mechanism already exists and is not new
+
+The operator proposed that a wizard *"come in with a residency and a commit hash, just to declare
+that they know what they're talking about, and we'll go look it up and get it neutrally."* That is
+the residency relationship this repository already adopted on 2026-09-11:
+
+- `RESIDENCY.md`: **"The mount name is the claim."** `.<name>-engine` at a host root *is* the
+  declaration; nobody types the name twice.
+- `ADOPTING.md` §3: mounting an engine takes *"a pin to keep current, and a `residency.yml` to
+  answer"* — **broken out because it is the one that costs you a pin.**
+
+So "residency + commit hash" is a mount + a pin, and *following the fast forwards* is what a pin
+already does. Nothing needs inventing for the addressing; what needs deciding is the **block**.
+
+## The shape: `wizards:` beside `wants:`, `serves:` and `grants:`
+
+A residency claim already declares storage it `wants:`, services it `serves:`, and permissions it
+asks for under `grants:`. A wizard is a fourth kind of offer and fits the same pattern — declared,
+refusable, and legible before anything runs. `.ablative-engine/residency.yml` is the reference for
+the voice.
+
+**It must be a commit, not a configuration honoured on trust.** The operator: *"even if it's like
+part of a binding step that creates a commit that definitely puts it there, rather than it just
+being a configuration-based honoring."* So offering a wizard leaves a record; the library resolves
+the pin itself rather than believing the claim.
+
+## Three shapes, in the order the trust decreases
+
+| shape | who is bound | how long | revocation |
+| --- | --- | --- | --- |
+| **owner bind** | the operator's own first passkey to her own control point | permanent | none needed; this is the root |
+| **sub-key** | a team member who must act *as* the operator | as long as the authorization commit stands | remove the authorization in a later commit |
+| **client** | somebody she is working with on one bottle | ephemeral by design | they delete their passkey, or she authorizes a different one |
+
+**Owner bind is first because everything else descends from it**, and because it is the one she can
+test alone: scan it, authenticate, done.
+
+**Sub-key is the one FCPM and NCCV already need.** Both projects plan a team that must act as her.
+
+**Client is what this session has been building** — `you.discoverywritten.com`'s control point,
+`recipients.txt`, the prf-derived reader key. A client who deletes their passkey loses nothing but
+the ability to keep working on that bottle, which is the right blast radius. Note it takes **two**
+wizards: the onboarding one that binds a passkey, and whichever one drives the project she set up
+for them. So wizards compose, and the composition is part of the format.
+
+## One precision the design needs before it is built
+
+The operator describes a sub-key as *"a descendant key of me,"* which *"makes me the keeper of
+whether or not they were authoritative when I first put it up there."* The intent is right and the
+word will mislead whoever implements it:
+
+**A team member's key cannot be *derived* from hers.** D12's derived masks come from her own
+authenticator's `prf` — deriving a colleague's key would mean holding their secret, which defeats
+the point. So *descendant* here means **authorized-by**, not **derived-from**: she signs their public
+key into the record at a commit, and that signature is the descent.
+
+Which is good news, because it means revocation is the divestment mechanism already worked out:
+a later signed commit removing the authorization, which only her key can author, and which every
+copy must fast-forward past. Two peers authorizing into the same repository still works — their
+authorizations are independent signatures over the same log.
+
+## The open questions
+
+1. **What may a wizard declare about itself?** Its own `NAME`, an entry `README.md` (the onboarding,
+   per `bottles.anecdote.channel#format/the-workspace-payload`), and what else.
+2. **Does a wizard hold a residency, or is it declared *by* one?** It is not `holding` (the content
+   matters) and not quite `residency` (a wizard does not write). Probably declared by a resident
+   rather than being one — but `RESIDENCY.md` names three relationships and this may be a fourth.
+3. **What is actually granted to a client**, in words, before agents are asked to interpret it. The
+   operator: *"we don't have a strong list of real claims and grants that we can give them, but we
+   could certainly write down our intent."* Intent written down beats a schema guessed at.
+4. **Where the first one is packed.** `.you-engine` is the operator's instinct and it is the engine
+   that owns the control point. The library holds the *reference*; the engine holds the wizard.
+
+## Merge qualifications
+
+- [ ] `RESIDENCY.md` says whether a wizard is a fourth relationship or a declaration within the third
+- [ ] the `wizards:` block is specified — fields, and which are required
+- [ ] the binding step that writes a commit is described, and it is not a trust-me configuration
+- [ ] `descendant = authorized-by` is stated where an implementer will hit it
+- [ ] revocation is written down as a later signed commit, tied to the divestment record
+- [ ] the three shapes appear with what each one grants, in prose, before any schema
+- [ ] `ADOPTING.md` routes to it — one home, per its own rule
+- [ ] nothing here provisions, signs or publishes anything
+
+## Not this
+
+Not a claims language. Not a permissions schema. Not a second copy of anything in
+`bottles.anecdote.channel` — the container format is that repository's, and this one names what a
+wizard *is to a library* and how it is found.
