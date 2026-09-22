@@ -176,6 +176,7 @@ reference is `<engine> + <label>`, so `stagecraft + setup` and `you + setup` can
 - [ ] the label-not-pin rule is stated where an implementer will reach for a version
 - [ ] the two grant tiers are written down, with the wizard as the namespace for workflow labels
 - [x] the first wizard is named (`greet`) and declared in an engine's residency — you.anecdote.channel#4
+- [x] a second engine declares a wizard by the same block — `stagecraft + render`; the namespace holds by construction
 - [ ] the one-ledger-or-two question is answered, because `truant` depends on it
 - [ ] revocation is written down as a later signed commit, tied to the divestment record
 - [ ] the three shapes appear with what each one grants, in prose, before any schema **(form
