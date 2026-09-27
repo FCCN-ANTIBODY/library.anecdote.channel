@@ -8,8 +8,8 @@ Generated 2026-09-27 by `.advocate-engine/bin/digest.mjs`. Do not edit it — ed
 | seat | last spoke | sessions | draft | ready | state |
 | --- | --- | --- | --- | --- | --- |
 | [`clerk`](clerk.md) | 2026-09-27 | 15 | 0 | 0 | up to date |
-| [`no-card`](no-card.md) | 2026-09-26 | 14 | 2 | 0 | up to date |
-| [`stacks`](stacks.md) | 2026-09-26 | 11 | 1 | 0 | up to date |
+| [`no-card`](no-card.md) | 2026-09-27 | 15 | 2 | 0 | up to date |
+| [`stacks`](stacks.md) | 2026-09-27 | 12 | 1 | 0 | up to date |
 
 ## Asking to graduate
 
