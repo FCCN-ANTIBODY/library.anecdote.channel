@@ -9,7 +9,7 @@ Generated 2026-09-30 by `.advocate-engine/bin/digest.mjs`. Do not edit it — ed
 | --- | --- | --- | --- | --- | --- |
 | [`clerk`](clerk.md) | 2026-09-30 | 18 | 0 | 0 | up to date |
 | [`no-card`](no-card.md) | 2026-09-30 | 18 | 2 | 0 | up to date |
-| [`stacks`](stacks.md) | 2026-09-29 | 14 | 1 | 0 | up to date |
+| [`stacks`](stacks.md) | 2026-09-30 | 15 | 1 | 0 | up to date |
 
 ## Asking to graduate
 
