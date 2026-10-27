@@ -8,7 +8,7 @@ Generated 2026-10-27 by `.advocate-engine/bin/digest.mjs`. Do not edit it — ed
 | seat | last spoke | sessions | draft | ready | state |
 | --- | --- | --- | --- | --- | --- |
 | [`clerk`](clerk.md) | 2026-10-27 | 45 | 0 | 0 | up to date |
-| [`no-card`](no-card.md) | 2026-10-26 | 44 | 2 | 0 | up to date |
+| [`no-card`](no-card.md) | 2026-10-27 | 45 | 2 | 0 | up to date |
 | [`stacks`](stacks.md) | 2026-10-27 | 35 | 1 | 0 | up to date |
 
 ## Asking to graduate
